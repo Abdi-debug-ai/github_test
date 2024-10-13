@@ -299,3 +299,216 @@
         }
     }
 </script>
+<section id="quizzes" class="quiz-section">
+    <h2>Quizzes on Emerging Issues in World Politics</h2>
+    <div class="quiz-container" id="quizContainer">
+        <div class="question-container">
+            <h3 id="question"></h3>
+            <ul id="answerButtons" class="answer-buttons"></ul>
+        </div>
+        <button id="nextButton" class="next-button" style="display: none;">Next</button>
+    </div>
+    <div id="scoreContainer" class="score-container" style="display: none;">
+        <h2>Your Score: <span id="score"></span></h2>
+        <button id="restartButton">Restart Quiz</button>
+    </div>
+</section>
+<script>
+    const quizContainer = document.getElementById('quizContainer');
+    const questionElement = document.getElementById('question');
+    const answerButtons = document.getElementById('answerButtons');
+    const nextButton = document.getElementById('nextButton');
+    const scoreContainer = document.getElementById('scoreContainer');
+    const scoreDisplay = document.getElementById('score');
+    const restartButton = document.getElementById('restartButton');
+
+    const quizData = [
+        {
+            question: "What year did the war in Ukraine begin?",
+            answers: [
+                { text: "2014", correct: true },
+                { text: "2020", correct: false },
+                { text: "2018", correct: false },
+                { text: "2016", correct: false },
+            ]
+        },
+        {
+            question: "Which organization imposed sanctions on Russia due to the annexation of Crimea?",
+            answers: [
+                { text: "NATO", correct: false },
+                { text: "United Nations", correct: false },
+                { text: "European Union", correct: true },
+                { text: "G7", correct: false },
+            ]
+        },
+        {
+            question: "What is the main focus of the Paris Agreement?",
+            answers: [
+                { text: "Climate Change", correct: true },
+                { text: "Trade Agreements", correct: false },
+                { text: "Human Rights", correct: false },
+                { text: "Military Alliances", correct: false },
+            ]
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function startQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        nextButton.style.display = 'none';
+        scoreContainer.style.display = 'none';
+        quizContainer.style.display = 'block';
+        showQuestion(quizData[currentQuestionIndex]);
+    }
+
+    function showQuestion(questionData) {
+        questionElement.innerText = questionData.question;
+        answerButtons.innerHTML = '';
+        questionData.answers.forEach(answer => {
+            const button = document.createElement('li');
+            button.innerText = answer.text;
+            button.classList.add('answer-button');
+            button.addEventListener('click', () => selectAnswer(answer));
+            answerButtons.appendChild(button);
+        });
+    }
+
+    function selectAnswer(answer) {
+        if (answer.correct) {
+            score++;
+        }
+        nextButton.style.display = 'block';
+    }
+
+    function showScore() {
+        quizContainer.style.display = 'none';
+        scoreContainer.style.display = 'block';
+        scoreDisplay.innerText = `${score} out of ${quizData.length}`;
+    }
+
+    nextButton.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            showQuestion(quizData[currentQuestionIndex]);
+        } else {
+            showScore();
+        }
+    });
+
+    
+
+    
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Hour Popup</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Popup Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .modal-content h2 {
+            color: #ff0000;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- The Modal -->
+    <div id="newsHourModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Breaking News</h2>
+            <p>Iran releases a statement on the current state of Lebanon.</p>
+            <img src="https://source.unsplash.com/featured/?iran" alt="Beautiful view of Iran" style="max-width: 100%; height: auto;">
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("newsHourModal");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Check if the modal should be shown
+        if (!localStorage.getItem('newsHourShown')) {
+            modal.style.display = "block";
+            // Set an item in localStorage to prevent showing again
+            localStorage.setItem('newsHourShown', 'true');
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
