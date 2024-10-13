@@ -270,3 +270,32 @@
     
     <p><a href="https://www.example.com/full-article">Read more</a></p>
 </div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="closePopup" class="close">&times;</span>
+        <h2>New Article Posted!</h2>
+        <p>The article on the Ukraine-Russia conflict has been posted.</p>
+    </div>
+</div>
+<script>
+    // Check if the popup has been shown before
+    if (!localStorage.getItem('popupDisplayed')) {
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+
+        // Set the item in localStorage so it won't show again
+        localStorage.setItem('popupDisplayed', 'true');
+    }
+
+    // Close the popup when the user clicks on <span> (x)
+    document.getElementById('closePopup').onclick = function() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    // Close the popup when the user clicks anywhere outside of the popup
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('popup')) {
+            document.getElementById('popup').style.display = 'none';
+        }
+    }
+</script>
