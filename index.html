@@ -512,3 +512,163 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow Politicast on TikTok</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Follow Section Styles */
+        #follow-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        #follow-section h2 {
+            color: #ff005e; /* TikTok brand color */
+        }
+
+        #follow-section p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        #follow-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff005e; /* TikTok brand color */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #follow-button:hover {
+            background-color: #e6004d; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <section id="follow-section">
+        <h2>Follow Us on TikTok!</h2>
+        <p>Stay updated with the latest news and discussions. Join our community on TikTok!</p>
+        <a id="follow-button" href="https://www.tiktok.com/@politicast7?_t=8qW72asZ5bp&_r=1" target="_blank">Follow @politicast7</a>
+    </section>
+
+</body>
+</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.tiktok.com; img-src 'self' https://picsum.photos https://www.tiktok.com; frame-src https://www.tiktok.com; style-src 'self' 'unsafe-inline';">
+    <title>Your Page Title</title>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Popup Modal Styles */
+        #videoModal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Your Main Content Here</h2>
+    <p>Some content about your site...</p>
+
+    <!-- Popup Modal -->
+    <div id="videoModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>The Fate of Palestinians in Gaza</h2>
+            <iframe width="100%" height="360" src="https://www.youtube.com/embed/93Cy946d7xc" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Function to show the modal
+        function showModal() {
+            document.getElementById('videoModal').style.display = 'block';
+        }
+
+        // Close the modal when the close button is clicked
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('videoModal').style.display = 'none';
+        }
+
+        // Close the modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('videoModal')) {
+                document.getElementById('videoModal').style.display = 'none';
+            }
+        }
+
+        // Check if the modal has been shown before
+        if (!localStorage.getItem('videoModalShown')) {
+            showModal();
+            localStorage.setItem('videoModalShown', 'true'); // Set item to localStorage
+        }
+    </script>

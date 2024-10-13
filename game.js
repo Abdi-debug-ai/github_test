@@ -215,3 +215,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+    res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' https://www.tiktok.com; img-src 'self' https://picsum.photos https://www.tiktok.com; frame-src https://www.tiktok.com; style-src 'self' 'unsafe-inline';");
+    next();
+});
+
+// Your other routes and middleware
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
