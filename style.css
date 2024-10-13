@@ -1,0 +1,28 @@
+.news-article {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.news-article h2 {
+    color: #333;
+}
+
+.news-article h3 {
+    color: #555;
+}
+
+.news-article p {
+    line-height: 1.6;
+}
+
+.news-article a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.news-article a:hover {
+    text-decoration: underline;
+}
