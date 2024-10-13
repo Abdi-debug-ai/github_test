@@ -590,14 +590,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title>
     <style>
+        /* Basic styles for body */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
 
-        /* Popup Modal Styles */
-        #videoModal {
+        /* Style for the modal */
+        .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1000; /* Sit on top */
@@ -606,10 +607,10 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+            background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
         }
 
-        /* Modal Content */
+        /* Modal content */
         .modal-content {
             background-color: #fefefe;
             margin: 15% auto; /* 15% from the top and centered */
@@ -618,7 +619,7 @@
             width: 80%; /* Could be more or less, depending on screen size */
         }
 
-        /* Close Button */
+        /* Close button */
         .close {
             color: #aaa;
             float: right;
@@ -632,43 +633,189 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        /* Style for button */
+        .open-modal-btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .open-modal-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Your Main Content Here</h2>
-    <p>Some content about your site...</p>
+    <h2>The War in Lebanon</h2>
+    <button class="open-modal-btn" id="openModalBtn">Watch Video</button>
 
-    <!-- Popup Modal -->
-    <div id="videoModal">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>The Fate of Palestinians in Gaza</h2>
-            <iframe width="100%" height="360" src="https://www.youtube.com/embed/93Cy946d7xc" frameborder="0" allowfullscreen></iframe>
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>The War in Lebanon</h2>
+            <iframe width="100%" height="360" src="https://www.youtube.com/embed/wkjfPEDaLRM" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
-        // Function to show the modal
-        function showModal() {
-            document.getElementById('videoModal').style.display = 'block';
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("openModalBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeModalBtn");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
         }
 
-        // Close the modal when the close button is clicked
-        document.querySelector('.close').onclick = function() {
-            document.getElementById('videoModal').style.display = 'none';
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
         }
 
-        // Close the modal when clicking outside of the modal content
+        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-            if (event.target === document.getElementById('videoModal')) {
-                document.getElementById('videoModal').style.display = 'none';
+            if (event.target == modal) {
+                modal.style.display = "none";
             }
         }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Button to open the popup */
+        .open-popup {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
 
-        // Check if the modal has been shown before
-        if (!localStorage.getItem('videoModalShown')) {
-            showModal();
-            localStorage.setItem('videoModalShown', 'true'); // Set item to localStorage
+        /* The popup background */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000; /* Sit on top */
+        }
+
+        /* Popup content */
+        .popup-content {
+            position: relative;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive iframe */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>News Section</h2>
+    <p>Click the button below to view the video.</p>
+    
+    <button class="open-popup" id="openPopup">Watch Video</button>
+
+    <!-- The Popup -->
+    <div class="popup" id="videoPopup">
+        <div class="popup-content">
+            <span class="close" id="closePopup">&times;</span>
+            <h2>How the Nobel Peace Prize is Decided</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/90ZhWphbK1w" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var popup = document.getElementById("videoPopup");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("openPopup");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closePopup");
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+            popup.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            popup.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target === popup) {
+                popup.style.display = "none";
+            }
         }
     </script>
+
+</body>
+</html>
