@@ -631,6 +631,135 @@
     
     <h3>Legacy</h3>
     <p>World War I profoundly influenced the course of the 20th century, leading to significant changes in global power dynamics and sowing the seeds of future conflicts. Its legacy continues to be studied as nations reflect on the lessons learned from this devastating war.</p>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/LMMUP3mWtsQ" allowfullscreen></iframe>
+        <div class="video-caption">THE WAR</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+
     
     <p><a href="https://www.example.com/full-article">Read more</a></p>
 </div>
