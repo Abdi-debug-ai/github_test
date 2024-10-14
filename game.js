@@ -261,67 +261,6 @@ app.post('/comments', async (req, res) => {
     await newComment.save();
     res.status(201).json(newComment);
 });
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-
-const app = express();
-app.use(bodyParser.json());
-mongoose.connect('mongodb://localhost:27017/politicast', { useNewUrlParser: true, useUnifiedTopology: true });
-
-const submissionSchema = new mongoose.Schema({
-    title: String,
-    content: String,
-    videoLink: String,
-});
-
-const Submission = mongoose.model('Submission', submissionSchema);
-
-// Endpoint to handle submissions
-app.post('/submit', (req, res) => {
-    const newSubmission = new Submission(req.body);
-    newSubmission.save().then(() => {
-        res.status(201).send('Submission received!');
-    }).catch((error) => {
-        res.status(400).send('Error: ' + error.message);
-    });
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-// Fetch user submissions from the server
-fetch('/submissions')
-    .then(response => response.json())
-    .then(data => {
-        const displayArea = document.getElementById('content-display');
-        displayArea.innerHTML = ''; // Clear previous content
-
-        data.forEach(submission => {
-            const article = document.createElement('div');
-            article.classList.add('submission');
-            article.innerHTML = `
-                <h3>${submission.title}</h3>
-                <p>${submission.content}</p>
-                ${submission.videoLink ? `<iframe width="560" height="315" src="${submission.videoLink}" frameborder="0" allowfullscreen></iframe>` : ''}
-            `;
-            displayArea.appendChild(article);
-        });
-    })
-    .catch(error => console.error('Error fetching submissions:', error));
-// Endpoint to get all submissions
-app.get('/submissions', (req, res) => {
-    Submission.find().then(submissions => {
-        res.json(submissions);
-    }).catch(error => {
-        res.status(500).send('Error fetching submissions: ' + error.message);
-    });
-});
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -354,17 +293,4 @@ app.post('/submit', (req, res) => {
     newSubmission.save()
         .then(() => res.status(201).json({ message: 'Submission received and automatically approved.' }))
         .catch(error => res.status(500).json({ message: 'Error saving submission:', error }));
-});
-// Endpoint for reporting a submission
-app.post('/report/:id', (req, res) => {
-    const submissionId = req.params.id;
-
-    // Logic to handle reporting, such as incrementing a report count
-    // and potentially marking the submission for review
-    Submission.findById(submissionId)
-        .then(submission => {
-            // Increment report count or handle the reporting logic
-            res.json({ message: 'Submission reported.' });
-        })
-        .catch(error => res.status(500).json({ message: 'Error reporting submission:', error }));
 });
