@@ -230,4 +230,38 @@ app.listen(3000, () => {
 otpauth://totp/GitHub:Abdi-debug-ai?secret=ESVVJYQZGRWHHF6P&issuer=GitHub
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8630338396467715"
      crossorigin="anonymous"></script>
-     
+     const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const app = express();
+
+app.use(cors());
+app.use(bodyParser.json());
+
+mongoose.connect('mongodb://localhost/commentsDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+const commentSchema = new mongoose.Schema({
+    username: String,
+    comment: String,
+    timestamp: { type: Date, default: Date.now }
+});
+
+const Comment = mongoose.model('Comment', commentSchema);
+
+// Get all comments
+app.get('/comments', async (req, res) => {
+    const comments = await Comment.find();
+    res.json(comments);
+});
+
+// Post a new comment
+app.post('/comments', async (req, res) => {
+    const newComment = new Comment(req.body);
+    await newComment.save();
+    res.status(201).json(newComment);
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});

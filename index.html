@@ -2813,39 +2813,12 @@
                 const listItem = document.createElement('li');
                 listItem.textContent = `${comment.user}: ${comment.text}`;
 
-                const editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
-                editButton.onclick = () => editComment(comment.id);
-
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.onclick = () => deleteComment(comment.id);
-
                 const buttonContainer = document.createElement('div');
                 buttonContainer.classList.add('edit-delete-buttons');
-                buttonContainer.append(editButton, deleteButton);
 
                 listItem.appendChild(buttonContainer);
                 commentList.appendChild(listItem);
             });
-        }
-
-        function editComment(id) {
-            const comment = comments.find(c => c.id === id);
-            const newText = prompt('Edit your comment:', comment.text);
-
-            if (newText !== null) {
-                comment.text = newText;
-                localStorage.setItem('comments', JSON.stringify(comments));
-                renderComments();
-            }
-        }
-
-        function deleteComment(id) {
-            const index = comments.findIndex(c => c.id === id);
-            comments.splice(index, 1);
-            localStorage.setItem('comments', JSON.stringify(comments));
-            renderComments();
         }
 
         function register() {
