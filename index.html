@@ -2697,35 +2697,29 @@
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 5px;
+            position: relative;
+        }
+        .comment-list li button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .edit-delete-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+        .auth-section {
+            margin: 20px;
+        }
+        .auth-section input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
     </style>
-    <script>
-        function showTab(tabId) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
-
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contents.forEach(content => content.classList.remove('active'));
-
-            document.getElementById(tabId).classList.add('active');
-            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
-        }
-
-        function addComment() {
-            const commentBox = document.getElementById('comment-box');
-            const commentList = document.getElementById('comment-list');
-            const comment = commentBox.value;
-
-            if (comment.trim() !== "") {
-                const newComment = document.createElement('li');
-                newComment.textContent = comment;
-                commentList.appendChild(newComment);
-
-                // Clear the comment box after adding
-                commentBox.value = '';
-            }
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -2737,6 +2731,7 @@
     <div class="tabs">
         <div class="tab active" data-tab="news-tab" onclick="showTab('news-tab')">News</div>
         <div class="tab" data-tab="comment-tab" onclick="showTab('comment-tab')">Comment Section</div>
+        <div class="tab" data-tab="auth-tab" onclick="showTab('auth-tab')">Login/Register</div>
     </div>
 
     <!-- News Tab Content -->
@@ -2760,5 +2755,126 @@
             </ul>
         </div>
     </div>
+
+    <!-- Authentication Tab Content -->
+    <div id="auth-tab" class="tab-content">
+        <div class="auth-section">
+            <h2>Login or Register</h2>
+            <input type="text" id="username" placeholder="Enter username" required>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <button onclick="register()">Register</button>
+            <button onclick="login()">Login</button>
+            <p id="auth-message"></p>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = localStorage.getItem('currentUser') || null;
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+        }
+
+        function addComment() {
+            if (!currentUser) {
+                alert('You must log in to comment.');
+                return;
+            }
+
+            const commentBox = document.getElementById('comment-box');
+            const comment = commentBox.value.trim();
+
+            if (comment !== "") {
+                const newComment = {
+                    user: currentUser,
+                    text: comment,
+                    id: Date.now(),
+                };
+                comments.push(newComment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+                renderComments();
+                commentBox.value = '';
+            }
+        }
+
+        function renderComments() {
+            const commentList = document.getElementById('comment-list');
+            commentList.innerHTML = ''; // Clear current list
+
+            comments.forEach(comment => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${comment.user}: ${comment.text}`;
+
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.onclick = () => editComment(comment.id);
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = () => deleteComment(comment.id);
+
+                const buttonContainer = document.createElement('div');
+                buttonContainer.classList.add('edit-delete-buttons');
+                buttonContainer.append(editButton, deleteButton);
+
+                listItem.appendChild(buttonContainer);
+                commentList.appendChild(listItem);
+            });
+        }
+
+        function editComment(id) {
+            const comment = comments.find(c => c.id === id);
+            const newText = prompt('Edit your comment:', comment.text);
+
+            if (newText !== null) {
+                comment.text = newText;
+                localStorage.setItem('comments', JSON.stringify(comments));
+                renderComments();
+            }
+        }
+
+        function deleteComment(id) {
+            const index = comments.findIndex(c => c.id === id);
+            comments.splice(index, 1);
+            localStorage.setItem('comments', JSON.stringify(comments));
+            renderComments();
+        }
+
+        function register() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                localStorage.setItem('user_' + username, password);
+                alert('Registered successfully');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const storedPassword = localStorage.getItem('user_' + username);
+
+            if (storedPassword === password) {
+                currentUser = username;
+                localStorage.setItem('currentUser', currentUser);
+                document.getElementById('auth-message').textContent = 'Logged in as ' + currentUser;
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        // Initial render
+        renderComments();
+    </script>
 </body>
 </html>
