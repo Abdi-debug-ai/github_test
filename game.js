@@ -322,3 +322,49 @@ app.get('/submissions', (req, res) => {
         res.status(500).send('Error fetching submissions: ' + error.message);
     });
 });
+const express = require('express');
+const mongoose = require('mongoose');
+
+const app = express();
+app.use(express.json()); // To parse JSON data
+
+// MongoDB connection
+mongoose.connect('mongodb://localhost:27017/politicast', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Define a Submission schema
+const SubmissionSchema = new mongoose.Schema({
+    title: String,
+    content: String,
+    videoLink: String,
+    status: { type: String, default: 'approved' } // Automatically approved
+});
+const Submission = mongoose.model('Submission', SubmissionSchema);
+
+// Endpoint to handle submissions
+app.post('/submit', (req, res) => {
+    const { title, content, videoLink } = req.body;
+
+    // Validate input
+    if (!title || !content) {
+        return res.status(400).json({ message: 'Title and content are required.' });
+    }
+
+    // Create a new submission with status as 'approved'
+    const newSubmission = new Submission({ title, content, videoLink, status: 'approved' });
+    newSubmission.save()
+        .then(() => res.status(201).json({ message: 'Submission received and automatically approved.' }))
+        .catch(error => res.status(500).json({ message: 'Error saving submission:', error }));
+});
+// Endpoint for reporting a submission
+app.post('/report/:id', (req, res) => {
+    const submissionId = req.params.id;
+
+    // Logic to handle reporting, such as incrementing a report count
+    // and potentially marking the submission for review
+    Submission.findById(submissionId)
+        .then(submission => {
+            // Increment report count or handle the reporting logic
+            res.json({ message: 'Submission reported.' });
+        })
+        .catch(error => res.status(500).json({ message: 'Error reporting submission:', error }));
+});
