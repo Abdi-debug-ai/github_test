@@ -227,3 +227,7 @@ app.use((req, res, next) => {
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
+otpauth://totp/GitHub:Abdi-debug-ai?secret=ESVVJYQZGRWHHF6P&issuer=GitHub
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8630338396467715"
+     crossorigin="anonymous"></script>
+     
