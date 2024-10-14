@@ -2851,3 +2851,83 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Submit Your Article or Video</h2>
+<form id="submission-form">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" rows="4" required></textarea>
+
+    <label for="video-link">Video Link (YouTube only):</label>
+    <input type="url" id="video-link" name="video-link">
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    document.getElementById('submission-form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        
+        const title = document.getElementById('title').value;
+        const content = document.getElementById('content').value;
+        const videoLink = document.getElementById('video-link').value;
+
+        // Logic to handle submission (e.g., send data to server or display confirmation)
+        alert('Your submission has been received:\n\nTitle: ' + title + '\nContent: ' + content + '\nVideo Link: ' + videoLink);
+        
+        // Optionally reset the form
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
+<h2>User-Submitted Content</h2>
+<div id="content-display">
+    <!-- User-generated content will be injected here -->
+</div>

@@ -256,3 +256,14 @@ button:hover {
 #news-hour h2 {
     color: #333 !important;
 }
+.submission {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.submission h3 {
+    color: #333;
+}
