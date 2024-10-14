@@ -318,6 +318,132 @@
 
     <h3>Looking Ahead</h3>
     <p>As the situation continues to unfold, analysts warn of the potential for wider regional instability. The geopolitical implications of the conflict could affect global oil markets, international relations, and the lives of millions in the Middle East and beyond. Urgent action is needed to prevent further escalation and promote a path to peace.</p>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Middle East Explained</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Breaking News Popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none;
+            z-index: 1001;
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/veMFCFyOwFI" allowfullscreen></iframe>
+        <div class="video-caption">Middle East Explained</div>
+    </div>
+</body>
+</html>
+
     
     <p><a href="https://www.example.com/full-article">Read more</a></p>
 </div>
@@ -337,7 +463,137 @@
     
     <h3>Looking Ahead</h3>
     <p>As diplomatic efforts falter, the prospect of a prolonged conflict looms. Analysts warn that without a significant shift towards peace negotiations, the humanitarian and geopolitical consequences could destabilize not only Ukraine and Russia but also the entire European continent.</p>
-    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/MVu8QbxafJE" allowfullscreen></iframe>
+        <div class="video-caption">UKRAINE RUSSIAN WAR</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+
+
+
     <p><a href="https://www.example.com/full-article">Read more</a></p>
 </div>
 <div class="news-article">
@@ -396,6 +652,135 @@
     <p>The aftermath of World War II saw significant geopolitical changes, including the emergence of the United States and the Soviet Union as superpowers and the beginning of the Cold War. The establishment of the United Nations aimed to prevent future conflicts and promote international cooperation.</p>
     
     <p>World War II remains a crucial area of study, emphasizing the importance of diplomacy, peacekeeping, and the consequences of global conflict.</p>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/lDfhxMwoyWo" allowfullscreen></iframe>
+        <div class="video-caption">Sudan Conflict</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+
     
     <p><a href="https://www.example.com/full-article">Read more</a></p>
 </div>
