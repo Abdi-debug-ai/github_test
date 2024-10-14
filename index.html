@@ -897,7 +897,7 @@
 
     <!-- Breaking News Popup -->
     <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
+        The Arab spring article has been posted. Check it out.
     </div>
 
     <!-- Video Gallery Section -->
@@ -1022,8 +1022,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Breaking News</h2>
-            <p>Iran releases a statement on the current state of Lebanon.</p>
-            <img src="https://source.unsplash.com/featured/?iran" alt="Beautiful view of Iran" style="max-width: 100%; height: auto;">
+            <p>New article on the Arab spring.</p>
         </div>
     </div>
 
@@ -1111,6 +1110,154 @@
     </style>
 </head>
 <body>
+  <section id="arab-spring">
+    <h2>The Arab Spring: A Revolutionary Wave</h2>
+    <p>
+        The Arab Spring was a series of pro-democracy uprisings that enveloped several largely Muslim countries, including Tunisia, Morocco, Syria, Libya, Egypt, and Bahrain. The events in these nations generally began in the spring of 2011, which led to the term "Arab SpringThe Arab Spring (Arabic: الربيع العربي, romanized: ar-rabīʻ al-ʻarabī) or the First Arab Spring (to distinguish from the Second Arab Spring) was a series of anti-government protests, uprisings and armed rebellions that spread across much of the Arab world in the early 2010s. It began in Tunisia in response to corruption and economic stagnation.[1][2] From Tunisia, the protests then spread to five other countries: Libya, Egypt, Yemen, Syria and Bahrain. Rulers were deposed (Zine El Abidine Ben Ali of Tunisia in 2011, Muammar Gaddafi of Libya in 2011, Hosni Mubarak of Egypt in 2011, and Ali Abdullah Saleh of Yemen in 2012) or major uprisings and social violence occurred including riots, civil wars, or insurgencies. Sustained street demonstrations took place in Morocco, Iraq, Algeria, Lebanon, Jordan, Kuwait, Oman and Sudan. Minor protests took place in Djibouti, Mauritania, Palestine, Saudi Arabia and the Moroccan-occupied Western Sahara.[3] A major slogan of the demonstrators in the Arab world is ash-shaʻb yurīd isqāṭ an-niẓām! (Arabic: الشعب يريد إسقاط النظام, lit. 'the people want to bring down the regime').[4]."
+    </p>
+    <p>
+        The protests, which demanded the end of authoritarian regimes and sought to establish democratic reforms, were triggered by a combination of political repression, economic hardships, corruption, and the rise of social media. The movements began in Tunisia, where Mohamed Bouazizi, a street vendor, set himself on fire in protest of police harassment and economic injustices. This act of desperation inspired protests that led to the fall of Tunisia's long-time dictator, Zine El Abidine Ben Ali.
+    </p>
+    <p>
+        From Tunisia, the movement spread rapidly across the region, with citizens in Egypt, Libya, Syria, and beyond taking to the streets. In Egypt, the protests famously resulted in the resignation of President Hosni Mubarak after three decades in power. In Libya, the civil uprising escalated into a full-blown civil war, leading to the death of dictator Muammar Gaddafi.
+    </p>
+    <p>
+        The outcomes of the Arab Spring varied from country to country. Some nations, like Tunisia, successfully transitioned to more democratic governance. However, others, like Syria and Libya, descended into prolonged conflict and civil war, with devastating humanitarian consequences.
+    </p>
+    <p>
+        The legacy of the Arab Spring remains complex. While it demonstrated the power of popular movements and social media to catalyze political change, the aftermath in many countries has been marked by instability, continued authoritarianism, or civil war. Nonetheless, the Arab Spring remains a pivotal moment in modern Middle Eastern history, symbolizing the struggle for freedom and the risks inherent in challenging entrenched political orders.
+    </p>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/ToJhvgk79e8" allowfullscreen></iframe>
+        <div class="video-caption">Video: The Arab Spring</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+
+</section>
+
 
     <section id="follow-section">
         <h2>Follow Us on TikTok!</h2>
@@ -2757,11 +2904,8 @@
         Breaking news: Iran releases a statement on the current state of Lebanon.
     </div>
 
-    <!-- Video Gallery Section -->
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/jvqbHS3bXz0" allowfullscreen></iframe>
-        <div class="video-caption">THE WAR IN GAZA: TRUMP AND KAMALA</div>
-    </div>
+
+
 
     <!-- Add more videos as needed -->
 </body>
@@ -3000,3 +3144,184 @@
     <p>Discover how political landscapes are changing in the modern world.</p>
     <a href="#" class="btn">Read More</a>
 </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            color: #fff;
+            animation: ring 2s infinite ease-in-out;
+        }
+        /* Notification list */
+        .notification-list {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+        .notification-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .notification-list ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .notification-list ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        /* Ringing animation */
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            1% { transform: rotate(20deg); }
+            3% { transform: rotate(-20deg); }
+            5% { transform: rotate(10deg); }
+            7% { transform: rotate(-10deg); }
+            9% { transform: rotate(5deg); }
+            11% { transform: rotate(-5deg); }
+            13% { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+        /* Breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        // Function to show the notification list
+        function toggleNotificationList() {
+            const list = document.getElementById('notification-list');
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+            } else {
+                list.style.display = 'none';
+            }
+        }
+
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Function to set the breaking news content dynamically
+        function setBreakingNews(newsContent) {
+            const newsPopup = document.getElementById('breaking-news');
+            newsPopup.innerHTML = newsContent;
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            // Set the breaking news content
+            setBreakingNews('Breaking news: Iran releases a statement on the current state of Lebanon.');
+
+            // Show the breaking news popup once
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="toggleNotificationList()">🔔</div>
+
+    <!-- Notification List -->
+    <div id="notification-list" class="notification-list">
+        <ul>
+            <li><a href="#">New Video: The Arab Spring</a></li>
+            <li><a href="#">Breaking News: Iran releases statement</a></li>
+            <li><a href="#">How the Nobel Peace Prize is Decided</a></li>
+        </ul>
+    </div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
