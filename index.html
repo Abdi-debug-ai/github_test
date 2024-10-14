@@ -772,13 +772,284 @@
     </style>
 </head>
 <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Button to open the popup */
+        .open-popup {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* The popup background */
+        .popup, .rating-popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000; /* Sit on top */
+        }
+
+        /* Popup content */
+        .popup-content, .rating-popup-content {
+            position: relative;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive iframe */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Rating buttons */
+        .rating-button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- The Rating Popup -->
+    <div class="rating-popup" id="ratingPopup">
+        <div class="rating-popup-content">
+            <h2>Please Rate Political</h2>
+            <button class="rating-button" id="rateGood">Good</button>
+            <button class="rating-button" id="rateBad">Bad</button>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal elements
+        var videoPopup = document.getElementById("videoPopup");
+        var ratingPopup = document.getElementById("ratingPopup");
+
+        // Get the button that opens the video modal
+        var openPopup = document.getElementById("openPopup");
+
+        // Get the <span> element that closes the video modal
+        var closePopup = document.getElementById("closePopup");
+
+        // When the user clicks the button, open the video modal
+        openPopup.onclick = function() {
+            videoPopup.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the video modal
+        closePopup.onclick = function() {
+            videoPopup.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the video modal, close it
+        window.onclick = function(event) {
+            if (event.target === videoPopup) {
+                videoPopup.style.display = "none";
+            }
+        }
+
+        // Show the rating popup only if the user has not rated before
+        if (!localStorage.getItem("ratedPolitical")) {
+            ratingPopup.style.display = "block";
+        }
+
+        // Function to handle rating
+        document.getElementById("rateGood").onclick = function() {
+            alert("Thank you for rating us as Good!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+
+        document.getElementById("rateBad").onclick = function() {
+            alert("Thank you for your feedback!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        /* Notification bell icon */
+        .notification-bell {
+            position: fixed; /* Fixed positioning */
+            top: 20px; /* Distance from the top */
+            right: 20px; /* Distance from the right */
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1000; /* Sit on top */
+        }
+
+        /* Notification dropdown */
+        .notification-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1000; /* Sit on top */
+            right: 0; /* Align to the right */
+            margin-top: 10px; /* Space between bell and dropdown */
+        }
+
+        /* Notification items */
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none; /* Remove border from last item */
+        }
+
+        /* The popup background */
+        .popup, .rating-popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000; /* Sit on top */
+        }
+
+        /* Popup content */
+        .popup-content, .rating-popup-content {
+            position: relative;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive iframe */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Rating buttons */
+        .rating-button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="notification-bell" id="notificationBell">
+        🔔
+        <div class="notification-dropdown" id="notificationDropdown">
+            <div class="notification-item">New Article: Middle East Update</div>
+            <div class="notification-item">New Video: How the Nobel Peace Prize is Decided</div>
+            <div class="notification-item">Upcoming Webinar on Global Affairs</div>
+        </div>
+    </div>
 
     <h2>News Section</h2>
     <p>Click the button below to view the video.</p>
     
     <button class="open-popup" id="openPopup">Watch Video</button>
 
-    <!-- The Popup -->
+    <!-- The Video Popup -->
     <div class="popup" id="videoPopup">
         <div class="popup-content">
             <span class="close" id="closePopup">&times;</span>
@@ -789,33 +1060,884 @@
         </div>
     </div>
 
+    <!-- The Rating Popup -->
+    <div class="rating-popup" id="ratingPopup">
+        <div class="rating-popup-content">
+            <h2>Please Rate Political</h2>
+            <button class="rating-button" id="rateGood">Good</button>
+            <button class="rating-button" id="rateBad">Bad</button>
+        </div>
+    </div>
+
     <script>
-        // Get the modal
-        var popup = document.getElementById("videoPopup");
+        // Get the modal elements
+        var videoPopup = document.getElementById("videoPopup");
+        var ratingPopup = document.getElementById("ratingPopup");
 
-        // Get the button that opens the modal
-        var btn = document.getElementById("openPopup");
+        // Get the button that opens the video modal
+        var openPopup = document.getElementById("openPopup");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementById("closePopup");
+        // Get the <span> element that closes the video modal
+        var closePopup = document.getElementById("closePopup");
 
-        // When the user clicks the button, open the modal
-        btn.onclick = function() {
-            popup.style.display = "block";
+        // When the user clicks the button, open the video modal
+        openPopup.onclick = function() {
+            videoPopup.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            popup.style.display = "none";
+        // When the user clicks on <span> (x), close the video modal
+        closePopup.onclick = function() {
+            videoPopup.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
+        // When the user clicks anywhere outside of the video modal, close it
         window.onclick = function(event) {
-            if (event.target === popup) {
-                popup.style.display = "none";
+            if (event.target === videoPopup) {
+                videoPopup.style.display = "none";
+            }
+        }
+
+        // Show the rating popup only if the user has not rated before
+        if (!localStorage.getItem("ratedPolitical")) {
+            ratingPopup.style.display = "block";
+        }
+
+        // Function to handle rating
+        document.getElementById("rateGood").onclick = function() {
+            alert("Thank you for rating us as Good!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+
+        document.getElementById("rateBad").onclick = function() {
+            alert("Thank you for your feedback!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+
+        // Notification dropdown functionality
+        var notificationBell = document.getElementById("notificationBell");
+        var notificationDropdown = document.getElementById("notificationDropdown");
+
+        // Toggle dropdown visibility on bell click
+        notificationBell.onclick = function(event) {
+            notificationDropdown.style.display = notificationDropdown.style.display === "block" ? "none" : "block";
+            event.stopPropagation(); // Prevent the click from bubbling up to the document
+        }
+
+        // Close dropdown if user clicks outside of it
+        window.onclick = function(event) {
+            if (!notificationBell.contains(event.target)) {
+                notificationDropdown.style.display = "none";
             }
         }
     </script>
 
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Push Notification Example</title>
+    <script>
+        // Function to register service worker and handle push notifications
+        function initPushNotifications() {
+            if ('serviceWorker' in navigator && 'PushManager' in window) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                        return registration.pushManager.getSubscription()
+                            .then(function(subscription) {
+                                if (subscription) {
+                                    console.log('Already subscribed:', subscription);
+                                    return subscription;
+                                }
+                                // Ask for permission to send notifications
+                                return Notification.requestPermission().then(function(permission) {
+                                    if (permission === 'granted') {
+                                        return registration.pushManager.subscribe({
+                                            userVisibleOnly: true,
+                                            applicationServerKey: 'YOUR_PUBLIC_VAPID_KEY'
+                                        });
+                                    }
+                                });
+                            });
+                    })
+                    .then(function(subscription) {
+                        console.log('Subscribed to push notifications:', subscription);
+                        // Send the subscription to your server to save it
+                    })
+                    .catch(function(error) {
+                        console.error('Service Worker registration or push subscription failed:', error);
+                    });
+            } else {
+                console.warn('Push messaging is not supported.');
+            }
+        }
+
+        // Call the init function on page load
+        window.onload = initPushNotifications;
+    </script>
+</head>
+<body>
+    <h1>Web Push Notification Example</h1>
+    <p>Enable notifications to stay updated on new content!</p>
+
+    <script>
+        // Service worker to handle push notifications
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered:', registration);
+                })
+                .catch(function(error) {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You Page - Video Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Style for the notification bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+    </style>
+    <script>
+        // Function to register service worker and handle push notifications
+        function initPushNotifications() {
+            if ('serviceWorker' in navigator && 'PushManager' in window) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                        return registration.pushManager.getSubscription()
+                            .then(function(subscription) {
+                                if (subscription) {
+                                    console.log('Already subscribed:', subscription);
+                                    return subscription;
+                                }
+                                // Ask for permission to send notifications
+                                return Notification.requestPermission().then(function(permission) {
+                                    if (permission === 'granted') {
+                                        return registration.pushManager.subscribe({
+                                            userVisibleOnly: true,
+                                            applicationServerKey: 'YOUR_PUBLIC_VAPID_KEY'
+                                        });
+                                    }
+                                });
+                            });
+                    })
+                    .then(function(subscription) {
+                        console.log('Subscribed to push notifications:', subscription);
+                        // Send the subscription to your server to save it
+                    })
+                    .catch(function(error) {
+                        console.error('Service Worker registration or push subscription failed:', error);
+                    });
+            } else {
+                console.warn('Push messaging is not supported.');
+            }
+        }
+
+        // Call the init function on page load
+        window.onload = initPushNotifications;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>For You Page</h1>
+        <p>Scroll through the latest videos!</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications">🔔</div>
+
+    <!-- Video Gallery Section -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/yQgRtkugbnY" allowfullscreen></iframe>
+        <div class="video-caption">Video: Important Current Affairs Analysis</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/gEwsNthtqhg" allowfullscreen></iframe>
+        <div class="video-caption">Video: Important Current Affairs Analysis</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Israel breaks through the blue line.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/7-HHCmyBExI" allowfullscreen></iframe>
+        <div class="video-caption">Video: Israel breaks through the blue line</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section - For You Page -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Cl69AodagMU" allowfullscreen></iframe>
+        <div class="video-caption">Video: International Orders</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+    <!-- Notification Bell -->
+    <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Iran releases a statement on the current state of Lebanon.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/6aZ-la2hcMQ" allowfullscreen></iframe>
+        <div class="video-caption">Video: Migrants Under Threat</div>
+    </div>
+
+    <!-- Add more videos as needed -->
 </body>
 </html>
