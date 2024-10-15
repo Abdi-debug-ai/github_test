@@ -1,15 +1,4 @@
 <script>
-  if ('serviceWorker' in navigator && 'PushManager' in window) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(function(registration) {
-        console.log('Service Worker registered:', registration);
-      })
-      .catch(function(error) {
-        console.error('Service Worker registration failed:', error);
-      });
-  }
-</script>
-<script>
   // Function to request permission and subscribe user to Push notifications
   function subscribeUser() {
     Notification.requestPermission().then(function(permission) {
@@ -175,42 +164,6 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
             background-color: #f9f9f9;
         }
     </style>
-</head>
-<body>
-
-    <!-- Search Bar -->
-    <input type="text" id="search-bar" placeholder="Search articles..." />
-    <button onclick="searchArticles()">Search</button>
-    <!-- JavaScript to handle search -->
-    <script>
-    function searchArticles() {
-        const input = document.getElementById('search-bar').value.toLowerCase();
-        const articles = [
-            { keyword: 'iran', id: 'iran-news' },
-            { keyword: 'lebanon', id: 'iran-news' },
-            { keyword: 'ukraine', id: 'ukraine-war' },
-            { keyword: 'russia', id: 'ukraine-war' },
-            { keyword: 'middle east', id: 'middle-east-tensions' },
-            { keyword: 'sudan', id: 'sudan-conflict' }
-        ];
-
-        let found = false;
-        for (let article of articles) {
-            if (input.includes(article.keyword)) {
-                document.getElementById(article.id).scrollIntoView();
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            alert('No matching articles found.');
-        }
-    }
-    </script>
-
-</body>
-</html>
 
 </body>
 </html>
@@ -1441,6 +1394,13 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.tiktok.com; img-src 'self' https://picsum.photos https://www.tiktok.com; frame-src https://www.tiktok.com; style-src 'self' 'unsafe-inline';">
     <title>Your Page Title</title>
 </head>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA7JW3nU5kc0DnA10I3av8ll1vggTRr0F-Xa2YvMHryKt1u3kIVWpjtKebsiN80i1nn55pxupHuKoZbrU&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<div id="paypal-container-WT9NHE76NK38W"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "WT9NHE76NK38W",
+  }).render("#paypal-container-WT9NHE76NK38W")
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
