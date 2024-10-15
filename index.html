@@ -76,6 +76,93 @@
     </style>
 </head>
 <body>
+<div class="news-ticker">
+    <p>Your number one news websites focusing on Global politics and emerging issues in the world stage.</p>
+</div>
+
+<style>
+    .news-ticker {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .news-ticker p {
+        display: inline-block;
+        padding-left: 100%;
+        animation: ticker 10s linear infinite;
+    }
+    @keyframes ticker {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Website</title>
+    <style>
+        /* Style for search bar */
+        #search-bar {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+        /* Basic styling for article sections */
+        .article {
+            margin: 50px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Search Bar -->
+    <input type="text" id="search-bar" placeholder="Search articles..." />
+    <button onclick="searchArticles()">Search</button>
+    <!-- JavaScript to handle search -->
+    <script>
+    function searchArticles() {
+        const input = document.getElementById('search-bar').value.toLowerCase();
+        const articles = [
+            { keyword: 'iran', id: 'iran-news' },
+            { keyword: 'lebanon', id: 'iran-news' },
+            { keyword: 'ukraine', id: 'ukraine-war' },
+            { keyword: 'russia', id: 'ukraine-war' },
+            { keyword: 'middle east', id: 'middle-east-tensions' },
+            { keyword: 'sudan', id: 'sudan-conflict' }
+        ];
+
+        let found = false;
+        for (let article of articles) {
+            if (input.includes(article.keyword)) {
+                document.getElementById(article.id).scrollIntoView();
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            alert('No matching articles found.');
+        }
+    }
+    </script>
+
+</body>
+</html>
+
+</body>
+</html>
 
 <header>
     <h1>Politicast</h1>
@@ -302,6 +389,31 @@
 
 </body>
 </html>
+<div class="news-ticker">
+    <p>BREAKING NEWS:A Weapons embargoe is set to be imposed on Israel by France.This comes after the ground invasion into Lebanon earlier this month.📨📨📨
+    Hurricane Milton has caused immerse damage to property and human life after three days after Hurricane Haline.📨📨📨 Aid agencies warns of impending danger of humanitarian crises in Northern Gaza.📨📨📨. Subscribe@politicast. The United Nations Peace keeping agency in Lebanon demands an explanation from Israel on the recent attacks that injured two people..........📨</p>
+</div>
+
+<style>
+    .news-ticker {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .news-ticker p {
+        display: inline-block;
+        padding-left: 100%;
+        animation: ticker 60s linear infinite;
+    }
+    @keyframes ticker {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
+
 <div class="news-article">
     <h2>Escalating Conflict in the Middle East: A Growing Crisis</h2>
     <p><strong>Date:</strong> October 13, 2024</p>
@@ -1770,8 +1882,8 @@
     </script>
 </head>
 <body>
-    <h1>Web Push Notification Example</h1>
-    <p>Enable notifications to stay updated on new content!</p>
+    <h1>welcome</h1>
+    <p>Follow us on all pages to get the latest information.</p>
 
     <script>
         // Service worker to handle push notifications
@@ -1881,7 +1993,7 @@
 </head>
 <body>
     <header>
-        <h1>For You Page</h1>
+       <h1>For You Page</h1>
         <p>Scroll through the latest videos!</p>
     </header>
 
@@ -3324,4 +3436,3 @@
     <div id="breaking-news" class="breaking-news-popup">
         Breaking news: Iran releases a statement on the current state of Lebanon.
     </div>
-
