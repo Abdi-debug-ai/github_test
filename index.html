@@ -1,3 +1,40 @@
+<script>
+  if ('serviceWorker' in navigator && 'PushManager' in window) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registered:', registration);
+      })
+      .catch(function(error) {
+        console.error('Service Worker registration failed:', error);
+      });
+  }
+</script>
+<script>
+  // Function to request permission and subscribe user to Push notifications
+  function subscribeUser() {
+    Notification.requestPermission().then(function(permission) {
+      if (permission === 'granted') {
+        navigator.serviceWorker.ready.then(function(registration) {
+          registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: '<Your-VAPID-Public-Key>' // Replace with your VAPID public key
+          }).then(function(subscription) {
+            console.log('User subscribed:', subscription);
+            // You would send this subscription to your backend
+          }).catch(function(error) {
+            console.error('Failed to subscribe user:', error);
+          });
+        });
+      }
+    });
+  }
+
+  // Trigger the subscription when page loads or when needed
+  window.onload = function() {
+    subscribeUser();
+  }
+</script>
+
 <!-- Default Statcounter code for POLITICAST
 https://politicast.netlify.app/#news -->
 <script type="text/javascript">
@@ -326,13 +363,14 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <!-- Add more videos as needed -->
 </body>
 </html>
-
+.
 </section>
 
 <section id="news">
     <h2>Latest News</h2>
     <p>Stay updated with the most recent news articles.</p>
     <p><img src="https://picsum.photos/300"
+
 
 <section id="contact">
     <h2>Get in Touch</h2>
@@ -442,6 +480,28 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
     <h3>Looking Ahead</h3>
     <p>As the situation continues to unfold, analysts warn of the potential for wider regional instability. The geopolitical implications of the conflict could affect global oil markets, international relations, and the lives of millions in the Middle East and beyond. Urgent action is needed to prevent further escalation and promote a path to peace.</p>
+    <head>
+  <style>
+    .button {
+      background: linear-gradient(45deg, #ff6347, #ff4500);
+      border-radius: 25px;
+      padding: 10px 20px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+    }
+  </style>
+</head>
+<body>
+  <button class="button">Scroll down for more contents</button>
+</body>
+
     <!DOCTYPE html>
 <html lang="en">
 <head>
