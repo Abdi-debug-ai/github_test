@@ -294,3 +294,10 @@ app.post('/submit', (req, res) => {
         .then(() => res.status(201).json({ message: 'Submission received and automatically approved.' }))
         .catch(error => res.status(500).json({ message: 'Error saving submission:', error }));
 });
+// script.js
+fetch('/.netlify/functions/hello')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message); // Outputs: Hello from Netlify Functions!
+    })
+    .catch(error => console.error('Error:', error));
