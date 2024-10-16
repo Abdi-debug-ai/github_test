@@ -1,3 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamburger Menu</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Main Content */
+    #main-content {
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Hamburger Menu */
+    .hamburger-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .icon-bar {
+      background-color: #333;
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      width: 50px;
+      text-align: center;
+    }
+
+    .menu-items {
+      display: none;
+      background-color: #444;
+      width: 200px;
+      color: white;
+    }
+
+    .menu-items ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-items ul li {
+      padding: 15px 20px;
+      border-bottom: 1px solid #555;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-items ul li:hover {
+      background-color: #555;
+    }
+
+    /* Hide on scroll */
+    .scrolled .hamburger-menu {
+      display: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        width: 50px;
+      }
+
+      .menu-items {
+        width: 150px;
+      }
+    }
+
+    /* For Dark Mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="main-content">
+    <h1> Politicast</h1>
+    <p>Your number one news source 📰</p>
+  </div>
+
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" id="hamburger">
+    <div class="icon-bar" onclick="toggleMenu()">
+      ☰
+    </div>
+    <div class="menu-items" id="menu">
+      <ul>
+        <li onclick="openSettings()">⚙️ Settings</li>
+        <li onclick="darkMode()">Dark Mode</li>
+        <li onclick="lightMode()">Light Mode</li
+         <div id="hamburger-menu" class="hamburger-menu">
+        <button class="hamburger" onclick="toggleMenu()">☰</button>
+        <div id="menu-content" class="menu-content">
+            <
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Show and hide the hamburger menu
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'block';
+      }
+    }
+
+    // When settings is clicked, close previous pages and show settings
+    function openSettings() {
+      document.getElementById('main-content').style.display = 'none';  // Close Politicast page
+      alert("Settings page opened!");  // Simulate opening the settings page
+    }
+
+    // Dark Mode
+    function darkMode() {
+      document.body.classList.add('dark-mode');
+      alert("Dark Mode Activated!");
+    }
+
+    // Light Mode
+    function lightMode() {
+      document.body.classList.remove('dark-mode');
+      alert("Light Mode Activated!");
+    }
+
+    
+    // Hide the hamburger on scroll
+    let prevScrollPos = window.pageYOffset;
+    window.onscroll = function() {
+      let currentScrollPos = window.pageYOffset;
+      const hamburger = document.querySelector('.hamburger-menu');
+      if (prevScrollPos > currentScrollPos) {
+        hamburger.style.display = 'block';
+      } else {
+        hamburger.style.display = 'none';
+      }
+      prevScrollPos = currentScrollPos;
+    };
+  </script>
+
+</body>
+</html>
 
 <script>
   // Function to request permission and subscribe user to Push notifications
@@ -120,6 +278,56 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <div class="news-ticker">
     <p>Your number one news websites focusing on Global politics and emerging issues in the world stage.</p>
 </div>
+<div class="slideshow-container">
+  <div class="mySlides fade">
+    <img src="https://picsum.photos/800/300" style="width:100%">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://picsum.photos/801/300" style="width:100%">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="https://picsum.photos/802/300" style="width:100%">
+  </div>
+</div>
+
+<style>
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+  .mySlides {
+    display: none;
+  }
+
+  .fade {
+    animation: fade 1.5s;
+  }
+
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+</style>
+
+<script>
+  let slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    let slides = document.getElementsByClassName("mySlides");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex-1].style.display = "block";  
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+  }
+</script>
 
 <style>
     .news-ticker {
