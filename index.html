@@ -524,31 +524,130 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <h2>Latest News</h2>
     <p>Stay updated with the most recent news articles.</p>
     <p><img src="https://picsum.photos/300"
-<form name="contact" method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value="contact"> <!-- Required for Netlify forms -->
-  <input type="hidden" name="redirect" value="/thank-you.html"> <!-- Redirect after submission -->
-  
-  <p>
-    <label>Your Name: <input type="text" name="name" required /></label>
-  </p>
-  <p>
-    <label>Your Email: <input type="email" name="email" required /></label>
-  </p>
-  <p>
-    <label>Your Role: 
-      <select name="role[]" multiple>
-        <option value="leader">Leader</option>
-        <option value="follower">Follower</option>
-      </select>
-    </label>
-  </p>
-  <p>
-    <label>Message: <textarea name="message" required></textarea></label>
-  </p>
-  <p>
-    <button type="submit">Send</button>
-  </p>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .thank-you {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .thank-you h1 {
+      color: #28a745;
+    }
+
+    .thank-you p {
+      font-size: 18px;
+    }
+
+    .thank-you a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .thank-you a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Contact Us</h1>
+    <!-- Contact Form -->
+    <form name="contact" method="POST" data-netlify="true" action="/thank-you.html">
+      <input type="hidden" name="form-name" value="contact"> <!-- Required for Netlify forms -->
+      
+      <p>
+        <label>Your Name: <input type="text" name="name" required /></label>
+      </p>
+      <p>
+        <label>Your Email: <input type="email" name="email" required /></label>
+      </p>
+      <p>
+        <label>Your Role: 
+          <select name="role[]" multiple>
+            <option value="leader">Leader</option>
+            <option value="follower">Follower</option>
+          </select>
+        </label>
+      </p>
+      <p>
+        <label>Message: <textarea name="message" required></textarea></label>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+      </p>
+    </form>
+  </div>
+
+  <!-- Thank You Page Logic (this part should be on a separate thank-you.html file) -->
+  <div class="thank-you" id="thankYouPage" style="display: none;">
+    <h1>Thank You for Your Message!</h1>
+    <p>We will get back to you as soon as possible.</p>
+    <p><a href="/">Go back to homepage</a></p>
+  </div>
+
+</body>
+</html>
 
 <section class="newsletter">
     <h2>Subscribe to Our Newsletter</h2>
