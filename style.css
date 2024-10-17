@@ -275,8 +275,8 @@ button:hover {
 }
 .button {
   background: linear-gradient(45deg, #ff6347, #ff4500);
-  border-radius: 25px;
-  padding: 10px 20px;
+  border-radius: 60px;
+  padding: 40px 40px;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
