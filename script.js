@@ -339,3 +339,33 @@ document.getElementById('contact-form').addEventListener('submit', async (event)
     } catch (error) {
         console.error('Error:', error);
     }
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Gather form data
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    // Send data to the Netlify function
+    fetch('/.netlify/functions/contact', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("Message sent successfully!");
+            // Optionally, reset the form
+            document.getElementById("contact-form").reset();
+        } else {
+            alert("Failed to send message.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+    });
+});
