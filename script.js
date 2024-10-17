@@ -319,3 +319,23 @@ self.addEventListener('notificationclick', function(event) {
   event.notification.close();
   event.waitUntil(clients.openWindow('/'));
 });
+document.getElementById('contact-form').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+        const response = await fetch('/.netlify/functions/contact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+        alert(result.message); // Show success message
+    } catch (error) {
+        console.error('Error:', error);
+    }
