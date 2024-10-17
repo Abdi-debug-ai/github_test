@@ -524,28 +524,33 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <h2>Latest News</h2>
     <p>Stay updated with the most recent news articles.</p>
     <p><img src="https://picsum.photos/300"
-
-
 <form name="contact" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="contact"> <!-- Required for Netlify forms -->
+  <input type="hidden" name="redirect" value="/thank-you.html"> <!-- Redirect after submission -->
+  
   <p>
-    <label>Your Name: <input type="text" name="name" /></label>
+    <label>Your Name: <input type="text" name="name" required /></label>
   </p>
   <p>
-    <label>Your Email: <input type="email" name="email" /></label>
+    <label>Your Email: <input type="email" name="email" required /></label>
   </p>
   <p>
-    <label>Your Role: <select name="role[]" multiple>
-      <option value="leader">Leader</option>
-      <option value="follower">Follower</option>
-    </select></label>
+    <label>Your Role: 
+      <select name="role[]" multiple>
+        <option value="leader">Leader</option>
+        <option value="follower">Follower</option>
+      </select>
+    </label>
   </p>
   <p>
-    <label>Message: <textarea name="message"></textarea></label>
+    <label>Message: <textarea name="message" required></textarea></label>
   </p>
   <p>
     <button type="submit">Send</button>
   </p>
 </form>
+
+
 
 <section class="newsletter">
     <h2>Subscribe to Our Newsletter</h2>
@@ -560,22 +565,6 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 </footer>
 
 <script>
-   
-    // JavaScript for Newsletter Subscription
-    document.getElementById("newsletterForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
-        const newsletterEmail = document.getElementById("newsletterEmail").value;
-
-        // Simulate newsletter subscription (you can integrate with a backend service)
-        console.log("Subscribed email: " + newsletterEmail);
-        alert("Thank you for subscribing to our newsletter!");
-
-        // Clear the form
-        document.getElementById("newsletterForm").reset();
-    });
-</script>
-
 
 <div class="news-ticker">
     <p>BREAKING NEWS:A Weapons embargoe is set to be imposed on Israel by France.This comes after the ground invasion into Lebanon earlier this month.🌐
