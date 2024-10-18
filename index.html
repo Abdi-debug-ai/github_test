@@ -681,6 +681,26 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <p><a href="/">Go back to homepage</a></p>
   </div>
 
+    <div class="newsletter-container">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get the latest updates and news delivered right to your inbox!</p>
+        <form name="newsletter" method="POST" data-netlify="true">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe Now</button>
+        </form>
+        <p class="success-message">Thank you for subscribing!</p>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+            // Show success message (this is a simple simulation)
+            document.querySelector('.success-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
+
 </body>
 </html>
 <div class="news-ticker">
