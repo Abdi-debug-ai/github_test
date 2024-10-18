@@ -50,3 +50,49 @@ exports.handler = async (event) => {
         };
     }
 };
+import React, { useState } from 'react';
+
+const PizzaOrderForm = () => {
+  const [order, setOrder] = useState('');
+
+  const handleChange = (event) => {
+    setOrder(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Here you can handle form submission logic (like sending the data to your backend or logging it)
+    console.log("Order submitted:", order);
+  };
+
+  return (
+    <form
+      data-netlify="true"
+      name="pizzaOrder"
+      method="post"
+      onSubmit={handleSubmit}
+    >
+      <input type="hidden" name="form-name" value="pizzaOrder" />
+      <label>
+        What order did the pizza give to the pineapple?
+        <input name="order" type="text" value={order} onChange={handleChange} />
+      </label>
+      <input type="submit" />
+    </form>
+  );
+};
+
+export default PizzaOrderForm;
+import React from 'react';
+import PizzaOrderForm from './PizzaOrderForm'; // Adjust the path as necessary
+
+const App = () => {
+  return (
+    <div>
+      <h1>Welcome to Our Pizza Shop!</h1>
+      <PizzaOrderForm />
+    </div>
+  );
+};
+
+export default App;
