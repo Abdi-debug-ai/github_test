@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      height: 100vh;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h2>World Political Events Map</h2>
+  <div id="map"></div>
+
+  <script>
+    // Create the map and set the initial view
+    var map = L.map('map').setView([20, 0], 2);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Example: Add markers for political events
+    var marker1 = L.marker([30.033333, 31.233334]).addTo(map);
+    marker1.bindPopup("<b>Cairo, Egypt</b><br>The Arab Spring started here in 2010.");
+
+    var marker2 = L.marker([39.9042, 116.4074]).addTo(map);
+    marker2.bindPopup("<b>Beijing, China</b><br>Ongoing political shifts in 2024.");
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Map - Politicast</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    .filter-container {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Political Map - Politicast</h1>
+
+  <!-- Event Filter -->
+  <div class="filter-container">
+    <label for="eventFilter">Filter by Event Type:</label>
+    <select id="eventFilter" onchange="filterMarkers()">
+      <option value="all">All</option>
+      <option value="political">Political Events</option>
+      <option value="protest">Protests</option>
+      <option value="historical">Historical Events</option>
+    </select>
+  </div>
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS, MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+
+  <script>
+    // Create the map and set the initial view
+    var map = L.map('map').setView([20, 0], 2);
+
+    // Base layers
+    var streetView = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+
+    var satelliteView = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+
+    streetView.addTo(map); // Default layer
+
+    // Layer control to switch between Street View and Satellite View
+    var baseMaps = {
+      "Street View": streetView,
+      "Satellite View": satelliteView
+    };
+
+    L.control.layers(baseMaps).addTo(map);
+
+    // Custom icons for markers
+    var politicalIcon = L.icon({
+      iconUrl: 'https://picsum.photos/50', // Custom icon for political events
+      iconSize: [50, 50],
+      iconAnchor: [25, 50]
+    });
+
+    var protestIcon = L.icon({
+      iconUrl: 'https://picsum.photos/50/50', // Custom icon for protests
+      iconSize: [50, 50],
+      iconAnchor: [25, 50]
+    });
+
+    var historicalIcon = L.icon({
+      iconUrl: 'https://picsum.photos/50/51', // Custom icon for historical events
+      iconSize: [50, 50],
+      iconAnchor: [25, 50]
+    });
+
+    // Arrays to hold different markers
+    var politicalMarkers = [];
+    var protestMarkers = [];
+    var historicalMarkers = [];
+
+    // Adding markers to respective arrays with popups
+    politicalMarkers.push(L.marker([30.033333, 31.233334], { icon: politicalIcon }).bindPopup("<b>Cairo, Egypt</b><br>Arab Spring in 2010.<br><img src='https://picsum.photos/100/50' alt='Cairo Event' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+    protestMarkers.push(L.marker([39.9042, 116.4074], { icon: protestIcon }).bindPopup("<b>Beijing, China</b><br>Political protests in 2024."));
+    historicalMarkers.push(L.marker([37.7749, -122.4194], { icon: historicalIcon }).bindPopup("<b>San Francisco, USA</b><br>Historic Event in 2021."));
+
+    // MarkerClusterGroup to cluster markers
+    var markers = L.markerClusterGroup();
+
+    // Add all markers to the cluster group
+    politicalMarkers.forEach(marker => markers.addLayer(marker));
+    protestMarkers.forEach(marker => markers.addLayer(marker));
+    historicalMarkers.forEach(marker => markers.addLayer(marker));
+
+    // Add the cluster group to the map
+    map.addLayer(markers);
+
+    // Function to filter markers based on event type
+    function filterMarkers() {
+      var filter = document.getElementById('eventFilter').value;
+      
+      // Clear all markers
+      clearAllMarkers();
+
+      if (filter === 'all') {
+        addAllMarkers();
+      } else if (filter === 'political') {
+        politicalMarkers.forEach(marker => markers.addLayer(marker));
+      } else if (filter === 'protest') {
+        protestMarkers.forEach(marker => markers.addLayer(marker));
+      } else if (filter === 'historical') {
+        historicalMarkers.forEach(marker => markers.addLayer(marker));
+      }
+    }
+
+    // Function to clear all markers from the map
+    function clearAllMarkers() {
+      politicalMarkers.forEach(marker => markers.removeLayer(marker));
+      protestMarkers.forEach(marker => markers.removeLayer(marker));
+      historicalMarkers.forEach(marker => markers.removeLayer(marker));
+    }
+
+    // Function to add all markers back to the map
+    function addAllMarkers() {
+      politicalMarkers.forEach(marker => markers.addLayer(marker));
+      protestMarkers.forEach(marker => markers.addLayer(marker));
+      historicalMarkers.forEach(marker => markers.addLayer(marker));
+    }
+
+    // Initialize all markers on map load
+    addAllMarkers();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Map - Global Crisis Events</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    .filter-container {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Global Crisis Map - Politicast</h1>
+
+  <!-- Event Filter -->
+  <div class="filter-container">
+    <label for="eventFilter">Filter by Event Type:</label>
+    <select id="eventFilter" onchange="filterMarkers()">
+      <option value="all">All</option>
+      <option value="natural_disasters">Natural Disasters</option>
+      <option value="political_crisis">Political Crisis</option>
+      <option value="human_rights">Human Rights</option>
+    </select>
+  </div>
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS, MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+
+  <script>
+    // Create the map and set the initial view
+    var map = L.map('map').setView([20, 0], 2);
+
+    // Base layers
+    var streetView = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+
+    var satelliteView = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+
+    streetView.addTo(map); // Default layer
+
+    // Layer control to switch between Street View and Satellite View
+    var baseMaps = {
+      "Street View": streetView,
+      "Satellite View": satelliteView
+    };
+
+    L.control.layers(baseMaps).addTo(map);
+
+    // Custom icons for markers
+    var disasterIcon = L.icon({
+      iconUrl: 'https://picsum.photos/50', // Custom icon for natural disasters
+      iconSize: [50, 50],
+      iconAnchor: [25, 50]
+    });
+
+    var politicalIcon = L.icon({
+      iconUrl: 'https://picsum.photos/50/50', // Custom icon for political crises
+      iconSize: [50, 50],
+      iconAnchor: [25, 50]
+    });
+
+    var humanRightsIcon = L.icon({
+      iconUrl: 'https://picsum.photos/50/51', // Custom icon for human rights crises
+      iconSize: [50, 50],
+      iconAnchor: [25, 50]
+    });
+
+    // Arrays to hold different markers
+    var disasterMarkers = [];
+    var politicalMarkers = [];
+    var humanRightsMarkers = [];
+
+    // Adding markers to respective arrays with popups
+    disasterMarkers.push(L.marker([39.9042, -120.4074], { icon: disasterIcon }).bindPopup("<b>USA</b><br>Huge cyclone hits the West Coast.<br><img src='https://picsum.photos/100/50' alt='Cyclone' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+    disasterMarkers.push(L.marker([6.5244, 47.5656], { icon: disasterIcon }).bindPopup("<b>Somalia</b><br>Ongoing drought endangers lives.<br><img src='https://picsum.photos/100/50' alt='Drought in Somalia' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+    
+    humanRightsMarkers.push(L.marker([32.8872, 13.1913], { icon: humanRightsIcon }).bindPopup("<b>Libya</b><br>Ongoing slave trade and human trafficking.<br><img src='https://picsum.photos/100/50' alt='Libya slave trade' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+
+    politicalMarkers.push(L.marker([9.145, 40.4897], { icon: politicalIcon }).bindPopup("<b>Ethiopia</b><br>Fano has kidnapped high officials.<br><img src='https://picsum.photos/100/50' alt='Fano kidnapping' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+    politicalMarkers.push(L.marker([34.2046, -12.2045], { icon: politicalIcon }).bindPopup("<b>South China Sea</b><br>Tensions escalate over ownership.<br><img src='https://picsum.photos/100/50' alt='South China Sea tensions' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+    politicalMarkers.push(L.marker([-1.2921, 36.8219], { icon: politicalIcon }).bindPopup("<b>Kenya</b><br>Deputy President ousted in an impeachment process.<br><img src='https://picsum.photos/100/50' alt='Kenya Impeachment' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+    politicalMarkers.push(L.marker([31.5, 34.5], { icon: politicalIcon }).bindPopup("<b>Palestine</b><br>Hamas leader Yahya Sinwar killed in a drone strike.<br><img src='https://picsum.photos/100/50' alt='Hamas drone strike' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+
+    // MarkerClusterGroup to cluster markers
+    var markers = L.markerClusterGroup();
+
+    // Add all markers to the cluster group
+    disasterMarkers.forEach(marker => markers.addLayer(marker));
+    politicalMarkers.forEach(marker => markers.addLayer(marker));
+    humanRightsMarkers.forEach(marker => markers.addLayer(marker));
+
+    // Add the cluster group to the map
+    map.addLayer(markers);
+
+    // Function to filter markers based on event type
+    function filterMarkers() {
+      var filter = document.getElementById('eventFilter').value;
+      
+      // Clear all markers
+      clearAllMarkers();
+
+      if (filter === 'all') {
+        addAllMarkers();
+      } else if (filter === 'natural_disasters') {
+        disasterMarkers.forEach(marker => markers.addLayer(marker));
+      } else if (filter === 'political_crisis') {
+        politicalMarkers.forEach(marker => markers.addLayer(marker));
+      } else if (filter === 'human_rights') {
+        humanRightsMarkers.forEach(marker => markers.addLayer(marker));
+      }
+    }
+
+    // Function to clear all markers from the map
+    function clearAllMarkers() {
+      disasterMarkers.forEach(marker => markers.removeLayer(marker));
+      politicalMarkers.forEach(marker => markers.removeLayer(marker));
+      humanRightsMarkers.forEach(marker => markers.removeLayer(marker));
+    }
+
+    // Function to add all markers back to the map
+    function addAllMarkers() {
+      disasterMarkers.forEach(marker => markers.addLayer(marker));
+      politicalMarkers.forEach(marker => markers.addLayer(marker));
+      humanRightsMarkers.forEach(marker => markers.addLayer(marker));
+    }
+
+    // Initialize all markers on map load
+    addAllMarkers();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Map - Global Crisis Events</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+  <style>
+    #map {
+      height: 600px;
+      width: 100%;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    .filter-container {
+      margin: 20px 0;
+    }
+    .back-btn {
+      margin: 20px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .back-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Interactive Global Crisis Map - Politicast</h1>
+
+  <!-- Back to Homepage Button -->
+  <div>
+    <button class="back-btn" onclick="window.location.href='index.html'">Back to Homepage</button>
+  </div>
+
+  <!-- Event Filter -->
+  <div class="filter-container">
+    <label for="eventFilter">Filter by Event Type:</label>
+    <select id="eventFilter" onchange="filterMarkers()">
+      <option value="all">All</option>
+      <option value="natural_disasters">Natural Disasters</option>
+      <option value="political_crisis">Political Crisis</option>
+      <option value="human_rights">Human Rights</option>
+    </select>
+  </div>
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Leaflet JS, MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
+
+  <script>
+    // JavaScript for the map (unchanged from previous version)
+    // Your map JavaScript code will go here...
+  </script>
+</body>
+</html>
