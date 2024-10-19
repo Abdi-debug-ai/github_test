@@ -287,3 +287,28 @@ button:hover {
 .button:hover {
   background: linear-gradient(45deg, #ff4500, #ff6347);
 }
+body {
+    background-color: #F7F7F7; /* Light Gray */
+    color: #333333; /* Dark Gray for text */
+}
+
+header {
+    background-color: #FBBE00; /* Al Jazeera Yellow */
+}
+
+a {
+    color: #FBBE00; /* Al Jazeera Yellow for links */
+}
+
+a:hover {
+    color: #E60000; /* Red for hover effect */
+}
+
+button {
+    background-color: #FBBE00; /* Button background */
+    color: #FFFFFF; /* Button text color */
+}
+
+button:hover {
+    background-color: #E60000; /* Button hover effect */
+}
