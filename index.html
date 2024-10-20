@@ -703,34 +703,27 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
   </style>
 </head>
 <body>
-<div class="container">
-  <h1>Contact Us</h1>
-  <!-- Contact Form -->
-  <form name="contact" method="POST" data-netlify="true" action="/thank-you.html">
-    <input type="hidden" name="form-name" value="contact"> <!-- Required for Netlify forms -->
-    
-    <p>
-      <label>Your Name: <input type="text" name="name" required /></label>
-    </p>
-    <p>
-      <label>Your Email: <input type="email" name="email" required /></label>
-    </p>
-    <p>
-      <label>Your Role: 
-        <select name="role[]" multiple>
-          <option value="Subscriber">Subscriber</option>
-          <option value="Follower">Follower</option>
-        </select>
-      </label>
-    </p>
-    <p>
-      <label>Message: <textarea name="message" required></textarea></label>
-    </p>
-    <p>
-      <button type="submit">Send</button>
-    </p>
-  </form>
-</div>
+<form name="contact" method="POST" data-netlify="true"
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+
 
     <div class="newsletter-container">
         <h2>Subscribe to Our Newsletter</h2>
