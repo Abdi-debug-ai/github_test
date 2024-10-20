@@ -312,3 +312,11 @@ button {
 button:hover {
     background-color: #E60000; /* Button hover effect */
 }
+.gray-nav a {
+    color: gray; /* Set link text color to gray */
+    text-decoration: none; /* Optional: remove underline from links */
+}
+
+.gray-nav a:hover {
+    color: darkgray; /* Optional: change color on hover */
+}
