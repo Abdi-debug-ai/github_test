@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POLITICAST</title>
+    <title>Kahoot Pop-up</title>
     <style>
         /* Style for the pop-up container */
         .popup {
@@ -16,7 +16,7 @@
             display: none; /* Hidden by default */
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Make sure it's on top */
+            z-index: 1000; /* Ensure it's on top */
         }
 
         /* Style for the pop-up box */
@@ -88,6 +88,7 @@
 <script>
     // Check if the user has already seen the pop-up
     window.onload = function() {
+        // Make sure the localStorage key is working
         if (!localStorage.getItem('quizPopupShown')) {
             document.getElementById('popup').style.display = 'flex'; // Show the pop-up
         }
@@ -96,7 +97,7 @@
     // When the "Accept" button is clicked
     document.getElementById('acceptBtn').onclick = function() {
         localStorage.setItem('quizPopupShown', 'true'); // Set local storage so it won't show again
-        window.location.href = 'https://kahoot.it/challenge/07977630?challenge-id=6b3df452-05f8-4b94-891a-896e8238c24a_1729525016779'; // Redirect to the Kahoot
+        window.location.href = 'https://kahoot.it/challenge/07977630?challenge-id=6b3df452-05f8-4b94-891a-896e8238c24a_1729525016779'; // Redirect to Kahoot
     };
 
     // When the "Decline" button is clicked
@@ -171,9 +172,7 @@
 </head>
 <body>
 
-    <header>
-        <h1>Politicast - World News & Updates</h1>
-    </header>
+    
 
     <nav>
         <a href="#home">Home</a>
