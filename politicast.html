@@ -1005,10 +1005,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+    
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -1147,10 +1144,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+    
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -1309,10 +1303,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+    
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -1799,10 +1790,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+  
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -2568,10 +2556,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+   
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -2696,11 +2681,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
-
+    
     <!-- Video Gallery Section -->
     <div class="video-container">
         <iframe src="https://www.youtube.com/embed/gEwsNthtqhg" allowfullscreen></iframe>
@@ -2952,10 +2933,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+    
 
     <!-- Video Gallery Section - For You Page -->
     <div class="video-container">
@@ -3080,10 +3058,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+   
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -3208,10 +3183,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+  
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -3336,10 +3308,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+    
 
     <!-- Video Gallery Section -->
     <div class="video-container">
@@ -3464,10 +3433,7 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
     <!-- Notification Bell -->
     <div class="notification-bell" title="Notifications" onclick="showNotifications()">🔔</div>
 
-    <!-- Breaking News Popup -->
-    <div id="breaking-news" class="breaking-news-popup">
-        Breaking news: Iran releases a statement on the current state of Lebanon.
-    </div>
+   
 
 
 
@@ -3826,47 +3792,8 @@ Hezbollah spokesman also acknowledges that some of the group’s fighters have b
             font-size: 18px;
         }
     </style>
-    <script>
-        // Function to show the notification list
-        function toggleNotificationList() {
-            const list = document.getElementById('notification-list');
-            if (list.style.display === 'none') {
-                list.style.display = 'block';
-            } else {
-                list.style.display = 'none';
-            }
-        }
+    
 
-        // Function to display popups
-        function showPopup(popupId) {
-            const popup = document.getElementById(popupId);
-            popup.style.display = 'block';
-        }
-
-        // Function to check if the popup was shown before
-        function checkPopup() {
-            const popupShown = localStorage.getItem('popupShown');
-            if (!popupShown) {
-                showPopup('breaking-news');
-                localStorage.setItem('popupShown', 'true');
-            }
-        }
-
-        // Function to set the breaking news content dynamically
-        function setBreakingNews(newsContent) {
-            const newsPopup = document.getElementById('breaking-news');
-            newsPopup.innerHTML = newsContent;
-        }
-
-        // Call the function on page load
-        window.onload = function() {
-            // Set the breaking news content
-            setBreakingNews('Breaking news: Iran releases a statement on the current state of Lebanon.');
-
-            // Show the breaking news popup once
-            checkPopup();
-        };
-    </script>
 </head>
 <body>
     <header>
