@@ -1,3 +1,7 @@
+OneSignal.push(function() {
+  OneSignal.showSlidedownPrompt(); // Prompts users to subscribe
+});
+
 // Initialize EmailJS with your user ID
 (function() {
     emailjs.init("abdihalimnasir@gmail.com"); // Replace YOUR_USER_ID with your actual EmailJS User ID
@@ -429,3 +433,6 @@ server.listen(3000, '127.0.0.1', () => {
 });
 
 // run with `node server.mjs`
+OneSignal.push(function() {
+  OneSignal.showSlidedownPrompt(); // Prompts users to subscribe
+});
