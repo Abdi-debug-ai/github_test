@@ -1,3 +1,12 @@
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "399b10b0-3fa1-4d86-b3c8-654b5f417037",
+    });
+  });
+</script>
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
