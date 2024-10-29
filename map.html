@@ -226,10 +226,27 @@
     var historicalMarkers = [];
 
     // Adding markers to respective arrays with popups
+  politicalMarkers.push(L.marker([51.5074, -0.1278], { icon: politicalIcon })
+    .bindPopup("<b>London, UK</b><br>Brexit aftermath discussions.<br><img src='https://picsum.photos/100/50' alt='London Event' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+
+  protestMarkers.push(L.marker([-33.8688, 151.2093], { icon: protestIcon })
+    .bindPopup("<b>Sydney, Australia</b><br>Climate change protests in 2024.<br><img src='https://picsum.photos/100/50' alt='Sydney Protest' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+
+  historicalMarkers.push(L.marker([55.7558, 37.6173], { icon: historicalIcon })
+    .bindPopup("<b>Moscow, Russia</b><br>Fall of the Soviet Union in 1991.<br><img src='https://picsum.photos/100/50' alt='Moscow Historical Event' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+
+  // Disaster marker example
+  disasterMarkers.push(L.marker([35.6895, 139.6917], { icon: protestIcon })
+    .bindPopup("<b>Tokyo, Japan</b><br>Recent earthquake disaster relief efforts.<br><img src='https://picsum.photos/100/50' alt='Tokyo Disaster' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+
+  // Adding new markers to cluster
+  markers.addLayer(L.layerGroup([...politicalMarkers, ...protestMarkers, ...historicalMarkers, ...disasterMarkers]));
+</script>
     politicalMarkers.push(L.marker([30.033333, 31.233334], { icon: politicalIcon }).bindPopup("<b>Cairo, Egypt</b><br>Arab Spring in 2010.<br><img src='https://picsum.photos/100/50' alt='Cairo Event' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
     protestMarkers.push(L.marker([39.9042, 116.4074], { icon: protestIcon }).bindPopup("<b>Beijing, China</b><br>Political protests in 2024."));
     historicalMarkers.push(L.marker([37.7749, -122.4194], { icon: historicalIcon }).bindPopup("<b>San Francisco, USA</b><br>Historic Event in 2021."));
 disasterMarkers.push(L.marker([39.9042, -120.4074], { icon: protestIcon }).bindPopup("<b>USA</b><br>Huge cyclone hits the West Coast.<br><img src='https://picsum.photos/100/50' alt='Cyclone' /><br><a href='https://example.com' target='_blank'>Learn more</a>"));
+
     // MarkerClusterGroup to cluster markers
     var markers = L.markerClusterGroup();
 
@@ -275,9 +292,11 @@ disasterMarkers.push(L.marker([39.9042, -120.4074], { icon: protestIcon }).bindP
 
     // Initialize all markers on map load
     addAllMarkers();
-  </script>
+    </script>
 </body>
 </html>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
