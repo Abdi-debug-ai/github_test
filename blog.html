@@ -279,7 +279,15 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
         <input type="text" id="author" placeholder="Your Name" required>
         <textarea id="content" placeholder="Write your blog content here..." required rows="5"></textarea>
         <input type="file" id="image" accept="image/*" required>
-        <button type="submit">Post Blog</button>
+        <!-- Blog Post Button -->
+<button onclick="redirectToDeclinePage()">Post Blog</button>
+
+<script>
+  function redirectToDeclinePage() {
+    window.location.href = "decline.html"; // Redirects to decline page
+  }
+</script>
+
     </form>
 </div>
 
@@ -330,3 +338,6 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 
 </body>
 </html>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>

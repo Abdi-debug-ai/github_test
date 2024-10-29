@@ -117,3 +117,15 @@ app.get('/api/posts', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+const db = firebase.firestore();
+db.collection('blogs').add({
+  title: "Sample Blog Title",
+  content: "Your blog content here...",
+  author: "Author Name",
+  date: new Date()
+});
+db.collection('blogs').onSnapshot(snapshot => {
+  snapshot.docs.forEach(doc => {
+    console.log(doc.data()); // Display data or update UI
+  });
+});

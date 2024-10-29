@@ -441,3 +441,15 @@ server.listen(3000, '127.0.0.1', () => {
 OneSignal.push(function() {
   OneSignal.showSlidedownPrompt(); // Prompts users to subscribe
 });
+const db = firebase.firestore();
+db.collection('blogs').add({
+  title: "Sample Blog Title",
+  content: "Your blog content here...",
+  author: "Author Name",
+  date: new Date()
+});
+db.collection('blogs').onSnapshot(snapshot => {
+  snapshot.docs.forEach(doc => {
+    console.log(doc.data()); // Display data or update UI
+  });
+});
