@@ -518,46 +518,4 @@ disasterMarkers.push(L.marker([39.9042, -120.4074], { icon: protestIcon }).bindP
     politicalMarkers.push(L.marker([9.145, 40.4897], { icon: politicalIcon }).bindPopup("<b>Ethiopia</b><br>Fano has kidnapped high officials.<br><img src='https://picsum.photos/100/50' alt='Fano kidnapping' /><br><a href='#' target='_blank'>Learn more</a>"));
     politicalMarkers.push(L.marker([15.8700, 120.9922], { icon: politicalIcon }).bindPopup("<b>South China Sea</b><br>Tensions escalate over ownership.<br><img src='https://picsum.photos/100/50' alt='South China Sea tensions' /><br><a href='#' target='_blank'>Learn more</a>"));
     politicalMarkers.push(L.marker([-1.2921, 36.8219], { icon: politicalIcon }).bindPopup("<b>Kenya</b><br>Deputy President ousted in an impeachment process.<br><img src='https://picsum.photos/100/50' alt='Kenya Impeachment' /><br><a href='#' target='_blank'>Learn more</a>"));
-    politicalMarkers.push(L.marker([31.5, 34.5], { icon: politicalIcon }).bindPopup("<b>Palestine</b><br>Hamas leader Yahya Sinwar killed in a drone strike.<br><img src='https://picsum.photos/100/50' alt='Hamas drone strike' /><br><a href='#' target='_blank'>Learn more</a>"));
-
-    // MarkerClusterGroup to cluster markers
-    var markers = L.markerClusterGroup();
-
-    // Add all markers to the cluster group
-    disasterMarkers.forEach(marker => markers.addLayer(marker));
-    politicalMarkers.forEach(marker => markers.addLayer(marker));
-    humanRightsMarkers.forEach(marker => markers.addLayer(marker));
-
-    // Add the cluster group to the map
-    map.addLayer(markers);
-
-    // Function to filter markers based on event type
-    function filterMarkers() {
-      var filter = document.getElementById('eventFilter').value;
-      
-      // Clear all markers
-      markers.clearLayers();
-
-      if (filter === 'all') {
-        addAllMarkers();
-      } else if (filter === 'natural_disasters') {
-        disasterMarkers.forEach(marker => markers.addLayer(marker));
-      } else if (filter === 'political_crisis') {
-        politicalMarkers.forEach(marker => markers.addLayer(marker));
-      } else if (filter === 'human_rights') {
-        humanRightsMarkers.forEach(marker => markers.addLayer(marker));
-      }
-    }
-
-    // Function to add all markers back to the map
-    function addAllMarkers() {
-      disasterMarkers.forEach(marker => markers.addLayer(marker));
-      politicalMarkers.forEach(marker => markers.addLayer(marker));
-      humanRightsMarkers.forEach(marker => markers.addLayer(marker));
-    }
-
-    // Initialize all markers on map load
-    addAllMarkers();
-  </script>
-</body>
-</html>
+    politicalMarkers.push(L.marker([31.5, 34.5], { icon: politicalIcon }).bindPopup("<b>Palestine</b><br>Hamas leader Yahya Sinwar killed in a drone strike.<br><img s
