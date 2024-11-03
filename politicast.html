@@ -798,7 +798,44 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
       <label>Message: <textarea name="message" required></textarea></label>
     </p>
     <p>
-      <button type="submit">Send</button>  
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>High-Quality Button</title>
+  <style>
+    .subscribe-button {
+      background: linear-gradient(45deg, #FF5E5E, #FF953E);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .subscribe-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .subscribe-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <button type="send" class="subscribe-button">Send</button>
+
+</body>
+</html>
+
     </p>
   </form>
 </div>
