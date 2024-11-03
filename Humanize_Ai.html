@@ -1,202 +1,179 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-</head>
-
-<body>
-
-</body>
-
-</html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Humanize AI</title>
-  <style>
-    /* CSS styling */
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      color: #f0f0f0;
-      background: #1a1a2e;
-      background-image: radial-gradient(circle, #202040 20%, transparent 20%), 
-                        radial-gradient(circle, #101020 20%, transparent 20%);
-      background-size: 60px 60px;
-      background-position: 0 0, 30px 30px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Humanize AI</title>
+    <style>
+        /* CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #f0f0f0;
+            background: #1a1a2e;
+            background-image: radial-gradient(circle, #202040 20%, transparent 20%), 
+                            radial-gradient(circle, #101020 20%, transparent 20%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
 
-    h1 {
-      color: #00d4ff;
-    }
+        h1 {
+            color: #00d4ff;
+        }
 
-    .container {
-      width: 100%;
-      max-width: 600px;
-      padding: 30px;
-      background: rgba(30, 30, 50, 0.9);
-      border-radius: 10px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
-      text-align: center;
-    }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            background: rgba(30, 30, 50, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
 
-    textarea, .output {
-      width: 100%;
-      height: 150px;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      resize: none;
-      font-size: 1em;
-      font-family: inherit;
-      color: #f0f0f0;
-      background: #2d2d44;
-      outline: none;
-      margin-top: 10px;
-    }
+        textarea, .output {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            resize: none;
+            font-size: 1em;
+            font-family: inherit;
+            color: #f0f0f0;
+            background: #2d2d44;
+            outline: none;
+            margin-top: 10px;
+        }
 
-    .humanize-btn {
-      margin-top: 15px;
-      padding: 12px 25px;
-      background: linear-gradient(135deg, #28a745, #66ff66);
-      box-shadow: 0px 4px 12px rgba(40, 167, 69, 0.5);
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-      font-weight: bold;
-      color: #f0f0f0;
-      transition: 0.3s ease;
-      text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-    }
+        .humanize-btn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #28a745, #66ff66);
+            box-shadow: 0px 4px 12px rgba(40, 167, 69, 0.5);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: #f0f0f0;
+            transition: 0.3s ease;
+            text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+        }
 
-    .humanize-btn:hover {
-      background: linear-gradient(135deg, #218838, #28a745);
-    }
+        .humanize-btn:hover {
+            background: linear-gradient(135deg, #218838, #28a745);
+        }
 
-    .output {
-      margin-top: 20px;
-    }
-  </style>
+        .output {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Humanize AI</h1>
-    <p>Paste your text below to make it more humanized.</p>
-    
-    <textarea id="text-input" placeholder="Paste your text here..."></textarea>
-    <button class="humanize-btn" onclick="humanizeText()">Humanize Text</button>
+    <div class="container">
+        <h1>Humanize AI</h1>
+        <p>Paste your text below to make it more humanized.</p>
+        
+        <textarea id="text-input" placeholder="Paste your text here..."></textarea>
+        <button class="humanize-btn" onclick="humanizeText()">Humanize Text</button>
 
-    <textarea id="output" class="output" readonly placeholder="Your humanized text will appear here..."></textarea>
-  </div>
+        <textarea id="output" class="output" readonly placeholder="Your humanized text will appear here..."></textarea>
+    </div>
 
-  <script>
-    // JavaScript code
-    function humanizeText() {
-      // Get the input text
-      const inputText = document.getElementById("text-input").value;
-      
-      // Define words/phrases to replace
-      const replacements = {
-        "therefore": "so",
-        "moreover": "also",
-        "utilize": "use",
-        "endeavor": "try",
-        "in order to": "to",
-        "significant": "big",
-        "subsequent": "next",
-        "commence": "start",
-        "terminate": "end",
-        "furthermore": "also",
-        "individuals": "people",
-        "numerous": "many",
-        "facilitate": "help",
-        "comprise": "include",
-        "demonstrate": "show"
-      };
+    <script>
+        // JavaScript code
+        function humanizeText() {
+            // Get the input text
+            const inputText = document.getElementById("text-input").value;
+            
+            // Define words/phrases to replace
+            const replacements = {
+                "therefore": "so",
+                "moreover": "also",
+                "utilize": "use",
+                "endeavor": "try",
+                "in order to": "to",
+                "significant": "big",
+                "subsequent": "next",
+                "commence": "start",
+                "terminate": "end",
+                "furthermore": "also",
+                "individuals": "people",
+                "numerous": "many",
+                "facilitate": "help",
+                "comprise": "include",
+                "demonstrate": "show",
+                "ascertain": "find out",
+                "approximately": "about",
+                "disseminate": "spread",
+                "inquire": "ask",
+                "assist": "help",
+                "acquire": "get",
+                "conduct": "do",
+                "indicate": "show",
+                "mitigate": "reduce",
+                "eliminate": "get rid of",
+                "engage": "get involved",
+                "generate": "create",
+                "illustrate": "show",
+                "modify": "change",
+                "optimize": "improve",
+                "ameliorate": "make better",
+                "respond": "reply",
+                "convey": "tell",
+                "obtain": "get",
+                "reinforce": "strengthen",
+                "discriminate": "tell the difference",
+                "reimburse": "pay back",
+                "sufficient": "enough",
+                "substantiate": "prove",
+                "proficient": "good at",
+                "participate": "join in",
+                "nevertheless": "but",
+                "regarding": "about",
+                "consolidate": "combine",
+                "presumably": "probably",
+                "requisite": "necessary",
+                "transform": "change",
+                "collaborate": "work together",
+                "advocate": "support",
+                "elucidate": "explain",
+                "insufficient": "not enough",
+                "perpetuate": "keep going",
+                "proceed": "go on",
+                "validate": "confirm",
+                "expedite": "speed up",
+                "reiterate": "say again",
+                "allocate": "set aside",
+                "approximate": "roughly",
+                "integrate": "combine",
+                "enhance": "improve",
+                "assert": "say",
+                "convene": "meet",
+                "navigate": "find your way",
+                "investigate": "look into",
+                "summarize": "sum up",
+                "propose": "suggest",
+                "concur": "agree",
+                "boost": "enhance"
+            };
 
-      // Replace AI-like words with more human-sounding words
-      let humanizedText = inputText;
-      for (let [aiWord, humanWord] of Object.entries(replacements)) {
-        const regex = new RegExp(`\\b${aiWord}\\b`, 'gi'); // Regex for whole word match, case-insensitive
-        humanizedText = humanizedText.replace(regex, humanWord);
-      }
+            // Replace AI-like words with more human-sounding words
+            let humanizedText = inputText;
+            for (let [aiWord, humanWord] of Object.entries(replacements)) {
+                const regex = new RegExp(`\\b${aiWord}\\b`, 'gi'); // Regex for whole word match, case-insensitive
+                humanizedText = humanizedText.replace(regex, humanWord);
+            }
 
-      // Display the humanized text
-      document.getElementById("output").value = humanizedText;
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Back to Politicast Button</title>
-  <style>
-    /* Tech-inspired Back Button styling */
-    .back-btn {
-      display: inline-block;
-      padding: 12px 28px;
-      font-size: 1em;
-      font-weight: bold;
-      color: #ffffff;
-      background: linear-gradient(135deg, #ff6f00, #ff0000);
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      text-align: center;
-      cursor: pointer;
-      box-shadow: 0px 8px 16px rgba(255, 50, 0, 0.6);
-      transition: 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .back-btn:hover {
-      background: linear-gradient(135deg, #ff0000, #c70039);
-      box-shadow: 0px 8px 16px rgba(255, 0, 0, 0.7);
-    }
-
-    /* Glowing effect */
-    .back-btn::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 110, 0, 0.4), transparent);
-      transition: 0.3s ease;
-      transform: scale(0);
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .back-btn:hover::before {
-      transform: scale(1);
-    }
-
-    /* Inner text styling */
-    .back-btn span {
-      position: relative;
-      z-index: 1;
-    }
-  </style>
-</head>
-<body>
-  <!-- Button to direct users back to Politicast.html -->
-  <a href="/politicast.html" class="back-btn"><span>Back to Politicast</span></a>
+            // Display the humanized text
+            document.getElementById("output").value = humanizedText;
+        }
+    </script>
 </body>
 </html>
