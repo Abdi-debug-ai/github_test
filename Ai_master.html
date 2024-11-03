@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Master</title>
+  <style>
+    /* CSS styling */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #f0f0f0;
+      background: #1a1a2e;
+      background-image: radial-gradient(circle, #202040 20%, transparent 20%), 
+                        radial-gradient(circle, #101020 20%, transparent 20%);
+      background-size: 60px 60px;
+      background-position: 0 0, 30px 30px;
+    }
+
+    h1 {
+      color: #00d4ff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      background: rgba(30, 30, 50, 0.9);
+      border-radius: 10px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      resize: none;
+      font-size: 1em;
+      font-family: inherit;
+      color: #f0f0f0;
+      background: #2d2d44;
+      outline: none;
+    }
+
+    .analyze-btn, .humanize-btn {
+      margin-top: 15px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      transition: 0.3s ease;
+      color: #f0f0f0;
+      text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .analyze-btn {
+      background: linear-gradient(135deg, #007bff, #00d4ff);
+      box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.5);
+    }
+
+    .analyze-btn:hover {
+      background: linear-gradient(135deg, #0056b3, #007bff);
+    }
+
+    .humanize-btn {
+      background: linear-gradient(135deg, #28a745, #66ff66);
+      box-shadow: 0px 4px 12px rgba(40, 167, 69, 0.5);
+    }
+
+    .humanize-btn:hover {
+      background: linear-gradient(135deg, #218838, #28a745);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI Master</h1>
+    <p>Paste your text below and analyze the AI detection percentage.</p>
+    
+    <textarea id="text-input" placeholder="Paste your text here..."></textarea>
+    <button class="analyze-btn" onclick="analyzeText()">Analyze Text</button>
+
+    <div id="result" class="result"></div>
+
+    <button class="humanize-btn" onclick="redirectToHumanize()">Humanize AI</button>
+  </div>
+
+  <script>
+    // JavaScript code
+    function analyzeText() {
+      // Generate a random percentage between 0 and 100
+      const percentage = Math.floor(Math.random() * 101);
+      const resultElement = document.getElementById("result");
+      resultElement.textContent = `AI Detection Score: ${percentage}%`;
+    }
+
+    function redirectToHumanize() {
+      // Redirect to the Humanize Ai page
+      window.location.href = "Humanize_Ai.html";
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back to Politicast Button</title>
+  <style>
+    /* Tech-inspired Back Button styling */
+    .back-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      font-size: 1em;
+      font-weight: bold;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ff6f00, #ff0000);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0px 8px 16px rgba(255, 50, 0, 0.6);
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-btn:hover {
+      background: linear-gradient(135deg, #ff0000, #c70039);
+      box-shadow: 0px 8px 16px rgba(255, 0, 0, 0.7);
+    }
+
+    /* Glowing effect */
+    .back-btn::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 110, 0, 0.4), transparent);
+      transition: 0.3s ease;
+      transform: scale(0);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .back-btn:hover::before {
+      transform: scale(1);
+    }
+
+    /* Inner text styling */
+    .back-btn span {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Button to direct users back to Politicast.html -->
+  <a href="/politicast.html" class="back-btn"><span>Back to Politicast</span></a>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Master - Usage Limit</title>
+  <style>
+    /* Techy button for Subscribe */
+    .subscribe-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #f0f0f0;
+      background: linear-gradient(135deg, #ff4500, #ff8c00);
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0px 8px 16px rgba(255, 140, 0, 0.6);
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .subscribe-btn:hover {
+      background: linear-gradient(135deg, #ff8c00, #ff4500);
+      box-shadow: 0px 8px 16px rgba(255, 69, 0, 0.7);
+    }
+
+    /* Glowing effect */
+    .subscribe-btn::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 69, 0, 0.4), transparent);
+      transition: 0.3s ease;
+      transform: scale(0);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .subscribe-btn:hover::before {
+      transform: scale(1);
+    }
+
+    /* Inner text styling */
+    .subscribe-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* General page styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .message {
+      font-size: 1.2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Content area -->
+  <div id="content">
+    <h1>Welcome to AI Master</h1>
+    <p class="message" id="message">Analyzing your text...</p>
+  </div>
+
+  <!-- Subscribe button (hidden initially) -->
+  <a href="Subscribe.html" class="subscribe-btn" id="subscribe-btn" style="display: none;"><span>Subscribe Now</span></a>
+
+  <script>
+    // Function to calculate the remaining days of free usage
+    function checkUsageLimit() {
+      const startDate = localStorage.getItem("aiMasterStartDate");
+      const currentDate = new Date().getTime();
+
+      // Set start date if not already set
+      if (!startDate) {
+        localStorage.setItem("aiMasterStartDate", currentDate);
+      } else {
+        // Calculate difference in days
+        const daysElapsed = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+
+        if (daysElapsed >= 3) {
+          // If 3 days have passed, show subscribe message and button
+          document.getElementById("content").innerHTML = "<h1>Access Restricted</h1><p class='message'>Your free trial has ended. Please subscribe to continue using AI Master and Humanize AI.</p>";
+          document.getElementById("subscribe-btn").style.display = "inline-block";
+        }
+      }
+    }
+
+    // Run check on page load
+    checkUsageLimit();
+  </script>
+</body>
+</html>
