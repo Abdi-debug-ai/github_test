@@ -1,125 +1,208 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-</head>
-
-<body>
-
-</body>
-
-</html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication</title>
-    <style>
-        /* Basic styles for forms */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        .form-container {
-            width: 300px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politicast - Sign In</title>
+  <style>
+    /* Styling for the main layout */
+    body { font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; }
+    .container { width: 100%; max-width: 500px; margin: 0 auto; padding: 20px; }
+    h2 { text-align: center; color: #007bff; }
+    input[type="text"], input[type="password"], input[type="email"], textarea {
+      width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ddd;
+    }
+    button { width: 100%; padding: 10px; border-radius: 5px; border: none; color: #fff; background-color: #007bff; }
+    .profile, .search-section, .posts-section, .other-profile, .message-section { display: none; }
+  </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Register</h2>
-        <form id="registerForm">
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Register</button>
-        </form>
-    </div>
 
-    <div class="form-container">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <input type="text" id="loginUsername" placeholder="Username" required>
-            <input type="password" id="loginPassword" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </div>
+<div class="container">
+  <h2>Politicast Sign In / Register</h2>
+  <!-- Sign-In Form -->
+  <div id="sign-in-form">
+    <h3>Sign In</h3>
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button onclick="signIn()">Sign In</button>
+    <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register</a></p>
+  </div>
 
-    <script>
-        const registerForm = document.getElementById('registerForm');
-        const loginForm = document.getElementById('loginForm');
+  <!-- Register Form -->
+  <div id="register-form" style="display:none;">
+    <h3>Create Account</h3>
+    <input type="text" id="new-username" placeholder="Username" required>
+    <input type="password" id="new-password" placeholder="Password" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <button onclick="register()">Register</button>
+    <p>Already have an account? <a href="#" onclick="showSignInForm()">Sign In</a></p>
+  </div>
 
-        // Register User
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+  <!-- Profile Section -->
+  <div id="profile-section" class="profile">
+    <h3>Welcome, <span id="profile-username"></span>!</h3>
+    <input type="file" id="profile-picture" accept="image/*">
+    <button onclick="uploadProfilePicture()">Upload Profile Picture</button>
+    <div id="profile-picture-display"></div>
+    <button onclick="showSearch()">Search Users</button>
+    <button onclick="showPosts()">Post Content</button>
+  </div>
 
-            const response = await fetch('/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
+  <!-- User Search Section -->
+  <div id="search-section" class="search-section">
+    <h3>Search Users</h3>
+    <input type="text" id="search-input" placeholder="Search by username">
+    <button onclick="searchUsers()">Search</button>
+    <div id="search-results"></div>
+  </div>
 
-            const data = await response.json();
-            alert(data.message);
-        });
+  <!-- View Other User's Profile Section -->
+  <div id="other-profile-section" class="other-profile">
+    <h3>Profile of <span id="other-profile-username"></span></h3>
+    <div id="other-profile-picture"></div>
+    <button onclick="showMessageSection()">Message</button>
+    <button onclick="goBackToSearch()">Back to Search</button>
+  </div>
 
-        // Login User
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const username = document.getElementById('loginUsername').value;
-            const password = document.getElementById('loginPassword').value;
+  <!-- Messaging Section -->
+  <div id="message-section" class="message-section">
+    <h3>Send Message to <span id="message-to"></span></h3>
+    <textarea id="message-content" placeholder="Type your message here..."></textarea>
+    <button onclick="sendMessage()">Send Message</button>
+    <button onclick="backToOtherProfile()">Back to Profile</button>
+  </div>
 
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
-            });
+  <!-- Post Content Section -->
+  <div id="posts-section" class="posts-section">
+    <h3>Post Content</h3>
+    <input type="text" id="post-title" placeholder="Post Title">
+    <textarea id="post-content" rows="5" placeholder="Write your article here..."></textarea>
+    <input type="file" id="post-media" accept="image/*, video/*">
+    <button onclick="submitPost()">Submit Post</button>
+    <div id="post-feedback"></div>
+  </div>
+</div>
 
-            const data = await response.json();
-            if (data.token) {
-                alert('Login successful!');
-                localStorage.setItem('token', data.token); // Store the token
-            } else {
-                alert(data.message);
-            }
-        });
-    </script>
+<script>
+  // Placeholder for user data
+  let users = [];
+
+  // Sign-in functionality
+  function signIn() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+      document.getElementById('profile-username').innerText = username;
+      document.getElementById('sign-in-form').style.display = 'none';
+      document.getElementById('profile-section').style.display = 'block';
+    } else {
+      alert("Invalid username or password.");
+    }
+  }
+
+  // Registration functionality
+  function register() {
+    const username = document.getElementById('new-username').value;
+    const password = document.getElementById('new-password').value;
+    const email = document.getElementById('email').value;
+
+    if (users.some(u => u.username === username)) {
+      alert("Username already taken.");
+    } else {
+      users.push({ username, password, email, profilePicture: '', posts: [] });
+      alert("Registration successful. Please sign in.");
+      showSignInForm();
+    }
+  }
+
+  // Show register form
+  function showRegisterForm() {
+    document.getElementById('sign-in-form').style.display = 'none';
+    document.getElementById('register-form').style.display = 'block';
+  }
+
+  // Show sign-in form
+  function showSignInForm() {
+    document.getElementById('register-form').style.display = 'none';
+    document.getElementById('sign-in-form').style.display = 'block';
+  }
+
+  // Upload profile picture
+  function uploadProfilePicture() {
+    const picture = document.getElementById('profile-picture').files[0];
+    if (picture) {
+      document.getElementById('profile-picture-display').innerText = 'Profile picture uploaded.';
+    }
+  }
+
+  // Show user search section
+  function showSearch() {
+    document.getElementById('profile-section').style.display = 'none';
+    document.getElementById('search-section').style.display = 'block';
+  }
+
+  // User search functionality
+  function searchUsers() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const results = users.filter(user => user.username.toLowerCase().includes(query));
+    document.getElementById('search-results').innerHTML = results.map(user => 
+      `<p><a href="#" onclick="viewProfile('${user.username}')">${user.username}</a></p>`
+    ).join('');
+  }
+
+  // View another user's profile
+  function viewProfile(username) {
+    const user = users.find(u => u.username === username);
+    if (user) {
+      document.getElementById('other-profile-username').innerText = user.username;
+      document.getElementById('search-section').style.display = 'none';
+      document.getElementById('other-profile-section').style.display = 'block';
+    }
+  }
+
+  // Show message section for selected user
+  function showMessageSection() {
+    const username = document.getElementById('other-profile-username').innerText;
+    document.getElementById('message-to').innerText = username;
+    document.getElementById('other-profile-section').style.display = 'none';
+    document.getElementById('message-section').style.display = 'block';
+  }
+
+  // Send message functionality
+  function sendMessage() {
+    const recipient = document.getElementById('message-to').innerText;
+    const content = document.getElementById('message-content').value;
+    alert(`Message sent to ${recipient}: ${content}`);
+    document.getElementById('message-content').value = '';
+  }
+
+  // Navigation functions
+  function goBackToSearch() {
+    document.getElementById('other-profile-section').style.display = 'none';
+    document.getElementById('search-section').style.display = 'block';
+  }
+
+  function backToOtherProfile() {
+    document.getElementById('message-section').style.display = 'none';
+    document.getElementById('other-profile-section').style.display = 'block';
+  }
+
+  // Show post content section
+  function showPosts() {
+    document.getElementById('profile-section').style.display = 'none';
+    document.getElementById('posts-section').style.display = 'block';
+  }
+
+  // Post content functionality
+  function submitPost() {
+    const title = document.getElementById('post-title').value;
+    const content = document.getElementById('post-content').value;
+    document.getElementById('post-feedback').innerText = 'Your post has been submitted for review.';
+  }
+</script>
+
 </body>
 </html>
