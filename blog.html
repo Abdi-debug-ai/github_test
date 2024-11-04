@@ -226,60 +226,9 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Submission</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        h2 {
-            text-align: center;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        input[type="text"], input[type="file"], textarea {
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            padding: 10px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-    </style>
-</head>
-<body>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Post - Politicast</title>
     <style>
+        /* Styling */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -336,6 +285,33 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
             max-width: 100%;
             border-radius: 5px;
         }
+        .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .comments {
+            margin-top: 15px;
+        }
+        .comment-input {
+            display: flex;
+            gap: 10px;
+        }
+        .comment-input input {
+            flex-grow: 1;
+            padding: 5px;
+        }
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #e60000;
+        }
         a.back-link {
             display: block;
             text-align: center;
@@ -364,10 +340,9 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 
 <div id="blogPosts"></div>
 
-<a class="back-link" href="Politicast.html">Back to Politicast</a>
+<a class="back-link" href="/politicast.html">Back to Politicast</a>
 
 <script>
-    // Load posts from localStorage when page loads
     window.onload = function() {
         loadPosts();
     };
@@ -382,11 +357,9 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
             const reader = new FileReader();
             reader.onload = function(e) {
                 const imageData = e.target.result;
-                const blogPost = { title, image: imageData, content };
+                const blogPost = { title, image: imageData, content, likes: 0, dislikes: 0, comments: [] };
 
-                // Save to localStorage
                 savePost(blogPost);
-
                 displayPosts();
                 clearForm();
             };
@@ -395,46 +368,92 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
     }
 
     function savePost(post) {
-        // Retrieve existing posts from localStorage
         let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-        // Add the new post
         posts.push(post);
-        // Save updated posts array back to localStorage
         localStorage.setItem('blogPosts', JSON.stringify(posts));
     }
 
     function loadPosts() {
         const posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-        posts.forEach(post => {
-            displayPost(post);
+        posts.forEach((post, index) => {
+            displayPost(post, index);
         });
     }
 
     function displayPosts() {
         const posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
         const postsContainer = document.getElementById('blogPosts');
-        postsContainer.innerHTML = ''; // Clear current posts display
-
-        posts.forEach(post => {
-            displayPost(post);
+        postsContainer.innerHTML = '';
+        posts.forEach((post, index) => {
+            displayPost(post, index);
         });
     }
 
-    function displayPost(post) {
+    function displayPost(post, index) {
         const postsContainer = document.getElementById('blogPosts');
-        postsContainer.innerHTML += `
-            <div class="blog-post">
+
+        const postHTML = `
+            <div class="blog-post" data-index="${index}">
                 <h3>${post.title}</h3>
                 <img src="${post.image}" alt="${post.title}">
                 <p>${post.content}</p>
+                <div class="actions">
+                    <button onclick="likePost(${index})">👍 ${post.likes}</button>
+                    <button onclick="dislikePost(${index})">👎 ${post.dislikes}</button>
+                    <button class="delete-btn" onclick="deletePost(${index})">Delete</button>
+                </div>
+                <div class="comments">
+                    <h4>Comments:</h4>
+                    <div class="comment-input">
+                        <input type="text" placeholder="Add a comment" id="comment-${index}">
+                        <button onclick="addComment(${index})">Post</button>
+                    </div>
+                    <div id="comment-section-${index}">
+                        ${post.comments.map(comment => `<p>${comment}</p>`).join('')}
+                    </div>
+                </div>
             </div>
         `;
+        postsContainer.innerHTML += postHTML;
     }
 
     function clearForm() {
         document.getElementById('blogTitle').value = '';
         document.getElementById('blogImage').value = '';
         document.getElementById('blogContent').value = '';
+    }
+
+    function likePost(index) {
+        let posts = JSON.parse(localStorage.getItem('blogPosts'));
+        posts[index].likes += 1;
+        localStorage.setItem('blogPosts', JSON.stringify(posts));
+        displayPosts();
+    }
+
+    function dislikePost(index) {
+        let posts = JSON.parse(localStorage.getItem('blogPosts'));
+        posts[index].dislikes += 1;
+        localStorage.setItem('blogPosts', JSON.stringify(posts));
+        displayPosts();
+    }
+
+    function addComment(index) {
+        const commentInput = document.getElementById(`comment-${index}`);
+        const commentText = commentInput.value;
+        if (commentText) {
+            let posts = JSON.parse(localStorage.getItem('blogPosts'));
+            posts[index].comments.push(commentText);
+            localStorage.setItem('blogPosts', JSON.stringify(posts));
+            commentInput.value = '';
+            displayPosts();
+        }
+    }
+
+    function deletePost(index) {
+        let posts = JSON.parse(localStorage.getItem('blogPosts'));
+        posts.splice(index, 1);
+        localStorage.setItem('blogPosts', JSON.stringify(posts));
+        displayPosts();
     }
 </script>
 
