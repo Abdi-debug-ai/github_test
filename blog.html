@@ -272,72 +272,140 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 </head>
 <body>
 
-<div class="container">
-    <h2>Submit Your Blog</h2>
-    <form id="submitBlogForm">
-        <input type="text" id="title" placeholder="Blog Title" required>
-        <input type="text" id="author" placeholder="Your Name" required>
-        <textarea id="content" placeholder="Write your blog content here..." required rows="5"></textarea>
-        <input type="file" id="image" accept="image/*" required>
-        <!-- Blog Post Button -->
-<button onclick="redirectToDeclinePage()">Post Blog</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - Politicast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f0f4f8, #d9e3f0);
+            color: #333;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            color: #0073e6;
+        }
+        .blog-form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog-form input, .blog-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #0073e6;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .blog-form button {
+            background-color: #0073e6;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .blog-form button:hover {
+            background-color: #005bb5;
+        }
+        .blog-post {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog-post img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+        a.back-link {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            color: #0073e6;
+            text-decoration: none;
+        }
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
 
-<script>
-  function redirectToDeclinePage() {
-    window.location.href = "decline.html"; // Redirects to decline page
-  }
-</script>
+<header>
+    <h1>Politicast Blog</h1>
+</header>
 
-    </form>
+<div class="blog-form">
+    <h2>Post a Blog</h2>
+    <input type="text" id="blogTitle" placeholder="Blog Title" required>
+    <input type="file" id="blogImage" accept="image/*" required>
+    <textarea id="blogContent" rows="5" placeholder="Write your content here..." required></textarea>
+    <button onclick="submitBlog()">Submit</button>
 </div>
 
+<div id="blogPosts"></div>
+
+<a class="back-link" href="/politicast.html">Back to Politicast</a>
+
 <script>
-    document.getElementById('submitBlogForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+    const blogPosts = [];
 
-        const title = document.getElementById('title').value;
-        const author = document.getElementById('author').value;
-        const content = document.getElementById('content').value;
-        const imageFile = document.getElementById('image').files[0];
+    function submitBlog() {
+        const title = document.getElementById('blogTitle').value;
+        const imageInput = document.getElementById('blogImage');
+        const content = document.getElementById('blogContent').value;
 
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('author', author);
-        formData.append('content', content);
-        formData.append('image', imageFile);
-
-        fetch('http://localhost:5000/api/posts', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+        if (imageInput.files.length > 0) {
+            const file = imageInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const blogPost = { title, image: e.target.result, content };
+                blogPosts.push(blogPost);
+                displayPosts();
+                clearForm();
             }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-            loadPosts();  // Load posts after submitting a new one
-            document.getElementById('submitBlogForm').reset();
-        })
-        .catch(error => console.error('Error:', error));
-    });
+            reader.readAsDataURL(file);
+        }
+    }
 
-    // Function to load posts (example implementation)
-    function loadPosts() {
-        fetch('http://localhost:5000/api/posts')
-            .then(response => response.json())
-            .then(posts => {
-                console.log('Posts:', posts);
-                // Here you can implement displaying posts on the page
-            })
-            .catch(error => console.error('Error loading posts:', error));
+    function displayPosts() {
+        const postsContainer = document.getElementById('blogPosts');
+        postsContainer.innerHTML = '';
+        blogPosts.forEach((post) => {
+            postsContainer.innerHTML += `
+                <div class="blog-post">
+                    <h3>${post.title}</h3>
+                    <img src="${post.image}" alt="${post.title}">
+                    <p>${post.content}</p>
+                </div>
+            `;
+        });
+    }
+
+    function clearForm() {
+        document.getElementById('blogTitle').value = '';
+        document.getElementById('blogImage').value = '';
+        document.getElementById('blogContent').value = '';
     }
 </script>
 
 </body>
 </html>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>

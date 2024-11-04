@@ -178,3 +178,88 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return to AI Master</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #0f0f0f;
+            font-family: Arial, sans-serif;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            font-size: 16px;
+            color: #00d1ff;
+            background: #222;
+            border: 2px solid #00d1ff;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 8px rgba(0, 209, 255, 0.5);
+        }
+
+        .tech-button .button-icon {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        .tech-button:hover {
+            color: #fff;
+            background: #00d1ff;
+            box-shadow: 0 0 15px #00d1ff, 0 0 25px #00d1ff;
+            transform: translateY(-3px);
+        }
+
+        .tech-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tech-button:hover:before {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <a href="/Ai_master.html" class="tech-button">
+            <span class="button-icon"></span>
+            Return to AI Master
+        </a>
+    </div>
+</body>
+</html>
