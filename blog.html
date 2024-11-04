@@ -272,6 +272,7 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 </head>
 <body>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -363,10 +364,13 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 
 <div id="blogPosts"></div>
 
-<a class="back-link" href="/politicast.html">Back to Politicast</a>
+<a class="back-link" href="Politicast.html">Back to Politicast</a>
 
 <script>
-    const blogPosts = [];
+    // Load posts from localStorage when page loads
+    window.onload = function() {
+        loadPosts();
+    };
 
     function submitBlog() {
         const title = document.getElementById('blogTitle').value;
@@ -377,27 +381,54 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
             const file = imageInput.files[0];
             const reader = new FileReader();
             reader.onload = function(e) {
-                const blogPost = { title, image: e.target.result, content };
-                blogPosts.push(blogPost);
+                const imageData = e.target.result;
+                const blogPost = { title, image: imageData, content };
+
+                // Save to localStorage
+                savePost(blogPost);
+
                 displayPosts();
                 clearForm();
-            }
+            };
             reader.readAsDataURL(file);
         }
     }
 
-    function displayPosts() {
-        const postsContainer = document.getElementById('blogPosts');
-        postsContainer.innerHTML = '';
-        blogPosts.forEach((post) => {
-            postsContainer.innerHTML += `
-                <div class="blog-post">
-                    <h3>${post.title}</h3>
-                    <img src="${post.image}" alt="${post.title}">
-                    <p>${post.content}</p>
-                </div>
-            `;
+    function savePost(post) {
+        // Retrieve existing posts from localStorage
+        let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        // Add the new post
+        posts.push(post);
+        // Save updated posts array back to localStorage
+        localStorage.setItem('blogPosts', JSON.stringify(posts));
+    }
+
+    function loadPosts() {
+        const posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        posts.forEach(post => {
+            displayPost(post);
         });
+    }
+
+    function displayPosts() {
+        const posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        const postsContainer = document.getElementById('blogPosts');
+        postsContainer.innerHTML = ''; // Clear current posts display
+
+        posts.forEach(post => {
+            displayPost(post);
+        });
+    }
+
+    function displayPost(post) {
+        const postsContainer = document.getElementById('blogPosts');
+        postsContainer.innerHTML += `
+            <div class="blog-post">
+                <h3>${post.title}</h3>
+                <img src="${post.image}" alt="${post.title}">
+                <p>${post.content}</p>
+            </div>
+        `;
     }
 
     function clearForm() {
