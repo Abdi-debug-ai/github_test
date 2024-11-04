@@ -221,7 +221,6 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 
 </body>
 </html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,10 +279,25 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
             background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         .blog-post img {
             max-width: 100%;
             border-radius: 5px;
+        }
+        .delete-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .delete-button:hover {
+            background-color: #cc0000;
         }
         a.back-link {
             display: block;
@@ -316,7 +330,6 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 <a class="back-link" href="Politicast.html">Back to Politicast</a>
 
 <script>
-    // Load posts from localStorage when page loads
     window.onload = function() {
         loadPosts();
     };
@@ -331,11 +344,9 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
             const reader = new FileReader();
             reader.onload = function(e) {
                 const imageData = e.target.result;
-                const blogPost = { title, image: imageData, content };
+                const blogPost = { id: Date.now(), title, image: imageData, content };
 
-                // Save to localStorage
                 savePost(blogPost);
-
                 displayPosts();
                 clearForm();
             };
@@ -344,11 +355,8 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
     }
 
     function savePost(post) {
-        // Retrieve existing posts from localStorage
         let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
-        // Add the new post
         posts.push(post);
-        // Save updated posts array back to localStorage
         localStorage.setItem('blogPosts', JSON.stringify(posts));
     }
 
@@ -362,7 +370,7 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
     function displayPosts() {
         const posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
         const postsContainer = document.getElementById('blogPosts');
-        postsContainer.innerHTML = ''; // Clear current posts display
+        postsContainer.innerHTML = '';
 
         posts.forEach(post => {
             displayPost(post);
@@ -371,13 +379,22 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 
     function displayPost(post) {
         const postsContainer = document.getElementById('blogPosts');
-        postsContainer.innerHTML += `
-            <div class="blog-post">
-                <h3>${post.title}</h3>
-                <img src="${post.image}" alt="${post.title}">
-                <p>${post.content}</p>
-            </div>
+        const postElement = document.createElement('div');
+        postElement.classList.add('blog-post');
+        postElement.innerHTML = `
+            <h3>${post.title}</h3>
+            <img src="${post.image}" alt="${post.title}">
+            <p>${post.content}</p>
+            <button class="delete-button" onclick="deletePost(${post.id})">Delete</button>
         `;
+        postsContainer.appendChild(postElement);
+    }
+
+    function deletePost(id) {
+        let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+        posts = posts.filter(post => post.id !== id);
+        localStorage.setItem('blogPosts', JSON.stringify(posts));
+        displayPosts();
     }
 
     function clearForm() {
