@@ -1,3 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website with Video Pop-up</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fullscreen overlay */
+        #videoPopup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Centered popup box */
+        #videoContainer {
+            position: relative;
+            width: 90%;
+            max-width: 600px;
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        /* Show overlay and scale */
+        #videoPopup.active {
+            opacity: 1;
+        }
+
+        #videoContainer.active {
+            transform: scale(1);
+        }
+
+        /* Close button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Add some "techy" styling */
+        .close-btn:hover {
+            color: #ff4081;
+        }
+
+        /* Embed YouTube video */
+        .video-frame {
+            width: 100%;
+            height: 315px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="videoPopup">
+        <div id="videoContainer">
+            <span class="close-btn" onclick="closePopup()">✖</span>
+            <iframe class="video-frame" src="https://www.youtube.com/embed/ac2Ccl4sSA0?si=wU_75oS9G_g5DRT8" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Show pop-up only once
+        window.onload = function() {
+            if (!localStorage.getItem('popupShown')) {
+                document.getElementById('videoPopup').classList.add('active');
+                document.getElementById('videoContainer').classList.add('active');
+                localStorage.setItem('popupShown', 'true');
+            }
+        };
+
+        // Close pop-up
+        function closePopup() {
+            document.getElementById('videoPopup').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
 
 <img src="/image/IMG_20241101_185906.jpg">
 <!DOCTYPE html>
