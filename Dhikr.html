@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khatam-un-Nabiyeen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://www.transparenttextures.com/patterns/tech-pattern.png');
+            background-color: #2c3e50;
+            background-size: cover;
+            color: white;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .dua-list, .dhikr-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .dua-list li, .dhikr-list li {
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h1, h2 {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Khatam-un-Nabiyeen</h1>
+        <p>Your guide to daily Dhikr/Surahs and Du’a</p>
+    </header>
+
+    <div class="content">
+        <h2>Daily Du’a</h2>
+        <ul class="dua-list" id="duaList">
+            <li>Du’a for Morning: <em>اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك المصير</em></li>
+            <li>Du’a for Evening: <em>اللهم إني أسالك خير هذه الليلة وخير ما بعدها</em></li>
+            <li>Du’a for Travel: <em>اللهم إنا نسألك في سفرنا هذا البر والتقوى، ومن العمل ما ترضى</em></li>
+            <li>Du’a for Protection: <em>بِسْمِ اللهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ العَلِيمُ</em></li>
+            <li>Du’a for Anxiety: <em>اللهم إني أعوذ بك من الهم والحزن والعجز والكسل والجُبن والبخل وضَلَع الدين وغلبة الرجال</em></li>
+            <li>Du’a for Guidance: <em>اللهم اهدنا فيمن هديت، وعافنا فيمن عافيت، وتولنا فيمن توليت، وبارك لنا في ما أعطيت</em></li>
+        </ul>
+
+        <h2>Dhikr</h2>
+        <ul class="dhikr-list" id="dhikrList">
+            <li>SubhanAllah (Glory be to Allah) – <strong>33 times</strong></li>
+            <li>Alhamdulillah (Praise be to Allah) – <strong>33 times</strong></li>
+            <li>Allahu Akbar (Allah is the Greatest) – <strong>34 times</strong></li>
+            <li>Astagfirullah (I ask forgiveness from Allah) – <strong>100 times</strong></li>
+            <li>La ilaha illallah (There is no god but Allah) – <strong>100 times</strong></li>
+        </ul>
+
+
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qur'an Surahs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #111;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        .content {
+            margin-top: 30px;
+            padding: 1rem;
+            width: 90%;
+            max-width: 1000px;
+        }
+        .surah-list {
+            list-style-type: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        .surah-list li {
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .surah-list li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+        }
+        a {
+            color: #00c6ff;
+            text-decoration: none;
+            display: block;
+            padding: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #0072ff;
+            color: #fff;
+        }
+        footer {
+            background-color: #111;
+            color: #888;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Qur'anic Surahs</h1>
+        <p>.دور القرآن كمرشد إلهي، ومنب للحكمة، ووسيلة للقرب من الله. </p>
+    </header>
+
+    <div class="content">
+        <h2>List of Surahs</h2>
+        <ul class="surah-list">
+            <li><a href="https://quran.com/1">Al-Fatiha (The Opening)</a></li>
+            <li><a href="https://quran.com/2">Al-Baqarah (The Cow)</a></li>
+            <li><a href="https://quran.com/3">Aali Imran (The Family of Imran)</a></li>
+            <li><a href="https://quran.com/4">An-Nisa (The Women)</a></li>
+            <li><a href="https://quran.com/5">Al-Ma'idah (The Table Spread)</a></li>
+            <li><a href="https://quran.com/6">Al-An'am (The Cattle)</a></li>
+            <li><a href="https://quran.com/7">Al-A'raf (The Heights)</a></li>
+            <li><a href="https://quran.com/8">Al-Anfal (The Spoils of War)</a></li>
+            <li><a href="https://quran.com/9">At-Tawbah (The Repentance)</a></li>
+            <li><a href="https://quran.com/10">Yunus (Jonah)</a></li>
+            <!-- Add more surahs similarly -->
+            <li><a href="https://quran.com/114">An-Nas (Mankind)</a></li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Qur'an Surahs - All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast Back Button</title>
+ 
+    <a href="/politicast.html" class="back-button">Back to Politicast</a>
+
+</body>
+</html>

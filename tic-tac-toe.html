@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #0a0a0a;
+            background-image: linear-gradient(45deg, #1e1e1e, #0c0c0c);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        #game-container {
+            text-align: center;
+            width: 300px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        h1 {
+            color: #00ffcc;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            background-color: #222;
+            color: #fff;
+            font-size: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cell:hover {
+            background-color: #444;
+        }
+
+        #reset {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00ffcc;
+            border: none;
+            color: #000;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #reset:hover {
+            background-color: #00cc99;
+        }
+
+        #status {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #music-control {
+            margin-top: 20px;
+            padding: 5px 15px;
+            background-color: #ff0066;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #music-control:hover {
+            background-color: #e6005c;
+        }
+
+        #music-control:focus {
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>Tic-Tac-Toe</h1>
+        <div id="board">
+            <button class="cell" data-cell="0"></button>
+            <button class="cell" data-cell="1"></button>
+            <button class="cell" data-cell="2"></button>
+            <button class="cell" data-cell="3"></button>
+            <button class="cell" data-cell="4"></button>
+            <button class="cell" data-cell="5"></button>
+            <button class="cell" data-cell="6"></button>
+            <button class="cell" data-cell="7"></button>
+            <button class="cell" data-cell="8"></button>
+        </div>
+        <button id="reset">Reset Game</button>
+        <div id="status">Current Player: X</div>
+     
+    
+
+    <script>
+        const cells = document.querySelectorAll('.cell');
+        const resetButton = document.getElementById('reset');
+        const statusText = document.getElementById('status');
+        const musicControl = document.getElementById('music-control');
+        const backgroundMusic = document.getElementById('background-music');
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X'; // X starts first
+        let isGameOver = false;
+
+        // Function to check for a win
+        const checkWin = () => {
+            const winPatterns = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            for (let pattern of winPatterns) {
+                const [a, b, c] = pattern;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    setTimeout(() => alert(`${currentPlayer} wins!`), 100);
+                    isGameOver = true;
+                    return true;
+                }
+            }
+
+            if (!board.includes('')) {
+                setTimeout(() => alert('It\'s a draw!'), 100);
+                isGameOver = true;
+                return true;
+            }
+
+            return false;
+        };
+
+        // Function to handle a cell click
+        const handleCellClick = (e) => {
+            const cellIndex = e.target.getAttribute('data-cell');
+
+            if (board[cellIndex] === '' && !isGameOver) {
+                board[cellIndex] = currentPlayer;
+                e.target.textContent = currentPlayer;
+
+                if (checkWin()) return;
+
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                statusText.textContent = `Current Player: ${currentPlayer}`;
+
+                if (currentPlayer === 'O' && !isGameOver) {
+                    computerMove();
+                }
+            }
+        };
+
+        // Function to make a random move for the computer
+        const computerMove = () => {
+            let availableMoves = board.map((value, index) => value === '' ? index : null).filter(value => value !== null);
+            if (availableMoves.length > 0) {
+                const randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+                board[randomMove] = 'O';
+                cells[randomMove].textContent = 'O';
+
+                if (checkWin()) return;
+
+                currentPlayer = 'X';
+                statusText.textContent = `Current Player: X`;
+            }
+        };
+
+        // Reset the game
+        resetButton.addEventListener('click', () => {
+            board = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            isGameOver = false;
+            cells.forEach(cell => cell.textContent = '');
+            statusText.textContent = `Current Player: X`;
+        });
+
+        // Add event listeners to each cell
+        cells.forEach(cell => {
+            cell.addEventListener('click', handleCellClick);
+        });
+        
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #1c1c1c;
+            color: white;
+            flex-direction: column;
+        }
+
+        #game-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 10px;
+            margin: 20px auto;
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 32px;
+            background-color: #333;
+            border: 2px solid #fff;
+            cursor: pointer;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #music-control {
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #f44336;
+            padding: 10px 20px;
+            border: none;
+            color: white;
+        }
+
+        #music-control:hover {
+            background-color: #e73429;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Tic-Tac-Toe</h1>
+        <button id="music-control">Mute Music</button>
+    </div>
+
+    <!-- Background Music -->
+    <audio id="background-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const musicControlButton = document.getElementById('music-control');
+        const music = document.getElementById('background-music');
+        let isMusicMuted = false;
+
+        // Play music by default
+        music.play();
+
+        // Mute and Unmute functionality
+        musicControlButton.addEventListener('click', () => {
+            isMusicMuted = !isMusicMuted;
+            if (isMusicMuted) {
+                music.pause();
+                musicControlButton.textContent = 'Unmute Music';
+            } else {
+                music.play();
+                musicControlButton.textContent = 'Mute Music';
+            }
+        });
+    </script>
+</body>
+</html>
