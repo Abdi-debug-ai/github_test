@@ -186,9 +186,47 @@
     </div>
     <div class="menu-items" id="menu">
       <ul>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="Register.html">Log in</a></li>
- <li><a href="/Dhikr.html">DHIKR</a></li>
+        <li><a href="blog.html" class="blog-link">Blog</a></li>
+
+<style>
+  .blog-link {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007BFF;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .blog-link:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+  }
+</style>
+
+<li><a href="Register.html" class="login-link">Log in</a></li>
+
+<style>
+  .login-link {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .login-link:hover {
+    background-color: #218838;
+    transform: scale(1.1);
+  }
+</style>
+
+
         <li onclick="openSettings()">⚙️ Settings</li>
         <li onclick="darkMode()">Dark Mode</li>
         <li onclick="lightMode()">Light Mode</li
