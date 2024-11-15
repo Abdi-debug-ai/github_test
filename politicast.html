@@ -97,7 +97,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>POLITICAST</title>
   <style>
-  
     /* Basic Reset */
     * {
       margin: 0;
@@ -105,38 +104,74 @@
       box-sizing: border-box;
     }
 
+    /* Body */
+    body {
+      font-family: 'Arial', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
     /* Main Content */
     #main-content {
       padding: 20px;
-      font-family: Arial, sans-serif;
     }
 
     /* Hamburger Menu */
     .hamburger-menu {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 20px;
+      left: 20px;
       z-index: 100;
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger-menu:hover {
+      transform: scale(1.1);
     }
 
     .icon-bar {
+      width: 30px;
+      height: 3px;
       background-color: #333;
-      padding: 10px;
-      color: white;
-      cursor: pointer;
-      font-size: 24px;
-      transition: all 0.3s ease;
-      width: 50px;
-      text-align: center;
+      margin: 5px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .icon-bar:nth-child(1) {
+      transition: transform 0.3s ease;
+    }
+
+    .icon-bar:nth-child(2) {
+      transition: transform 0.3s ease;
+    }
+
+    .icon-bar:nth-child(3) {
+      transition: transform 0.3s ease;
     }
 
     .menu-items {
       display: none;
-      background-color: #444;
-      width: 200px;
-      color: white;
+      position: absolute;
+      top: 70px;
+      left: 20px;
+      background-color: #222;
+      border-radius: 8px;
+      width: 250px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .menu-items.show {
+      display: block;
+      opacity: 1;
+      visibility: visible;
     }
 
     .menu-items ul {
@@ -145,144 +180,100 @@
     }
 
     .menu-items ul li {
-      padding: 15px 20px;
-      border-bottom: 1px solid #555;
+      padding: 12px;
+      color: #fff;
+      border-bottom: 1px solid #333;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .menu-items ul li:hover {
-      background-color: #555;
+      background-color: #333;
+      transform: translateX(5px);
     }
 
-    /* Hide on scroll */
-    .scrolled .hamburger-menu {
-      display: none;
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .dark-mode .icon-bar {
+      background-color: #fff;
+    }
+
+    /* Links */
+    .menu-items a {
+      text-decoration: none;
+      color: inherit;
     }
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
       .hamburger-menu {
-        width: 50px;
+        left: 10px;
       }
 
       .menu-items {
-        width: 150px;
+        width: 220px;
       }
-    }
-    /* For Dark Mode */
-    body.dark-mode {
-      background-color: #121212;
-      color: #e0e0e0;
     }
   </style>
 </head>
 <body>
 
+  <!-- Hamburger menu -->
+  <div class="hamburger-menu" id="hamburger-menu" onclick="toggleMenu()">
+    <div class="icon-bar"></div>
+    <div class="icon-bar"></div>
+    <div class="icon-bar"></div>
+  </div>
 
-  <!-- Hamburger menu-->
-  <div class="humberger" id="humberger-menu">
-    <div class="icon-bar" onclick="toggleMenu()">
-      ☰
-    </div>
+  <!-- Menu items -->
+  <div class="menu-items" id="menu">
+    <ul>
+      <li><a href="blog.html" class="blog-link">Blog</a></li>
+      <li><a href="register.html" class="login-link">Log In</a></li>
+      <li onclick="openSettings()">⚙️ Settings</li>
+      <li onclick="toggleDarkMode()">🌙 Dark Mode</li>
+      <li onclick="toggleLightMode()">☀️ Light Mode</li>
+    </ul>
+  </div>
 
-
-
-    <div class="menu-items" id="menu">
-      <ul>
-        <li><a href="blog.html" class="blog-link">Blog</a></li>
-
-<style>
-  .blog-link {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007BFF;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-
-  .blog-link:hover {
-    background-color: #0056b3;
-    transform: scale(1.1);
-  }
-</style>
-
-<li><a href="Register.html" class="login-link">Log in</a></li>
-
-<style>
-  .login-link {
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #28a745;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-
-  .login-link:hover {
-    background-color: #218838;
-    transform: scale(1.1);
-  }
-</style>
-
-
-        <li onclick="openSettings()">⚙️ Settings</li>
-        <li onclick="darkMode()">Dark Mode</li>
-        <li onclick="lightMode()">Light Mode</li
-         <div id="humberger" class="hamburger-menu">
-        <button class="hamburger" onclick="toggleMenu()">☰</button>
-        <div id="menu-content" class="menu-content">
-            <
-      </ul>
-    </div>
+  <!-- Main content -->
+  <div id="main-content">
+    <h1>Welcome to Politicast!</h1>
+    <p>Your hub for real-time political insights and world news.</p>
   </div>
 
   <script>
-    // Show and hide the hamburger menu
+    // Toggle the hamburger menu
     function toggleMenu() {
       const menu = document.getElementById('menu');
-      if (menu.style.display === 'block') {
-        menu.style.display = 'none';
-      } else {
-        menu.style.display = 'block';
-      }
+      menu.classList.toggle('show');
     }
 
-    // When settings is clicked, close previous pages and show settings
-    function openSettings() {
-      document.getElementById('main-content').style.display = 'none';  // Close Politicast page
-      alert("Settings page opened!");  // Simulate opening the settings page
-    }
-
-    // Dark Mode
-    function darkMode() {
+    // Toggle dark mode
+    function toggleDarkMode() {
       document.body.classList.add('dark-mode');
-      alert("Dark Mode Activated!");
     }
 
-    // Light Mode
-    function lightMode() {
+    // Toggle light mode
+    function toggleLightMode() {
       document.body.classList.remove('dark-mode');
-      alert("Light Mode Activated!");
     }
 
-    
-    // Hide the hamburger on scroll
-    let prevScrollPos = window.pageYOffset;
-    window.onscroll = function() {
-      let currentScrollPos = window.pageYOffset;
-      const hamburger = document.querySelector('.hamburger-menu');
-      if (prevScrollPos > currentScrollPos) {
-        hamburger.style.display = 'block';
-      } else {
-        hamburger.style.display = 'none';
+    // Open Settings page (simulated)
+    function openSettings() {
+      alert("Settings page opened!");
+    }
+
+    // Hide the menu on clicking anywhere outside it
+    window.onclick = function(event) {
+      if (!event.target.matches('.hamburger-menu') && !event.target.matches('.menu-items') && !event.target.matches('.menu-items *')) {
+        const menu = document.getElementById('menu');
+        menu.classList.remove('show');
       }
-      prevScrollPos = currentScrollPos;
     };
   </script>
 
