@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techy Game Menu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #141414;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #menu {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 5px;
+      color: #00bcd4;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+    }
+
+    .menu-button {
+      background: linear-gradient(45deg, #00bcd4, #3f51b5);
+      border: none;
+      padding: 20px 40px;
+      font-size: 1.5rem;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 188, 212, 0.2);
+      outline: none;
+      margin: 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-button:hover {
+      background: linear-gradient(45deg, #3f51b5, #00bcd4);
+      box-shadow: 0 8px 16px rgba(0, 188, 212, 0.4);
+      transform: translateY(-5px);
+    }
+
+    .menu-button:focus {
+      outline: none;
+    }
+
+    .menu-button:active {
+      transform: translateY(2px);
+    }
+
+    #game-container {
+      display: none;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #222, #555);
+    }
+
+    /* Add glowing effect for the buttons */
+    .glow {
+      text-shadow: 0 0 20px rgba(0, 188, 212, 0.7);
+    }
+    
+    @keyframes glitch {
+      0% { text-shadow: -2px 0px 0 rgba(0, 188, 212, 0.7), 2px 0px 0 rgba(0, 188, 212, 0.7); }
+      20% { text-shadow: -4px 0px 0 rgba(0, 188, 212, 0.7), 4px 0px 0 rgba(0, 188, 212, 0.7); }
+      40% { text-shadow: -6px 0px 0 rgba(0, 188, 212, 0.7), 6px 0px 0 rgba(0, 188, 212, 0.7); }
+      60% { text-shadow: -8px 0px 0 rgba(0, 188, 212, 0.7), 8px 0px 0 rgba(0, 188, 212, 0.7); }
+      100% { text-shadow: -2px 0px 0 rgba(0, 188, 212, 0.7), 2px 0px 0 rgba(0, 188, 212, 0.7); }
+    }
+
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="menu">
+    <h1 class="glow">Tech Game Menu</h1>
+    <button class="menu-button" onclick="startGame('magicTiles')">Magic Tiles</button>
+    <!-- Add more buttons for future games -->
+  </div>
+
+  <div id="game-container">
+    <div id="score">Score: 0</div>
+  </div>
+
+  <script>
+    const menu = document.getElementById('menu');
+    const gameContainer = document.getElementById('game-container');
+    const scoreDisplay = document.getElementById('score');
+
+    let score = 0;
+    let speed = 2; // Speed of tiles
+    const tileWidth = window.innerWidth / 4;
+
+    // Function to start the selected game
+    function startGame(game) {
+      if (game === 'magicTiles') {
+        menu.style.display = 'none';
+        gameContainer.style.display = 'block';
+        playMagicTiles();
+      }
+    }
+
+    // Magic Tiles Game Logic
+    function playMagicTiles() {
+      function createTile() {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        tile.style.left = Math.floor(Math.random() * 4) * tileWidth + 'px';
+        tile.style.top = '-100px';
+        gameContainer.appendChild(tile);
+        return tile;
+      }
+
+      function updateTiles() {
+        const tiles = document.querySelectorAll('.tile');
+        tiles.forEach(tile => {
+          const top = parseInt(tile.style.top);
+          tile.style.top = top + speed + 'px';
+
+          if (top >= window.innerHeight) {
+            tile.classList.add('missed');
+            gameOver();
+          }
+        });
+      }
+
+      function gameOver() {
+        alert(`Game Over! Your score: ${score}`);
+        location.reload();
+      }
+
+      function handleTileClick(e) {
+        if (e.target.classList.contains('tile')) {
+          if (e.target.classList.contains('missed')) return;
+          e.target.classList.add('active');
+          score++;
+          scoreDisplay.textContent = `Score: ${score}`;
+          e.target.remove();
+          speed += 0.1; // Increase speed as the game progresses
+        }
+      }
+
+      function gameLoop() {
+        updateTiles();
+        if (Math.random() < 0.02) {
+          createTile();
+        }
+        requestAnimationFrame(gameLoop);
+      }
+
+      // Start the game
+      gameContainer.addEventListener('click', handleTileClick);
+      gameLoop();
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic Tiles Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      overflow: hidden;
+    }
+
+    #game-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #222, #555);
+    }
+
+    .tile {
+      position: absolute;
+      width: 25%;
+      height: 100px;
+      background: #fff;
+      border: 1px solid #000;
+    }
+
+    .tile.active {
+      background: #3498db;
+    }
+
+    .tile.missed {
+      background: red;
+    }
+
+    #score {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      color: #fff;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-container"></div>
+  <div id="score">Score: 0</div>
+
+  <!-- Background Music -->
+  <audio id="background-music" loop>
+    <source src="https://freesound.org/data/previews/542/542366_1422165-lq.mp3"
+" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const gameContainer = document.getElementById('game-container');
+    const scoreDisplay = document.getElementById('score');
+    const backgroundMusic = document.getElementById('background-music');
+
+    let score = 0;
+    let speed = 2; // Speed of tiles
+    const tileWidth = window.innerWidth / 4;
+    const tileHeight = 100;
+
+    // Start background music
+    function startMusic() {
+      backgroundMusic.volume = 0.5;
+      backgroundMusic.play();
+    }
+
+    function createTile() {
+      const tile = document.createElement('div');
+      tile.classList.add('tile');
+      tile.style.left = Math.floor(Math.random() * 4) * tileWidth + 'px';
+      tile.style.top = '-100px';
+      gameContainer.appendChild(tile);
+      return tile;
+    }
+
+    function updateTiles() {
+      const tiles = document.querySelectorAll('.tile');
+      tiles.forEach(tile => {
+        const top = parseInt(tile.style.top);
+        tile.style.top = top + speed + 'px';
+
+        if (top >= window.innerHeight) {
+          tile.classList.add('missed');
+          gameOver();
+        }
+      });
+    }
+
+    function gameOver() {
+      backgroundMusic.pause();
+      alert(`Game Over! Your score: ${score}`);
+      location.reload();
+    }
+
+    function handleTileClick(e) {
+      if (e.target.classList.contains('tile')) {
+        if (e.target.classList.contains('missed')) return;
+        e.target.classList.add('active');
+        score++;
+        scoreDisplay.textContent = `Score: ${score}`;
+        e.target.remove();
+        speed += 0.1; // Increase speed as the game progresses
+      }
+    }
+
+    function gameLoop() {
+      updateTiles();
+      if (Math.random() < 0.02) {
+        createTile();
+      }
+      requestAnimationFrame(gameLoop);
+    }
+
+    // Start the game
+    gameContainer.addEventListener('click', handleTileClick);
+    startMusic(); // Play background music
+    gameLoop();
+  </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Matching Game - Techy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #141414;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    #game-container {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      grid-template-rows: repeat(4, 100px);
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .tile {
+      width: 100px;
+      height: 100px;
+      background-color: #222;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: transparent;
+      cursor: pointer;
+      border: 3px solid #00bcd4;
+      box-shadow: 0 4px 10px rgba(0, 188, 212, 0.7);
+      transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    }
+
+    .tile.flipped {
+      background-color: #3f51b5;
+      color: #fff;
+      transform: rotateY(180deg);
+    }
+
+    .tile.match {
+      background-color: #4caf50;
+      color: #fff;
+      transform: rotateY(180deg);
+      box-shadow: 0 0 15px rgba(76, 175, 80, 0.9);
+    }
+
+    .tile.mismatch {
+      background-color: #f44336;
+      color: #fff;
+      transform: rotateY(180deg);
+      box-shadow: 0 0 15px rgba(244, 67, 54, 0.9);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 5px;
+      color: #00bcd4;
+      margin-bottom: 30px;
+      text-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+    }
+
+    .score {
+      font-size: 1.5rem;
+      color: #fff;
+      margin-top: 20px;
+    }
+
+    #game-over, #victory {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2rem;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #game-over {
+      color: #f44336;
+    }
+
+    #victory {
+      color: #4caf50;
+    }
+
+    /* Add glowing effect to victory message */
+    @keyframes glowing {
+      0% { text-shadow: 0 0 5px #00bcd4, 0 0 10px #00bcd4, 0 0 15px #00bcd4, 0 0 20px #00bcd4; }
+      50% { text-shadow: 0 0 10px #00bcd4, 0 0 15px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #00bcd4; }
+      100% { text-shadow: 0 0 5px #00bcd4, 0 0 10px #00bcd4, 0 0 15px #00bcd4, 0 0 20px #00bcd4; }
+    }
+
+    #victory.glow {
+      animation: glowing 1.5s infinite alternate;
+    }
+
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="menu">
+    <h1>Techy Memory Matching</h1>
+    <button class="menu-button" onclick="startMemoryGame()">Start Game</button>
+  </div>
+
+  <div id="game-container"></div>
+
+  <div id="game-over">Game Over! Try again!</div>
+  <div id="victory" class="glow">Victory! Well Done!</div>
+
+  <script>
+    const gameContainer = document.getElementById('game-container');
+    const gameOverMessage = document.getElementById('game-over');
+    const victoryMessage = document.getElementById('victory');
+    let tiles = [];
+    let flippedTiles = [];
+    let matchedTiles = 0;
+    let score = 0;
+    const tileSymbols = ['🍎', '🍎', '🍌', '🍌', '🍍', '🍍', '🍉', '🍉', '🍇', '🍇', '🍓', '🍓', '🍒', '🍒', '🍊', '🍊'];
+
+    // Shuffle the tiles
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // Create the tiles and display them
+    function createTiles() {
+      const shuffledSymbols = shuffle([...tileSymbols]);
+      shuffledSymbols.forEach((symbol, index) => {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        tile.dataset.symbol = symbol;
+        tile.innerText = symbol;
+        tile.addEventListener('click', flipTile);
+        gameContainer.appendChild(tile);
+        tiles.push(tile);
+      });
+    }
+
+    // Flip the tile and check for matches
+    function flipTile() {
+      if (flippedTiles.length >= 2 || this.classList.contains('flipped') || this.classList.contains('match')) return;
+
+      this.classList.add('flipped');
+      flippedTiles.push(this);
+
+      if (flippedTiles.length === 2) {
+        checkMatch();
+      }
+    }
+
+    // Check if two flipped tiles match
+    function checkMatch() {
+      const [firstTile, secondTile] = flippedTiles;
+
+      if (firstTile.dataset.symbol === secondTile.dataset.symbol) {
+        firstTile.classList.add('match');
+        secondTile.classList.add('match');
+        matchedTiles++;
+        score++;
+        updateScore();
+
+        if (matchedTiles === tiles.length / 2) {
+          victoryMessage.style.opacity = 1;
+          victoryMessage.style.pointerEvents = 'auto';
+        }
+      } else {
+        firstTile.classList.add('mismatch');
+        secondTile.classList.add('mismatch');
+        setTimeout(() => {
+          firstTile.classList.remove('flipped', 'mismatch');
+          secondTile.classList.remove('flipped', 'mismatch');
+        }, 1000);
+      }
+
+      flippedTiles = [];
+    }
+
+    // Update the score display
+    function updateScore() {
+      document.querySelector('.score').textContent = `Score: ${score}`;
+    }
+
+    // Start a new memory game
+    function startMemoryGame() {
+      matchedTiles = 0;
+      score = 0;
+      gameContainer.innerHTML = '';
+      createTiles();
+      victoryMessage.style.opacity = 0;
+      gameOverMessage.style.opacity = 0;
+      victoryMessage.style.pointerEvents = 'none';
+      updateScore();
+    }
+
+    // Game Over
+    function gameOver() {
+      gameOverMessage.style.opacity = 1;
+      gameOverMessage.style.pointerEvents = 'auto';
+    }
+
+    // Start the game initially
+    startMemoryGame();
+  </script>
+</body>
+</html>
