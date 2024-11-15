@@ -319,3 +319,101 @@
     </script>
 </body>
 </html>
+<!-- Hamburger menu-->
+<div class="hamburger" id="hamburger-menu">
+  <div class="icon-bar" onclick="toggleMenu()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+  <div class="menu-items" id="menu">
+    <ul>
+      <!-- Your menu items here -->
+    </ul>
+  </div>
+</div>
+
+<style>
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  .icon-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bar {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #00bcd4;
+    border-radius: 4px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .menu-items {
+    display: none;
+    background-color: #1a1a1a;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .menu-items ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu-items ul li {
+    margin: 10px 0;
+  }
+
+  .menu-items ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  .menu-items ul li a:hover {
+    background-color: #00796b;
+  }
+
+  .open .bar:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+  }
+
+  .open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .open .bar:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+
+  /* Show the menu when the hamburger is active */
+  .open + .menu-items {
+    display: block;
+  }
+</style>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('hamburger-menu');
+    menu.classList.toggle('open');
+  }
+</script>
