@@ -146,6 +146,18 @@
     </div>
 
     <script>
+        // Check if user is already registered by looking for 'registered' in localStorage
+        if (localStorage.getItem("registered") === "true") {
+            // If registered, show features and hide registration button
+            document.getElementById("register").style.display = "none";
+            document.getElementById("features").style.display = "block";
+            startCompass();
+            displayPrayerTimes();
+        } else {
+            // If not registered, show the registration button
+            document.getElementById("register").style.display = "inline-block";
+        }
+
         document.getElementById("register").onclick = function () {
             // Show loading spinner when button is clicked
             document.getElementById("loading").style.display = "inline-block";
@@ -159,6 +171,9 @@
                 document.getElementById("register").style.display = "none";
                 document.getElementById("features").style.display = "block";
                 document.getElementById("loading").style.display = "none";
+
+                // Save registration status to localStorage
+                localStorage.setItem("registered", "true");
 
                 // Start Qiblah Compass
                 startCompass();
