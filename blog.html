@@ -406,3 +406,55 @@ The Ottoman Empire left a profound legacy, influencing the cultures, religions, 
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <!-- YouTube Video Link Section -->
+    <div class="video-section">
+        <h3>Download YouTube Video</h3>
+        <input type="text" id="youtube-url" placeholder="Paste YouTube URL here">
+        <button onclick="generateDownloadLink()">Generate Download Link</button>
+        <div id="download-link" class="download-link"></div>
+    </div>
+
+    <script>
+        // Function to generate download link for YouTube video
+        function generateDownloadLink() {
+            var url = document.getElementById('youtube-url').value.trim();
+            if (!url) {
+                alert('Please enter a YouTube URL!');
+                return;
+            }
+
+            // Regular expression to validate YouTube URL format
+            var youtubeRegex = /^(https?\:\/\/)?(www\.youtube\.com|youtube\.com|m\.youtube\.com)\/(watch\?v=|v\/|e\/|u\/\w\/|watch\?v%3D|.*\/videos\/\d+)([a-zA-Z0-9\-_]+)(&.*)?$/;
+
+            if (youtubeRegex.test(url)) {
+                // Generate download link (Note: You need to use a third-party service to download the video)
+                // This is just a placeholder link for demonstration purposes
+                var downloadUrl = `https://www.yt-download.org/channel/quick-download/${getYouTubeVideoId(url)}`;
+
+                // Show the download link
+                var downloadLinkDiv = document.getElementById('download-link');
+                downloadLinkDiv.style.display = 'block';
+                downloadLinkDiv.innerHTML = `<a href="${downloadUrl}" target="_blank" style="color: #00b3ff;">Click here to download the video</a>`;
+            } else {
+                alert('Invalid YouTube URL!');
+            }
+        }
+
+        // Function to extract video ID from the URL
+        function getYouTubeVideoId(url) {
+            var regExp = /^.*(?:\/|v=)([a-zA-Z0-9_-]{11})$/;
+            var match = url.match(regExp);
+            return match && match[1];
+        }
+    </script>
+
+</body>
+</html>
