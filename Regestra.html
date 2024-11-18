@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background-image: linear-gradient(to bottom, #333, #121212);
+        }
+
+        #register {
+            background-color: transparent;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        #register:hover {
+            background-color: #00ff00;
+            color: #121212;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        #loading {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00ff00;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .feature {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .compass {
+            width: 200px;
+            height: 200px;
+            background-color: transparent;
+            border: 5px solid #00ff00;
+            border-radius: 50%;
+            position: relative;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .compass-pointer {
+            width: 4px;
+            height: 50%;
+            background-color: #00ff00;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            transition: transform 1s ease;
+        }
+
+        /* Techy Prayer Times Styling */
+        .prayer-times {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+            margin-top: 20px;
+        }
+
+        .prayer-time {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .prayer-time span {
+            color: #00ff00;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Registration Button -->
+    <button id="register">Register</button>
+    <div id="loading"></div>
+
+    <!-- Features Section (Hidden Initially) -->
+    <div id="features" class="feature">
+        <!-- Qiblah Compass -->
+        <div id="compass" class="compass">
+            <div id="compass-pointer" class="compass-pointer"></div>
+        </div>
+
+        <!-- Prayer Times Section -->
+        <div id="prayer-times" class="prayer-times">
+            <div class="prayer-time">Fajr: <span id="fajr-time">5:00 AM</span></div>
+            <div class="prayer-time">Dhuhr: <span id="dhuhr-time">12:30 PM</span></div>
+            <div class="prayer-time">Asr: <span id="asr-time">3:45 PM</span></div>
+            <div class="prayer-time">Maghrib: <span id="maghrib-time">6:45 PM</span></div>
+            <div class="prayer-time">Isha: <span id="isha-time">8:00 PM</span></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("register").onclick = function () {
+            // Show loading spinner when button is clicked
+            document.getElementById("loading").style.display = "inline-block";
+
+            // Redirect to Google Form
+            window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLScWgoarWKkWOw6bv7UV59ixkz4Z-5Z_sDGuIJrY4I9u4GZzRg/viewform?vc=0&c=0&w=1&flr=0";
+            
+            // Simulate the user completing the form and unlocking the features (show them after the registration)
+            setTimeout(function() {
+                // Hide the registration button and show features
+                document.getElementById("register").style.display = "none";
+                document.getElementById("features").style.display = "block";
+                document.getElementById("loading").style.display = "none";
+
+                // Start Qiblah Compass
+                startCompass();
+
+                // Display Prayer Times
+                displayPrayerTimes();
+            }, 2000); // Simulating a 2-second delay
+        };
+
+        // Start the Qiblah Compass
+        function startCompass() {
+            // Get the user's current location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    let userLat = position.coords.latitude;
+                    let userLon = position.coords.longitude;
+
+                    // Qiblah calculation (simplified for this example)
+                    let qiblahDirection = calculateQiblah(userLat, userLon);
+                    document.getElementById("compass-pointer").style.transform = `rotate(${qiblahDirection}deg)`;
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Simple calculation for Qiblah direction (you can use a real API for more accuracy)
+        function calculateQiblah(lat, lon) {
+            // This is a simplified calculation (use a proper library for precise calculations)
+            let qiblahDirection = (lat + lon) % 360; // Placeholder for demonstration purposes
+            return qiblahDirection;
+        }
+
+        // Display Prayer Times (for simplicity, we'll just show static times)
+        function displayPrayerTimes() {
+            // You can integrate an API to get actual prayer times, here we'll show static times
+            document.getElementById("fajr-time").textContent = "5:00 AM";
+            document.getElementById("dhuhr-time").textContent = "12:30 PM";
+            document.getElementById("asr-time").textContent = "3:45 PM";
+            document.getElementById("maghrib-time").textContent = "6:45 PM";
+            document.getElementById("isha-time").textContent = "8:00 PM";
+        }
+    </script>
+
+</body>
+</html>
