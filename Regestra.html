@@ -220,3 +220,65 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dhikr Chatbot</title>
+
+</head>
+<body>
+  <div id="chatbot-container">
+    <div id="chat-header">Dhikr Chatbot</div>
+    <div id="chat-body"></div>
+    <div id="chat-input-container">
+      <input type="text" id="chat-input" placeholder="Type a message..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBody = document.getElementById('chat-body');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+
+    const responses = {
+      "salam": "Wa Alaikum Assalam! How can I assist you today?",
+      "dhikr": "Dhikr is the remembrance of Allah. Here are some common phrases:\n- SubhanAllah\n- Alhamdulillah\n- Allahu Akbar\n- La ilaha illallah.",
+      "subhanallah": "SubhanAllah means 'Glory be to Allah'. It is often said to praise Allah's perfection.",
+      "alhamdulillah": "Alhamdulillah means 'All praise is due to Allah'. It is a way to express gratitude.",
+      "allahu akbar": "Allahu Akbar means 'Allah is the Greatest'. It is a reminder of Allah's supreme greatness.",
+      "la ilaha illallah": "La ilaha illallah means 'There is no deity but Allah'. It is the foundation of Islamic faith.",
+      "how are you?": "I'm just a chatbot, but I'm here to help! How can I assist you today?",
+      "astaghfirullah": "Astaghfirullah means 'I seek forgiveness from Allah'. It is often said when seeking mercy and forgiveness.",
+      "bismillah": "Bismillah means 'In the name of Allah'. It is said before starting any task for blessings.",
+      "assistance": "I can help you with Dhikr, Islamic phrases, and general reminders. Just type a question!",
+      "thanks": "You're welcome! Let me know if there's anything else I can do.",
+      "default": "I'm here to help. Can you clarify your question?"
+    };
+
+    sendBtn.addEventListener('click', () => {
+      const userMessage = chatInput.value.trim();
+      if (!userMessage) return;
+
+      appendMessage('user', userMessage);
+      generateResponse(userMessage.toLowerCase());
+      chatInput.value = '';
+    });
+
+    function appendMessage(sender, message) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+      messageElement.textContent = message;
+      chatBody.appendChild(messageElement);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function generateResponse(message) {
+      const response = responses[message] || responses['default'];
+      setTimeout(() => appendMessage('bot', response), 500);
+    }
+  </script>
+</body>
+</html>
