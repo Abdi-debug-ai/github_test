@@ -225,8 +225,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dhikr Chatbot</title>
+  <title>Dhikr Chatbot🤖</title>
+  <style>
+    
+    #chat-header {
+      
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+    }
 
+
+
+    .chat-message {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .user-message {
+      
+      text-align: right;
+    }
+
+    .bot-message {
+      
+      text-align: left;
+    }
+
+    #chat-input-container {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    #chat-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+
+    #send-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #send-btn:hover {
+      background: #45a049;
+    }
+  </style>
 </head>
 <body>
   <div id="chatbot-container">
@@ -244,18 +294,18 @@
     const sendBtn = document.getElementById('send-btn');
 
     const responses = {
-      "salam": "Wa Alaikum Assalam! How can I assist you today?",
-      "dhikr": "Dhikr is the remembrance of Allah. Here are some common phrases:\n- SubhanAllah\n- Alhamdulillah\n- Allahu Akbar\n- La ilaha illallah.",
-      "subhanallah": "SubhanAllah means 'Glory be to Allah'. It is often said to praise Allah's perfection.",
-      "alhamdulillah": "Alhamdulillah means 'All praise is due to Allah'. It is a way to express gratitude.",
-      "allahu akbar": "Allahu Akbar means 'Allah is the Greatest'. It is a reminder of Allah's supreme greatness.",
-      "la ilaha illallah": "La ilaha illallah means 'There is no deity but Allah'. It is the foundation of Islamic faith.",
-      "how are you?": "I'm just a chatbot, but I'm here to help! How can I assist you today?",
-      "astaghfirullah": "Astaghfirullah means 'I seek forgiveness from Allah'. It is often said when seeking mercy and forgiveness.",
-      "bismillah": "Bismillah means 'In the name of Allah'. It is said before starting any task for blessings.",
-      "assistance": "I can help you with Dhikr, Islamic phrases, and general reminders. Just type a question!",
-      "thanks": "You're welcome! Let me know if there's anything else I can do.",
-      "default": "I'm here to help. Can you clarify your question?"
+      "hi": "🙋🏻‍♂️Hi! How can I help you today?\n\nPress 1 to contact us.\nPress 2 to learn about our website.\nWrite 'Dhikr' to learn more about Dhikr.",
+      "1": "👨🏻‍🦱 Contact us 📞 @\nEMAIL: abdihalimnasir@gmail.com",
+      "2": "👨🏻‍🦱 Khatim un Nabeyeen means the Seal of the Prophet. We try to offer guidance and resources to learn about the deen. We are at the early stages of development. We hope to grow our user base in the coming year.",
+      "dhikr": "👨🏻‍🦱 Dhikr is the remembrance of Allah. ☪️ Here are some common phrases:\n- SubhanAllah\n- Alhamdulillah\n- Allahu Akbar\n- La ilaha illallah.Dhikr is a way to worship Allah through recitation of phrases and prayers. Some examples of dhikr include: IstighfarSeeking forgiveness from Allah by reciting Astaghfirullahal 'adzim which means I seek forgiveness from Allah, the Most Great Tahmeed Expressing gratitude for Allah's blessings by reciting Alhamdulillahwhich means All praise is for Allah  TakbeerAcknowledging Allah's greatness by reciting Allahu Akbar which means Allah is the Greatest Tasbeeh Remembering Allah by reciting Subhanallah which means Glory be to Allah Tahleel Declaring the oneness of Allah ByteLengthQueuingStrategyreciting La ilaha illallahwhich means There is no deity except Allah Supplication for ProtectionSeeking refuge in Allah from Satan byreciting A'udhu billahi minash shaitanir rajim which means I seek refuge in Allah from the accursed SatanQuranic prayersReciting Quranic prayers Prayers salawat on the ProphetPraying to the Prophet Repeating phrases like Alhumdullah Subhanallah and Allahu Akbar throughout the day is a common way to practice dhikr",
+      "subhanallah": "👨🏻‍🦱SubhanAllah means 'Glory be to Allah'. It is often said to praise Allah's perfection.",
+      "alhamdulillah": "👨🏻‍🦱Alhamdulillah means 'All praise is due to Allah'. It is a way to express gratitude.",
+      "allahu akbar": "👨🏻‍🦱Allahu Akbar means 'Allah is the Greatest'. It is a reminder of Allah's supreme greatness.",
+      "la ilaha illallah": "👨🏻‍🦱La ilaha illallah means 'There is no deity but Allah'. It is the foundation of Islamic faith The full phrase is Ash-hadu an la ilaha illa Allah, Wa ash-hadu anna Muhammadan Rasulu-Allah, which translates to I bear witness that there is no God but God (Allah), and Muhammad is the Messenger of Allah In Islam, the Shahada, or declaration of faith, is the guiding principle for Muslim believers .",
+      "astaghfirullah": "👨🏻‍🦱  Astaghfirullah means 'I seek forgiveness from Allah'. It is often said when seeking mercy and forgiveness.",
+      "bismillah": "👨🏻‍🦱Bismillah means 'In the name of Allah'. It is said before starting any task for blessings.",
+      "thanks": "👨🏻‍🦱You're welcome! 🙏🏻Let me know if there's anything else I can do.",
+      "default": "🙋🏻‍♂️Hi! How can I help you today?\n\nPress 1 to contact us.\nPress 2 to learn about our website.\nWrite 'Dhikr' to learn more about Dhikr.?"  
     };
 
     sendBtn.addEventListener('click', () => {
