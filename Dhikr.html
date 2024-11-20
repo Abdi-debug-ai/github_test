@@ -372,3 +372,88 @@ allowfullscreen></iframe>
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .audio-container {
+            position: relative;
+            width: 300px;
+            margin-top: 50px;
+        }
+
+        .audio-container audio {
+            width: 100%;
+            display: none; /* Hide the default audio controls */
+        }
+
+        /* Custom play/pause button */
+        .audio-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #0000FF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .audio-btn:hover {
+            background-color: #0000FF;
+            opacity: 1;
+        }
+
+        .audio-btn:active {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="audio-container">
+        <audio id="audio" preload="auto">
+            <source src="Audio.mp3/Halal Beats - Where you are (Without Halal Beats).mp3" type="audio/mpeg">
+        </audio>
+        <button id="playPauseBtn" class="audio-btn" onclick="toggleAudio()">Play</button>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio');
+        const button = document.getElementById('playPauseBtn');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play();
+                button.innerText = 'Pause';
+            } else {
+                audio.pause();
+                button.innerText = 'Play';
+            }
+        }
+
+        // Ensure button updates to 'Pause' if the audio is playing
+        audio.addEventListener('play', () => {
+            button.innerText = 'Pause';
+        });
+
+        // Update the button text when the audio is paused
+        audio.addEventListener('pause', () => {
+            button.innerText = 'Play';
+        });
+    </script>
+</body>
+</html>
