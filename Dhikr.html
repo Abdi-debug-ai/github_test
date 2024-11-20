@@ -401,7 +401,7 @@ allowfullscreen></iframe>
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: #0000FF;
+            background-color:#0000FF;
             color: white;
             padding: 10px 20px;
             font-size: 18px;
@@ -413,7 +413,7 @@ allowfullscreen></iframe>
         }
 
         .audio-btn:hover {
-            background-color: #0000FF;
+            background-color:#0000FF;
             opacity: 1;
         }
 
@@ -425,8 +425,9 @@ allowfullscreen></iframe>
 <body>
   
     <div class="audio-container">
-        <audio id="audio" preload="auto"></audio>
+        <audio id="audio" preload="auto">
             <source src="Audio.mp3/Halal Beats - Where you are (Without Halal Beats).mp3" type="audio/mpeg">
+            </source>
             
         </audio>
         <button id="playPauseBtn" class="audio-btn" onclick="toggleAudio()">Play</button>
