@@ -1078,9 +1078,13 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 </body>
 </html>
 
-        <form>
-        <p class="success-message">Thankyou for subscribing!</p>
-    </form>
+<form
+  name="contact"
+  action="/pages/success"
+  method="POST"
+  data-netlify="true"
+></form>
+
     
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {
