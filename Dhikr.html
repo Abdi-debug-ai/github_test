@@ -426,3 +426,83 @@ allowfullscreen></iframe>
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhikr App</title>
+   
+       
+</head>
+<body>
+   
+  
+  
+
+    <div class="streak-container" id="streakContainer">
+        <p>Your current streak: <span id="streakCount">0</span> day(s) 🔥</p>
+    </div>
+
+    <script>
+        // JavaScript to handle the Islamic calendar and dhikr events
+
+        // Get the current date
+        const currentDate = new Date();
+        const currentDay = currentDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 5 = Friday
+        const currentMonth = currentDate.getMonth(); // 0 = January, ..., 11 = December
+
+        // Check for special reminders (Friday, Ramadan)
+        if (currentDay === 5) {
+            document.getElementById('specialReminder').style.display = 'block';
+            document.getElementById('specialReminder').innerText = "It's Friday! Don't forget to do extra Dhikr for Jumu'ah!";
+        }
+
+        if (currentMonth === 2 || currentMonth === 3) {
+            document.getElementById('specialReminder').style.display = 'block';
+            document.getElementById('specialReminder').innerText = "It's Ramadan! A month of fasting and extra Dhikr!";
+        }
+
+        // Function to handle the streak count
+        function updateStreak() {
+            const lastVisit = localStorage.getItem('lastVisit');
+            const currentDateString = currentDate.toDateString();
+            let streakCount = parseInt(localStorage.getItem('streakCount') || '0');
+
+            // Check if the user visited yesterday or today
+            if (lastVisit === currentDateString) {
+                // User already visited today, no change in streak
+                return;
+            } else {
+                // User has not visited today, check if it's consecutive
+                const lastVisitDate = new Date(lastVisit);
+                const differenceInDays = (currentDate - lastVisitDate) / (1000 * 3600 * 24);
+
+                if (differenceInDays === 1) {
+                    // Consecutive day - increase streak
+                    streakCount++;
+                    localStorage.setItem('streakCount', streakCount);
+                    document.getElementById('streakCount').innerText = streakCount;
+                    document.getElementById('streakContainer').style.display = 'block';
+                } else {
+                    // Streak ended - reset streak count
+                    localStorage.setItem('streakCount', 1);
+                    document.getElementById('streakCount').innerText = 1;
+                    document.getElementById('streakContainer').style.display = 'block';
+                }
+            }
+            // Update the last visit date
+            localStorage.setItem('lastVisit', currentDateString);
+        }
+
+        // Initialize streak when the page loads
+        updateStreak();
+
+        // Function to perform dhikr
+        function performDhikr() {
+            alert('You are doing Dhikr! Keep going!');
+            updateStreak(); // Update streak when user interacts
+        }
+    </script>
+</body>
+</html>
