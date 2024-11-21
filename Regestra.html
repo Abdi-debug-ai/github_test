@@ -334,3 +334,199 @@
 </body>
 </html>
 <script src="/Registra.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIMPLE CLOCK</title>
+  <style>
+    /* Add your existing styles here */
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: console;
+    }
+
+    section {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #19172e;
+      padding: 40px;
+      position: relative;
+    }
+
+    section::before,
+    section::after {
+      content: '';
+      position: absolute;
+      border-radius: 10px;
+      animation: animate 5s ease-in-out infinite;
+    }
+
+    section::before {
+      top: 29%;
+      right: 20%;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(#f9d924, #ff2c24);
+    }
+
+    section::after {
+      bottom: 32%;
+      left: 20%;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(#01d6ff, #0f24f9);
+      animation-delay: -2.5s;
+    }
+
+    @keyframes animate {
+      0%,
+      100% {
+        transform: translateY(16px);
+      }
+
+      50% {
+        transform: translateY(-16px);
+      }
+    }
+
+    .clock {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+    }
+
+    .clock .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .clock .container h2 {
+      font-size: 3em;
+      color: #f3f3f3;
+    }
+
+    .clock .container h2:nth-child(odd) {
+      padding: 5px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.2);
+      margin: 0 8px;
+    }
+
+    .clock .container h2#seconds {
+      color: #f9d524;
+    }
+
+    .clock .container span {
+      position: relative;
+      top: -30px;
+      font-size: 0.9em;
+      color: #f3f3f3;
+      font-weight: 700;
+    }
+
+    #register {
+      text-align: center;
+      color: #f3f3f3;
+      font-size: 1.5em;
+    }
+
+    #register button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1em;
+      color: white;
+      background-color: #19172e;
+      border: 2px solid #f3f3f3;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section>
+
+    <div class="clock" id="clock" style="display: none;">
+      <div class="container">
+        <h2 id="hour">00</h2>
+        <h2 class="dot">:</h2>
+        <h2 id="minute">00</h2>
+        <h2 class="dot">:</h2>
+        <h2 id="seconds">00</h2>
+        <span id="ampm">AM</span>
+      </div>
+    </div>
+  </section>
+
+  <script type="text/javascript">
+    function checkRegistration() {
+      // Check if the user is registered
+      if (localStorage.getItem("registered") === "true") {
+        document.getElementById("register").style.display = "none";
+        document.getElementById("clock").style.display = "block";
+        startClock();
+      }
+    }
+
+    function register() {
+      // Simulate registration process
+      localStorage.setItem("registered", "true");
+      checkRegistration();
+    }
+
+    function startClock() {
+      function clock() {
+        let hour = document.getElementById('hour');
+        let minute = document.getElementById('minute');
+        let seconds = document.getElementById('seconds');
+        let ampm = document.getElementById('ampm');
+
+        let h = new Date().getHours();
+        let m = new Date().getMinutes();
+        let s = new Date().getSeconds();
+        let am = 'AM';
+
+        if (h > 12) {
+          h = h - 12;
+          am = 'PM';
+        }
+
+        h = (h < 10) ? '0' + h : h;
+        m = (m < 10) ? '0' + m : m;
+        s = (s < 10) ? '0' + s : s;
+
+        hour.innerHTML = h;
+        minute.innerHTML = m;
+        seconds.innerHTML = s;
+        ampm.innerHTML = am;
+      };
+
+      setInterval(clock, 1000);
+    }
+
+    // Check registration status on page load
+    checkRegistration();
+  </script>
+
+</body>
+
+</html>
