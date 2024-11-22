@@ -605,6 +605,141 @@ allowfullscreen></iframe>
 
 </html>
 
-  
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islam Knowledge Quiz</title>
+    <style>
+        
+        #quiz-container {
+            background-color: ;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #;
+        }
+
+        #answers {
+            margin-top: 20px;
+        }
+
+        #answers button {
+            width: 100%;
+            padding: 10px;
+            background-color:;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #answers button:hover {
+            background-color: ;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Islam Knowledge Quiz</h1>
+        <div id="question-container">
+            <p id="question">Question will appear here</p>
+            <div id="answers">
+                <!-- Answers will be displayed here -->
+            </div>
+        </div>
+        <button id="start-btn" onclick="startGame()">Start Game</button>
+        <p id="score">Score: 0</p>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the first pillar of Islam?",
+                answers: ["Salah", "Shahada", "Zakat", "Hajj"],
+                correctAnswer: 1 // Index of the correct answer
+            },
+            {
+                question: "Who was the last prophet of Islam?",
+                answers: ["Prophet Muhammad", "Prophet Isa", "Prophet Musa", "Prophet Ibrahim"],
+                correctAnswer: 0
+            },
+            {
+                question: "What is the holy book of Islam?",
+                answers: ["Bible", "Qur'an", "Torah", "Vedas"],
+                correctAnswer: 1
+            },
+             {
+                question: "Which prophet is called seal of the prophets ?",
+                answers: ["Prophet Muhammad", "Prophet Isa", "Prophet Musa", "Prophet Ibrahim"],
+                correctAnswer: 0
+            },
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        function startGame() {
+            document.getElementById("start-btn").style.display = "none";
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            const questionData = questions[currentQuestionIndex];
+            document.getElementById("question").innerText = questionData.question;
+            const answersContainer = document.getElementById("answers");
+            answersContainer.innerHTML = ""; // Clear previous answers
+
+            questionData.answers.forEach((answer, index) => {
+                const button = document.createElement("button");
+                button.innerText = answer;
+                button.onclick = () => checkAnswer(index);
+                answersContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedAnswer) {
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+            if (selectedAnswer === correctAnswer) {
+                score++;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById("score").innerText = `Your score: ${score}`;
+            document.getElementById("question-container").innerHTML = `<p>Thank you for playing!</p>`;
+            document.getElementById("start-btn").style.display = "block";
+            document.getElementById("start-btn").innerText = "Play Again";
+            currentQuestionIndex = 0;
+            score = 0;
+        }
+    </script>
+</body>
+</html>
+
 
   
