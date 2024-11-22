@@ -437,72 +437,174 @@ allowfullscreen></iframe>
 </head>
 <body>
    
-  
-  
+  <!DOCTYPE html>
+<html lang="en">
 
-    <div class="streak-container" id="streakContainer">
-        <p>Your current streak: <span id="streakCount">0</span> day(s) 🔥</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIMPLE CLOCK</title>
+  <style>
+    /* Add your existing styles here */
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family:;
+    }
+
+    section {
+      width: 100%;
+      height: 100%;
+      min-height: ;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color:;
+      padding: 100px;
+      position: relative;
+    }
+
+    section::before,
+    section::after {
+      content: '';
+      position: absolute;
+      border-radius: 10px;
+      animation: animate 5s ease-in-out infinite;
+    }
+
+    section::before {
+      top: 29%;
+      right: 20%;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(#f9d924, #ff2c24);
+    }
+
+    section::after {
+      bottom: 32%;
+      left: 20%;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(#01d6ff, #0f24f9);
+      animation-delay: -2.5s;
+    }
+
+    @keyframes animate {
+      0%,
+      100% {
+        transform: translateY(16px);
+      }
+
+      50% {
+        transform: translateY(-16px);
+      }
+    }
+
+    .clock {
+      position: relative;
+      width: 100%;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+    }
+
+    .clock .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .clock .container h2 {
+      font-size: 3em;
+      color: #f3f3f3;
+    }
+
+    .clock .container h2:nth-child(odd) {
+      padding: 5px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0px 14px 24px rgba(0, 0, 0, 0.2);
+      margin: 0 8px;
+    }
+
+    .clock .container h2#seconds {
+      color: #f9d524;
+    }
+
+    .clock .container span {
+      position: relative;
+      top: -30px;
+      font-size: 0.9em;
+      color: #f3f3f3;
+      font-weight: 700;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <section>
+
+    <div class="clock" id="clock" style="display: none;">
+      <div class="container">
+        <h2 id="hour">00</h2>
+        <h2 class="dot">:</h2>
+        <h2 id="minute">00</h2>
+        <h2 class="dot">:</h2>
+        <h2 id="seconds">00</h2>
+        <span id="ampm">AM</span>
+      </div>
     </div>
+  </section>
 
-    <script>
-        // JavaScript to handle the Islamic calendar and dhikr events
+  <script
 
-        // Get the current date
-        const currentDate = new Date();
-        const currentDay = currentDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 5 = Friday
-        const currentMonth = currentDate.getMonth(); // 0 = January, ..., 11 = December
+    function startClock() {
+      function clock() {
+        let hour = document.getElementById('hour');
+        let minute = document.getElementById('minute');
+        let seconds = document.getElementById('seconds');
+        let ampm = document.getElementById('ampm');
 
-        // Check for special reminders (Friday, Ramadan)
-        if (currentDay === 5) {
-            document.getElementById('specialReminder').style.display = 'block';
-            document.getElementById('specialReminder').innerText = "It's Friday! Don't forget to do extra Dhikr for Jumu'ah!";
+        let h = new Date().getHours();
+        let m = new Date().getMinutes();
+        let s = new Date().getSeconds();
+        let am = 'AM';
+
+        if (h > 12) {
+          h = h - 12;
+          am = 'PM';
         }
 
-        if (currentMonth === 2 || currentMonth === 3) {
-            document.getElementById('specialReminder').style.display = 'block';
-            document.getElementById('specialReminder').innerText = "It's Ramadan! A month of fasting and extra Dhikr!";
-        }
+        h = (h < 10) ? '0' + h : h;
+        m = (m < 10) ? '0' + m : m;
+        s = (s < 10) ? '0' + s : s;
 
-        // Function to handle the streak count
-        function updateStreak() {
-            const lastVisit = localStorage.getItem('lastVisit');
-            const currentDateString = currentDate.toDateString();
-            let streakCount = parseInt(localStorage.getItem('streakCount') || '0');
+        hour.innerHTML = h;
+        minute.innerHTML = m;
+        seconds.innerHTML = s;
+        ampm.innerHTML = am;
+      };
 
-            // Check if the user visited yesterday or today
-            if (lastVisit === currentDateString) {
-                // User already visited today, no change in streak
-                return;
-            } else {
-                // User has not visited today, check if it's consecutive
-                const lastVisitDate = new Date(lastVisit);
-                const differenceInDays = (currentDate - lastVisitDate) / (1000 * 3600 * 24);
+      setInterval(clock, 1000);
+    }
 
-                if (differenceInDays === 1) {
-                    // Consecutive day - increase streak
-                    streakCount++;
-                    localStorage.setItem('streakCount', streakCount);
-                    document.getElementById('streakCount').innerText = streakCount;
-                    document.getElementById('streakContainer').style.display = 'block';
-                } else {
-                    // Streak ended - reset streak count
-                    localStorage.setItem('streakCount', 1);
-                    document.getElementById('streakCount').innerText = 1;
-                    document.getElementById('streakContainer').style.display = 'block';
-                }
-            }
-            // Update the last visit date
-            localStorage.setItem('lastVisit', currentDateString);
-        }
 
-        // Initialize streak when the page loads
-        updateStreak();
+    
+  </script>
 
-        // Function to perform dhikr
-        function performDhikr() {
-            alert('You are doing Dhikr! Keep going!');
-            updateStreak(); // Update streak when user interacts
-        }
-    </script>
 </body>
+
 </html>
+
+  
+
+  
