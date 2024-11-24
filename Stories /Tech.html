@@ -197,3 +197,147 @@ In conclusion, Muslims have made significant contributions to the fields of scie
 
 
 </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Islamic Insights - Dhikr</title>
+  <style>
+    /* Ad Banner Style */
+    .ad-banner {
+      background: linear-gradient(45deg, #003366, #005b8f);  /* Gradient background */
+      color: white;
+      padding: 40px;
+      text-align: center;
+      font-size: 26px;
+      font-family: Arial, sans-serif;
+      position: relative;
+      margin: 40px 0;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      transform: scale(1);
+      animation: floatIn 1.5s ease-out, slideIn 1s ease-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Floating effect */
+    @keyframes floatIn {
+      0% {
+        transform: translateY(-10px);
+      }
+      50% {
+        transform: translateY(10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Slide-In animation */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .ad-banner:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .ad-banner p {
+      font-size: 20px;
+      opacity: 0;
+      animation: fadeInText 1.5s ease forwards;
+      animation-delay: 1s;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeInText {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Hover effect on link */
+    .ad-banner a {
+      color: #ffcc00;
+      font-weight: bold;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .ad-banner a:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    .ad-banner a::after {
+      content: " →";
+      position: absolute;
+      right: -15px;
+      opacity: 0;
+      transform: translateX(5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .ad-banner a:hover::after {
+      opacity: 1;
+      transform: translateX(10px);
+    }
+
+    /* Button with Bounce Effect */
+    .ad-banner button {
+      background-color: #ffcc00;
+      color: #003366;
+      padding: 15px 30px;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      border-radius: 15px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .ad-banner button:hover {
+      background-color: #e6b800;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .ad-banner button:active {
+      transform: scale(0.98) rotate(-5deg); /* Button shrinks and rotates slightly */
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Ad Banner Section -->
+  <div class="ad-banner">
+    <p>Strengthen your faith and connect with Allah through the powerful practice of Dhikr.</p>
+    <p><a href="/Dhikr.html"><button>Visit Khatam-un-Nabiyeen</button></a></p>
+  </div>
+
+  <!-- Optional Sound Effect (If needed for more interaction) -->
+  <audio id="click-sound" src="https://www.soundjay.com/button/beep-07.wav" preload="auto"></audio>
+
+  <script>
+    // Play sound when the button is clicked
+    document.querySelector('button').addEventListener('click', function() {
+      var clickSound = document.getElementById('click-sound');
+      clickSound.play();
+    });
+  </script>
+
+
+</body>
+</html>
