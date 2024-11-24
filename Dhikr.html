@@ -396,42 +396,85 @@ allowfullscreen></iframe>
 
 
     </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Audio Button</title>
+  <style>
+    
+
+    .audio-container {
+      display: inline-block;
+      position: relative;
+    }
+
+    /* Style for the ⚜️ button */
+    .audio-btn {
+      font-size: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: ;
+      transition: transform 0.2s ease, color 0.3s ease;
+    }
+
+    .audio-btn:hover {
+      color: #ffffff;
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .audio-btn:active {
+      transform: scale(1) rotate(-10deg);
+    }
+
+    /* Glow effect when playing */
+    .audio-btn.playing {
+      color: #32cd32; /* for playing state */
+      text-shadow: 0 0 20px #32cd32, 0 0 30px #32cd32;
+    }
+  </style>
 </head>
 <body>
   
-    <div class="audio-container">
-        <audio id="audio" preload="auto">
-            <source src="Audio.mp3/Halal Beats - Where you are (Without Halal Beats).mp3" type="audio/mpeg">
-        </audio>
-        <button id="playPauseBtn" class="audio-btn" onclick="toggleAudio()">Play</button>
-    </div>
+  <div class="audio-container">
+    <!-- Audio element -->
+    <audio id="audio" preload="auto">
+      <source src="Audio.mp3/Halal Beats - Where you are (Without Halal Beats).mp3" type="audio/mpeg">
+    </audio>
 
-    <script>
-        const audio = document.getElementById('audio');
-        const button = document.getElementById('playPauseBtn');
+    <!-- Interactive ⚜️ button -->
+    <button id="playPauseBtn" class="audio-btn" onclick="toggleAudio()">🔅</button>
+  </div>
 
-        function toggleAudio() {
-            if (audio.paused) {
-                audio.play();
-                button.innerText = 'Pause';
-            } else {
-                audio.pause();
-                button.innerText = 'Play';
-            }
-        }
+  <script>
+    const audio = document.getElementById('audio');
+    const button = document.getElementById('playPauseBtn');
 
-        // Ensure button updates to 'Pause' if the audio is playing
-        audio.addEventListener('play', () => {
-            button.innerText = 'Pause';
-        });
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        button.classList.add('playing'); // Add glowing effect
+      } else {
+        audio.pause();
+        button.classList.remove('playing'); // Remove glowing effect
+      }
+    }
 
-        // Update the button text when the audio is paused
-        audio.addEventListener('pause', () => {
-            button.innerText = 'Play';
-        });
-    </script>
+    // Ensure button shows glowing state when audio starts playing
+    audio.addEventListener('play', () => {
+      button.classList.add('playing');
+    });
+
+    // Remove glowing effect when audio is paused
+    audio.addEventListener('pause', () => {
+      button.classList.remove('playing');
+    });
+  </script>
 </body>
 </html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
