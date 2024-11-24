@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Islamic Insights</title>
+  <style>
+    /* Base Styles */
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #001F3F;
+      color: #FFFFFF;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #1E90FF;
+    }
+
+    .header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .header ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .header li a {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
+    #theme-toggle {
+      background: #FFFFFF;
+      color: #1E90FF;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #001F3F 50%, #1E90FF 100%);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    #search-form {
+      margin-top: 1rem;
+    }
+
+    #search-bar {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #search-form button {
+      background: #1E90FF;
+      color: #FFFFFF;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Articles */
+    .articles {
+      padding: 2rem 1rem;
+    }
+
+    .articles .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .articles article {
+      background: #1E90FF;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .articles article button {
+      background: #FFFFFF;
+      color: #1E90FF;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #001F3F;
+    }
+
+    .footer ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #1E1E1E;
+      color: #FFFFFF;
+    }
+
+    body.dark-mode .header {
+      background-color: #333;
+    }
+
+    body.dark-mode #theme-toggle {
+      background-color: #333;
+      color: #FFFFFF;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">Islamic Insights</div>
+    <nav>
+      <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">Articles</a></li>
+        <li><a href="">Stories</a></li>
+        <li><a href="">About Us</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+    </nav>
+    <button id="theme-toggle">Dark Mode</button>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Welcome to Islamic Insights</h1>
+    <p>Explore inspiring stories and articles about Islam, technology, and the modern Muslim world.</p>
+    <form id="search-form">
+      <input type="text" placeholder="Search for articles..." id="search-bar">
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <!-- ARTICLES SECTION -->
+  <main class="articles">
+    <h2>Featured Articles</h2>
+    <div class="grid">
+      <article>
+        <h3>The Wisdom of Surah Al-Kahf</h3>
+        
+        <p>Discover the lessons in Surah Al-Kahf and their relevance in today's world.</p>
+        <a href="/Stories /kahf.html">
+        <button>Read More</button>
+        </a>
+      </article>
+      <article>
+        <h3>Muslim Contributions to Tech</h3>
+        <p>Learn about the incredible innovations by Muslim scientists and inventors.</p>
+        <a href="/Stories /Tech.html">
+        <button>Read more</button>
+        </a>
+      </article>
+      <article>
+        <h3>Understanding Taqwa in the Digital Age</h3>
+        <p>How Muslims can uphold faith and spirituality in a fast-paced digital world.</p>
+        <a href="/Stories /Taqwa.html">
+        <button>Read More</button>
+        </a>
+      </article>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2024 Islamic Insights. All Rights Reserved.</p>
+    <ul class="social-links">
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Twitter</a></li>
+      <li><a href="#">Instagram</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.textContent = 
+        document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+    });
+  </script>
+</body>
+</html>
