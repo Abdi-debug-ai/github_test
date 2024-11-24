@@ -403,36 +403,35 @@ allowfullscreen></iframe>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Audio Button</title>
   <style>
-    
-
     .audio-container {
       display: inline-block;
       position: relative;
+      text-align: center;
     }
 
-    /* Style for the ⚜️ button */
+    /* Style for the 🔅 button */
     .audio-btn {
-      font-size: 36px;
-      background: none;
+      font-size: 10px;
+      background: #0D98BA;
       border: none;
       cursor: pointer;
-      color: ;
-      transition: transform 0.2s ease, color 0.3s ease;
+      color: #0D98BA; /* Techy blue color */
+      transition: transform 0.2s ease, color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .audio-btn:hover {
-      color: #ffffff;
-      transform: scale(1.2) rotate(10deg);
+      transform: scale(1.3);
+      color: #0D98BA; /* Lighter blue on hover */
     }
 
     .audio-btn:active {
-      transform: scale(1) rotate(-10deg);
+      transform: scale(1.1);
     }
 
     /* Glow effect when playing */
     .audio-btn.playing {
-      color: #32cd32; /* for playing state */
-      text-shadow: 0 0 20px #32cd32, 0 0 30px #32cd32;
+      color: #0D98BA; /* Glowing techy blue color */
+      text-shadow: 0 0 20px #0D98BA, 0 0 40px #0D98BA, 0 0 60px #0D98BA;
     }
   </style>
 </head>
@@ -444,7 +443,7 @@ allowfullscreen></iframe>
       <source src="Audio.mp3/Halal Beats - Where you are (Without Halal Beats).mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Interactive ⚜️ button -->
+    <!-- Interactive 🔅 button -->
     <button id="playPauseBtn" class="audio-btn" onclick="toggleAudio()">🔅</button>
   </div>
 
@@ -474,6 +473,8 @@ allowfullscreen></iframe>
   </script>
 </body>
 </html>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
