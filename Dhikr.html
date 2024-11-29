@@ -755,26 +755,16 @@ allowfullscreen></iframe>
     style="border:none; overflow:hidden;" 
     scrolling="auto">
 </iframe>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khatam-un-Nabiyeen</title>
-
-    <!-- Link to the manifest file -->
-    <link rel="manifest" href="manifest.json">
-
-    <!-- Theme color for the app -->
-    <meta name="theme-color" content="#000000">
-
-    <!-- Favicon or icons -->
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
-
-    <!-- Add other meta tags -->
-</head>
-<body>
-  
-</body>
-</html>
+<link rel="/Dhikr.html " href="manifest.json">
+<script>
+    if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+            .register("/service-worker.js")
+            .then((registration) => {
+                console.log("Service Worker registered with scope:", registration.scope);
+            })
+            .catch((error) => {
+                console.error("Service Worker registration failed:", error);
+            });
+    }
+</script>
