@@ -755,38 +755,3 @@ allowfullscreen></iframe>
     style="border:none; overflow:hidden;" 
     scrolling="auto">
 </iframe>
-<link rel="/Dhikr.html " href="manifest.json">
-<script>
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-            .register("/service-worker.js")
-            .then((registration) => {
-                console.log("Service Worker registered with scope:", registration.scope);
-            })
-            .catch((error) => {
-                console.error("Service Worker registration failed:", error);
-            });
-    }
-</script>
-<link rel="manifest" href="manifest.json">
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dhikr</title>
-
-    <!-- Link the manifest -->
-    <link rel="manifest" href="manifest.json">
-
-    <!-- Theme color -->
-    <meta name="theme-color" content="#000000">
-
-    <!-- Favicon or app icons -->
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512x512.png">
-
-
-</body>
-</html>
-
