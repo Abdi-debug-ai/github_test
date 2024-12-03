@@ -195,12 +195,61 @@ Muslim scholars developed new methods for teaching and learning, which were used
 
 In conclusion, Muslims have made significant contributions to the fields of science and technology throughout history. From algebra and optics to medicine and agriculture, Muslim scholars have contributed to the advancement of knowledge in a variety of fields. By acknowledging these contributions, we can appreciate the diversity of human knowledge and the shared human pursuit of understanding the world around us.
 
-<div id="hyvor-talk-view"></div>
-<script type="text/javascript">
-  var HYVOR_TALK_WEBSITE = "12249";
-  var HYVOR_TALK_CONFIG = { url: false };
+
+
+<div class="comment-section">
+  <textarea 
+    id="commentInput" 
+    rows="4" 
+    cols="50" 
+    placeholder="Write a comment..." 
+    onkeyup="validateInput()"
+    style="resize: none; width: 100%; padding: 10px; font-size: 16px;"
+  ></textarea>
+  <button 
+    type="button" 
+    onclick="submitComment()" 
+    style="margin-top: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer;"
+  >
+    Post
+  </button>
+</div>
+<div id="commentDisplay" style="margin-top: 20px; font-size: 16px;"></div>
+
+<script>
+  // Array to store comments
+  const comments = [];
+
+  // Get references to input and display elements
+  const commentInput = document.getElementById("commentInput");
+  const commentDisplay = document.getElementById("commentDisplay");
+
+  // Validate input to ensure only alphabets are entered
+  function validateInput() {
+    const input = commentInput.value;
+    if (!/^[a-zA-Z\s]*$/.test(input) && input !== "") {
+      commentInput.value = ""; // Clear invalid input
+      alert("Please enter only alphabets.");
+    }
+  }
+
+  // Submit a new comment and update the display
+  function submitComment() {
+    const comment = commentInput.value.trim();
+    if (comment !== "") {
+      comments.push(comment);
+      updateDisplay();
+      commentInput.value = ""; // Clear the input field
+    } else {
+      alert("Comment cannot be empty!");
+    }
+  }
+
+  // Update the comment display section
+  function updateDisplay() {
+    commentDisplay.innerHTML = comments.map((c, index) => `<p>${index + 1}. ${c}</p>`).join("");
+  }
 </script>
-<script async type="text/javascript" src="https://talk.hyvor.com/web-api/embed.js"></script>
 
 </p>
 <!DOCTYPE html>
