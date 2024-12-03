@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streaming Website</title>
+  <style>
+    /* CSS goes here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #1c1c1c;
+      padding: 15px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #ff3d00;
+    }
+
+    .search-bar {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .search-bar input {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background-color: #1c1c1c;
+      color: #fff;
+    }
+
+    .movie-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .movie {
+      background-color: #1c1c1c;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .movie:hover {
+      transform: scale(1.05);
+    }
+
+    .movie img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .movie h3 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>StreamFlix</h1>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" id="search" placeholder="Search for movies...">
+  </div>
+
+  <div class="movie-container" id="movie-container">
+    <!-- Movies will be dynamically added here -->
+  </div>
+
+  <script>
+    // JavaScript goes here
+    const movies = [
+      {
+        title: "Movie 1",
+        image: "https://via.placeholder.com/200x300",
+      },
+      {
+        title: "Movie 2",
+        image: "https://via.placeholder.com/200x300",
+      },
+      {
+        title: "Movie 3",
+        image: "https://via.placeholder.com/200x300",
+      },
+      {
+        title: "Movie 4",
+        image: "https://via.placeholder.com/200x300",
+      },
+    ];
+
+    const movieContainer = document.getElementById("movie-container");
+    const searchInput = document.getElementById("search");
+
+    function displayMovies(filter = "") {
+      movieContainer.innerHTML = "";
+      movies
+        .filter((movie) =>
+          movie.title.toLowerCase().includes(filter.toLowerCase())
+        )
+        .forEach((movie) => {
+          const movieDiv = document.createElement("div");
+          movieDiv.classList.add("movie");
+          movieDiv.innerHTML = `
+            <img src="${movie.image}" alt="${movie.title}">
+            <h3>${movie.title}</h3>
+          `;
+          movieContainer.appendChild(movieDiv);
+        });
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      displayMovies(e.target.value);
+    });
+
+    // Initial movie display
+    displayMovies();
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popular Movies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    header {
+      background-color: #1c1c1c;
+      padding: 15px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #ff3d00;
+    }
+
+    .movie-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .movie {
+      background-color: #1c1c1c;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .movie:hover {
+      transform: scale(1.05);
+    }
+
+    .movie img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .movie h3 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Popular Movies</h1>
+  </header>
+
+  <div class="movie-container" id="movie-container">
+    <!-- Movies will be dynamically loaded here -->
+  </div>
+
+  <script>
+    const API_KEY = "YOUR_API_KEY"; // Replace with your TMDb API key
+    const BASE_URL = "https://api.themoviedb.org/3";
+    const POPULAR_MOVIES_URL = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+
+    const movieContainer = document.getElementById("movie-container");
+
+    // Fetch popular movies from TMDb
+    fetch(POPULAR_MOVIES_URL)
+      .then(response => response.json())
+      .then(data => {
+        const movies = data.results;
+        displayMovies(movies);
+      })
+      .catch(error => {
+        console.error("Error fetching movies:", error);
+        movieContainer.innerHTML = `<p>Failed to load movies. Please try again later.</p>`;
+      });
+
+    // Display movies in the DOM
+    function displayMovies(movies) {
+      movieContainer.innerHTML = ""; // Clear previous content
+      movies.forEach(movie => {
+        const movieDiv = document.createElement("div");
+        movieDiv.classList.add("movie");
+
+        const moviePoster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+        movieDiv.innerHTML = `
+          <img src="${moviePoster}" alt="${movie.title}">
+          <h3>${movie.title}</h3>
+          <p>Rating: ${movie.vote_average}</p>
+        `;
+
+        movieContainer.appendChild(movieDiv);
+      });
+    }
+  </script>
+</body>
+</html>
