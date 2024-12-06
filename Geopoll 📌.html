@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geopoll 📌</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #001f3f;
+            color: white;
+        }
+
+        #street-view, #map {
+            width: 100%;
+            height: 50vh;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            background: #0074d9;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .controls button:hover {
+            background: #005f99;
+        }
+
+        .score {
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align:center;">Geopoll 📌</h1>
+
+    <!-- Map for guessing -->
+    <div id="map"></div>
+
+    <!-- Street View for hints -->
+    <div id="street-view"></div>
+
+    <div class="controls">
+        <button onclick="makeGuess()">Submit Guess</button>
+        <button onclick="nextRound()">Next Round</button>
+    </div>
+
+    <div class="score">
+        Score: <span id="score">0</span>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map, guessMarker, actualLocationMarker, roundLocation, score = 0;
+        let currentLocation = { lat: 48.8584, lng: 2.2945 }; // Eiffel Tower, Paris
+
+        const locations = [
+            { lat: 48.8584, lng: 2.2945, id: 'eiffel-tower' }, // Eiffel Tower, Paris
+            { lat: 40.6892, lng: -74.0445, id: 'statue-of-liberty' }, // Statue of Liberty, NYC
+            { lat: 40.4319, lng: 116.5704, id: 'great-wall-of-china' }, // Great Wall of China
+            { lat: -33.8568, lng: 151.2153, id: 'sydney-opera-house' }, // Sydney Opera House
+            { lat: 29.9792, lng: 31.1342, id: 'pyramids-of-giza' }  // Pyramids of Giza
+        ];
+
+        // Initialize the game and map
+        function initGame() {
+            // Initialize Map using OpenStreetMap
+            map = L.map('map').setView([0, 0], 2); // Starting zoom level and center
+
+            // Add OpenStreetMap tile layer
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            // Add click listener for placing a guess marker
+            map.on("click", function (event) {
+                if (guessMarker) guessMarker.remove();
+                guessMarker = L.marker(event.latlng).addTo(map);
+            });
+
+            // Initialize the first round
+            nextRound();
+        }
+
+        // Submit the user's guess
+        function makeGuess() {
+            if (!guessMarker) {
+                alert("Please place a pin on the map!");
+                return;
+            }
+
+            const guessedPosition = guessMarker.getLatLng();
+            const actualPosition = roundLocation;
+
+            // Calculate the distance between the guess and the actual location
+            const distance = calculateDistance(
+                guessedPosition.lat,
+                guessedPosition.lng,
+                actualPosition.lat,
+                actualPosition.lng
+            );
+
+            // Award points based on proximity
+            let points = Math.max(0, Math.round((10000 - distance) / 100));
+            score += points;
+
+            document.getElementById("score").textContent = score;
+
+            // Show the actual location on the map
+            if (actualLocationMarker) actualLocationMarker.remove();
+            actualLocationMarker = L.marker(actualPosition).addTo(map)
+                .bindPopup("Actual Location").openPopup();
+
+            alert(`You were ${Math.round(distance)} km away. Points this round: ${points}`);
+        }
+
+        // Start a new round
+        function nextRound() {
+            if (guessMarker) guessMarker.remove();
+            if (actualLocationMarker) actualLocationMarker.remove();
+
+            // Select a new random location
+            const newLocation = locations[Math.floor(Math.random() * locations.length)];
+            roundLocation = newLocation;
+
+            // Update the map center and zoom level
+            map.setView(newLocation, 5); // Set zoom level for better viewing
+
+            // Load the street view (panorama) from Mapillary
+            loadStreetView(newLocation);
+        }
+
+        // Load Street View from Mapillary for hints
+        function loadStreetView(location) {
+            const mapillaryContainer = document.getElementById('street-view');
+            mapillaryContainer.innerHTML = `
+                <iframe src="https://www.mapillary.com/app/?lat=${location.lat}&lng=${location.lng}&z=17&panos=true" 
+                        width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+            `;
+        }
+
+        // Calculate the distance between two lat/lng points
+        function calculateDistance(lat1, lng1, lat2, lng2) {
+            const R = 6371; // Radius of the Earth in km
+            const dLat = toRad(lat2 - lat1);
+            const dLng = toRad(lng2 - lng1);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // Convert degrees to radians
+        function toRad(deg) {
+            return deg * Math.PI / 180;
+        }
+
+        // Initialize the game when the page is loaded
+        window.onload = function() {
+            initGame();
+        };
+    </script>
+</body>
+</html>
