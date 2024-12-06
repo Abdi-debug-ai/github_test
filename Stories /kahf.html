@@ -389,6 +389,64 @@ Our hope is that the readers enjoy these stories derived from the Noble Qur’an
   </iframe>
   <p style="margin-top: 15px; font-size: 14px; color: #007bff;">Your vote shapes our content!</p>
 </div>
-<div class="commentbox"></div>
-<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-<script>commentBox('5747742492065792')</script 
+<iframe 
+    src="https://www.pcrf.net/" 
+    width="100%" 
+    height="800" 
+    style="border:none; overflow:hidden;" 
+    scrolling="auto">
+</iframe>
+<div id="videoAd" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; align-items: center; justify-content: center;">
+    <div style="background: white; width: 80%; max-width: 600px; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); position: relative;">
+        <iframe 
+            id="adVideo"
+            width="100%" 
+            height="315" 
+            src="https://www.youtube.com/embed/JAT9NQ4WkE0?autoplay=1&mute=1" 
+            title="Dhikr Video" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+        <button onclick="closeAd()" style="position: absolute; top: 10px; right: 10px; background: red; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer;">&times;</button>
+        <button 
+            onclick="unmuteAd()" 
+            style="margin-top: 15px; background: linear-gradient(90deg, #00c6ff, #0072ff); color: white; font-size: 16px; font-weight: bold; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+            Enable Audio
+        </button>
+        <div style="margin-top: 15px;">
+            <p>Don't want to see ads again? <a href="#" onclick="removeAds()" style="color: #0072ff; text-decoration: underline; font-weight: bold;">Remove ads</a>.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Show the ad after a certain period (e.g., 30 seconds)
+    setTimeout(() => {
+        if (!localStorage.getItem('adsRemoved')) {
+            document.getElementById('videoAd').style.display = 'flex';
+        }
+    }, 30000); // 30000ms = 30 seconds
+
+    // Function to close the ad
+    function closeAd() {
+        document.getElementById('videoAd').style.display = 'none';
+    }
+
+    // Function to unmute the ad
+    function unmuteAd() {
+        const iframe = document.getElementById('adVideo');
+        iframe.src = iframe.src.replace("mute=1", "mute=0");
+    }
+
+    // Function to remove ads permanently
+    function removeAds() {
+        const confirmation = confirm("Are you sure you want to remove ads?");
+        if (confirmation) {
+            // Simulating payment process
+            alert(" Ads have been removed.");
+            localStorage.setItem('adsRemoved', 'true'); // Save preference in browser storage
+            closeAd();
+        }
+    }
+</script>
