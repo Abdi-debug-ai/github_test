@@ -511,15 +511,24 @@ The rise of the Active bond Crowd: Understanding the Concept
             allowfullscreen>
         </iframe>
         <button onclick="closeAd()" style="position: absolute; top: 10px; right: 10px; background: red; color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer;">&times;</button>
-        <button onclick="unmuteAd()" style="margin-top: 15px; background: green; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Enable Sound</button>
+        <button 
+            onclick="unmuteAd()" 
+            style="margin-top: 15px; background: linear-gradient(90deg, #00c6ff, #0072ff); color: white; font-size: 16px; font-weight: bold; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);">
+            Enable Audio
+        </button>
+        <div style="margin-top: 15px;">
+            <p>Don't want to see ads again? <a href="#" onclick="removeAds()" style="color: #0072ff; text-decoration: underline; font-weight: bold;">Remove ads</a>.</p>
+        </div>
     </div>
 </div>
 
 <script>
     // Show the ad after a certain period (e.g., 30 seconds)
     setTimeout(() => {
-        document.getElementById('videoAd').style.display = 'flex';
-    }, 1000000); // 1000000ms = 100 seconds
+        if (!localStorage.getItem('adsRemoved')) {
+            document.getElementById('videoAd').style.display = 'flex';
+        }
+    }, 30000); // 30000ms = 30 seconds
 
     // Function to close the ad
     function closeAd() {
@@ -530,5 +539,16 @@ The rise of the Active bond Crowd: Understanding the Concept
     function unmuteAd() {
         const iframe = document.getElementById('adVideo');
         iframe.src = iframe.src.replace("mute=1", "mute=0");
+    }
+
+    // Function to remove ads permanently
+    function removeAds() {
+        const confirmation = confirm("Are you sure you want to remove ads?");
+        if (confirmation) {
+            // Simulating payment process
+            alert(" Ads have been removed.");
+            localStorage.setItem('adsRemoved', 'true'); // Save preference in browser storage
+            closeAd();
+        }
     }
 </script>
