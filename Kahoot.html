@@ -1,18 +1,4 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-</head>
-
-<body>
-
-</body>
-
-</html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,4 +44,60 @@
     </script>
 
 </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sass Template</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.11.1/sass.min.js"></script>
+  <script>
+    function compileSCSS() {
+      var sass = new Sass('https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.11.1/sass.worker.min.js');
+      $('link[rel="scss"]').each(function () {
+        var href = $(this).attr('href');
+        $.ajax({
+          url: href,
+          dataType: 'text'
+        }).then(function (data) {
+          sass.compile(data, function (result) {
+            $('#css').html(result.text || '');
+            console.log(result);
+          });
+        });
+      });
+    }
+  </script>
+   
+  </style>
+</head>
+
+<body>
+  <div class="🐕">
+    <div class="torso">
+      <div class="fur">
+        <div class="neck">
+          <div class="fur"></div>
+        </div>
+      </div>
+      <div class="tail"></div>
+    </div>
+    <div class="head">
+      <div class="fur"></div>
+    </div>
+    
+        <div class="fur"></div>
+      </div>
+      <div class="ear">
+        <div class="fur"></div>
+      </div>
+    </div>
+    <div class="eye"></div>
+    <div class="eye" style="top: 25%; left: 60%;"></div>
+  </div>
+</body>
+
 </html>
