@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Step Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e1f5fe;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #0277bd;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .stats, .goal {
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .stats h3, .goal h3 {
+      text-align: center;
+      color: #0277bd;
+    }
+
+    .stats .stat, .goal .stat {
+      font-size: 20px;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .footer {
+      background-color: #0277bd;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #0277bd;
+    }
+
+    button {
+      background-color: #0277bd;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #01579b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Step Tracker</h1>
+    <p>Track your steps and challenge yourself to achieve your daily goals!</p>
+  </div>
+
+  <div class="container">
+    <div class="goal">
+      <h3>Select Your Step Goal</h3>
+      <select id="goalSelect">
+        <option value="1000">1000 Steps</option>
+        <option value="2000">2000 Steps</option>
+        <option value="3000">3000 Steps</option>
+        <option value="4000">4000 Steps</option>
+        <option value="5000">5000 Steps</option>
+        <option value="7000">7000 Steps</option>
+        <option value="9000">9000 Steps</option>
+        <option value="10000">10000 Steps</option>
+        <option value="15000">15000 Steps</option>
+        <option value="20000">20000 Steps</option>
+        <option value="25000">25000 Steps</option>
+        <option value="30000">30000 Steps</option>
+        <option value="40000">40000 Steps</option>
+        <option value="50000">50000 Steps</option>
+      </select>
+      <button id="setGoalButton">Set Goal</button>
+    </div>
+
+    <div class="stats">
+      <h3>Today's Stats</h3>
+      <div class="stat" id="totalSteps">Total Steps: 0</div>
+      <div class="stat" id="distanceWalked">Distance Walked: 0 km</div>
+      <div class="stat" id="caloriesBurned">Calories Burned: 0 kcal</div>
+      <div class="stat" id="streak">Current Streak: 0 days</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>&copy; 2024 Step Tracker</p>
+  </div>
+
+  <script>
+    let stepCount = 0;
+    let lastAcceleration = { x: 0, y: 0, z: 0 };
+    let lastTimestamp = 0;
+    let suddenMovementThreshold = 2; // HIGH sensitivity (lower threshold)
+    let minTimeBetweenSteps = 200; // Minimum time between steps in milliseconds
+    let footstepSound = new Audio('https://www.soundjay.com/button/beep-07.wav'); // Example footstep sound
+
+    // Load saved data from localStorage
+    let goal = localStorage.getItem('stepGoal') || 10000;
+    let streak = parseInt(localStorage.getItem('streak')) || 0;
+    let lastGoalDate = localStorage.getItem('lastGoalDate') || '';
+
+    // Function to detect steps based on changes in accelerometer data
+    function detectSteps(acceleration, timestamp) {
+      const threshold = suddenMovementThreshold;
+
+      // Calculate the delta (change) in acceleration for each axis
+      const deltaX = Math.abs(lastAcceleration.x - acceleration.x);
+      const deltaY = Math.abs(lastAcceleration.y - acceleration.y);
+      const deltaZ = Math.abs(lastAcceleration.z - acceleration.z);
+
+      // Detect a step if the change in acceleration exceeds the threshold and enough time has passed
+      if ((deltaX > threshold || deltaY > threshold || deltaZ > threshold) && (timestamp - lastTimestamp > minTimeBetweenSteps)) {
+        stepCount++;
+        lastTimestamp = timestamp; // Update last timestamp to avoid double counting
+        playFootstepSound();
+        updateStats();
+      }
+
+      // Store the current acceleration for the next comparison
+      lastAcceleration = acceleration;
+    }
+
+    // Function to play the footstep sound
+    function playFootstepSound() {
+      footstepSound.play(); // Play the footstep sound
+    }
+
+    // Function to update the stats on the page
+    function updateStats() {
+      const distance = (stepCount * 0.0008).toFixed(2); // 1 step = 0.8 meters
+      const calories = (stepCount * 0.04).toFixed(2); // 1 step = 0.04 calories
+
+      document.getElementById('totalSteps').innerText = `Total Steps: ${stepCount}`;
+      document.getElementById('distanceWalked').innerText = `Distance Walked: ${distance} km`;
+      document.getElementById('caloriesBurned').innerText = `Calories Burned: ${calories} kcal`;
+
+      // Check if the user reached the goal
+      if (stepCount >= goal) {
+        let currentDate = new Date().toDateString();
+        if (currentDate !== lastGoalDate) {
+          streak++;
+          localStorage.setItem('streak', streak);
+          localStorage.setItem('lastGoalDate', currentDate);
+          document.getElementById('streak').innerText = `Current Streak: ${streak} days`;
+        }
+      }
+    }
+
+    // Set the goal based on the user's selection
+    document.getElementById('setGoalButton').addEventListener('click', function () {
+      goal = parseInt(document.getElementById('goalSelect').value);
+      localStorage.setItem('stepGoal', goal);
+      alert(`Your goal has been set to ${goal} steps!`);
+      updateStats();
+    });
+
+    // Listen for device motion events (accelerometer and gyroscope)
+    if (window.DeviceMotionEvent) {
+      window.addEventListener("devicemotion", function (event) {
+        const acceleration = event.acceleration;
+        const timestamp = event.timeStamp;
+
+        // Only check for motion if acceleration data is available
+        if (acceleration) {
+          detectSteps(acceleration, timestamp);
+        }
+      }, false);
+    } else {
+      alert("Device motion not supported on this device.");
+    }
+
+    // Initial stats update
+    updateStats();
+  </script>
+</body>
+</html>

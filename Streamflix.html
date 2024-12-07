@@ -253,3 +253,324 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Feed</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: 
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: 
+        }
+
+        .feed {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 20px;
+            overflow-y: auto;
+        }
+
+        .video-item {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+            background-color: 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-item iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .video-item:hover .thumbnail {
+            opacity: 1;
+        }
+
+        .thumbnail-text {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .video-container {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            background-color: 
+            padding: 10px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            font-size: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="feed">
+            <!-- Video Items (Simulated Movie Thumbnails) -->
+            <div class="video-item" onclick="openVideo('xZoBB8TsPNw')">
+                <div class="thumbnail">
+                    <div class="thumbnail-text">Watch Now</div>
+                </div>
+                <img src="https://img.youtube.com/vi/xZoBB8TsPNw/0.jpg" alt="Movie Thumbnail">
+            </div>
+
+            <div class="video-item" onclick="openVideo('ivYc7VRgU1U')">
+                <div class="thumbnail">
+                    <div class="thumbnail-text">Watch Now</div>
+                </div>
+                <img src="https://img.youtube.com/vi/ivYc7VRgU1U/0.jpg" alt="Movie Thumbnail">
+            </div>
+        </div>
+
+        <!-- Video Player -->
+        <div id="video-container" class="video-container">
+            <button class="back-button" onclick="closeVideo()">Back</button>
+            <iframe id="video-player" width="100%" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openVideo(videoId) {
+            document.querySelector('.feed').style.display = 'none';
+            document.getElementById('video-container').style.display = 'block';
+            document.getElementById('video-player').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}`;
+        }
+
+        function closeVideo() {
+            document.querySelector('.feed').style.display = 'block';
+            document.getElementById('video-container').style.display = 'none';
+            document.getElementById('video-player').src = ''; // Stop the video when we close it
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDO Movie Aggregator</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #1e1e1e;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            color: #f1f1f1;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            margin: 20px auto;
+            width: 50%;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Movie Grid Styling */
+        .movie-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .movie-card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .movie-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .movie-card h3 {
+            padding: 10px;
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .movie-card p {
+            padding: 0 10px 10px;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .movie-card button {
+            margin-bottom: 10px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            input[type="text"] {
+                width: 80%;
+            }
+            .movie-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HDO Movie Aggregator</h1>
+        <input type="text" id="search" placeholder="Search for movies..." />
+        <button onclick="searchMovies()">Search</button>
+    </header>
+
+    <div class="movie-container" id="movie-container">
+        <!-- Movie cards will appear here -->
+    </div>
+
+    <script>
+        const apiKey = 'your_tmdb_api_key'; // Replace with your TMDb API key
+        const movieContainer = document.getElementById('movie-container');
+
+        // Function to search movies using TMDb API
+        function searchMovies() {
+            const searchQuery = document.getElementById('search').value;
+            if (searchQuery.trim() !== '') {
+                fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${searchQuery}`)
+                    .then(response => response.json())
+                    .then(data => displayMovies(data.results))
+                    .catch(error => console.error('Error fetching data:', error));
+            }
+        }
+
+        // Function to display movie cards
+        function displayMovies(movies) {
+            movieContainer.innerHTML = ''; // Clear previous results
+
+            if (movies.length === 0) {
+                movieContainer.innerHTML = '<p>No movies found.</p>';
+            } else {
+                movies.forEach(movie => {
+                    const movieCard = document.createElement('div');
+                    movieCard.classList.add('movie-card');
+
+                    movieCard.innerHTML = `
+                        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
+                        <h3>${movie.title}</h3>
+                        <p>Release Date: ${movie.release_date}</p>
+                        <button onclick="showDetails(${movie.id})">View Details</button>
+                    `;
+
+                    movieContainer.appendChild(movieCard);
+                });
+            }
+        }
+
+        // Function to show movie details
+        function showDetails(movieId) {
+            alert(`Movie details for ${movieId}`);
+        }
+
+        // Fetch and display popular movies on initial load
+        window.onload = () => {
+            fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`)
+                .then(response => response.json())
+                .then(data => displayMovies(data.results))
+                .catch(error => console.error('Error fetching popular movies:', error));
+        };
+    </script>
+</body>
+</html>
