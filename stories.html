@@ -15,54 +15,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Islamic Insights Blog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok-Style FYP</title>
+  <style>
+    /* Full-screen and styling for TikTok FYP layout */
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #fyp-container {
+      height: 100vh;
+      width: 100%;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    .video-item {
+      height: 100vh;
+      width: 100%;
+      position: relative;
+      scroll-snap-align: start;
+    }
+
+    iframe, video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      text-shadow: 1px 1px 5px black;
+    }
+
+    .actions {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .action-button {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 </head>
 <body>
-    <h1>Islamic Insights Blog</h1>
-    <div id="blog-container"></div>
+  <div id="fyp-container">
+    <!-- Video 1 -->
+    <div class="video-item">
+      <iframe 
+        src="https://www.youtube.com/embed/dB6KZc9Y9ZI?autoplay=1&mute=1&loop=1&playlist=dB6KZc9Y9ZI" 
+        frameborder="0" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+      </iframe>
+      <div class="overlay">
+        <h3>Dhikr: Inspirational Video</h3>
+      </div>
+      <div class="actions">
+        <div class="action-button" onclick="alert('Liked!')">❤️</div>
+        <div class="action-button" onclick="alert('Shared!')">🔗</div>
+        <div class="action-button" onclick="alert('Saved!')">🔖</div>
+      </div>
+    </div>
+     <div class="video-item">
+<iframe 
+  src="https://www.youtube.com/embed/xZoBB8TsPNw?autoplay=1&mute=1&loop=1&playlist=xZoBB8TsPNw" 
+  frameborder="0" 
+  allow="autoplay; encrypted-media" 
+  allowfullscreen 
+  style="width: 100%; height: 100%;">
+</iframe>
+   <div class="overlay">
+        <h3>Dhikr: Inspirational Video</h3>
+      </div>
+      <div class="actions">
+        <div class="action-button" onclick="alert('Liked!')">❤️</div>
+        <div class="action-button" onclick="alert('Shared!')">🔗</div>
+        <div class="action-button" onclick="alert('Saved!')">🔖</div>
+      </div>
+    </div>
 
-    <script>
-        async function fetchBlogPosts() {
-            const response = await fetch('https://api.hashnode.com/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    query: `
-                        {
-                            user(username: "islamicinsights") {
-                                publication {
-                                    posts {
-                                        title
-                                        brief
-                                        slug
-                                    }
-                                }
-                            }
-                        }
-                    `,
-                }),
-            });
+  <script>
+    // JavaScript to auto-play local videos
+    const videos = document.querySelectorAll('video');
 
-            const { data } = await response.json();
-            const posts = data.user.publication.posts;
-
-            const container = document.getElementById('blog-container');
-            posts.forEach(post => {
-                const postElement = document.createElement('div');
-                postElement.innerHTML = `
-                    <h2>${post.title}</h2>
-                    <p>${post.brief}</p>
-                    <a href="https://islamicinsights.hashnode.dev/${post.slug}" target="_blank">Read More</a>
-                `;
-                container.appendChild(postElement);
-            });
+    document.getElementById('fyp-container').addEventListener('scroll', () => {
+      videos.forEach((video) => {
+        const rect = video.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          video.play();
+        } else {
+          video.pause();
         }
-
-        fetchBlogPosts();
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
