@@ -459,3 +459,12 @@ const responses = {
   "another question": "This is another custom response.",
   "default": "I'm here to help. Can you clarify your question?"
 };
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then((registration) => {
+      console.log('Service Worker registered with scope:', registration.scope);
+    })
+    .catch((error) => {
+      console.error('Service Worker registration failed:', error);
+    });
+}
