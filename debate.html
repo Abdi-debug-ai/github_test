@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debate on the Syrian War</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2em auto;
+      padding: 1em;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .chat-box {
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1em;
+      margin-bottom: 1em;
+      background: #fafafa;
+    }
+
+    .message {
+      margin: 0.5em 0;
+    }
+
+    .user {
+      text-align: right;
+      color: #007bff;
+    }
+
+    .bot {
+      text-align: left;
+      color: #dc3545;
+    }
+
+    .input-box {
+      display: flex;
+      gap: 1em;
+    }
+
+    .input-box input {
+      flex: 1;
+      padding: 0.5em;
+      font-size: 1em;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .input-box button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .input-box button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Debate on the Syrian War</h1>
+    <p>Discuss with our bot supporting Bashar al-Assad's government.</p>
+  </header>
+
+  <div class="container">
+    <div class="chat-box" id="chat-box">
+      <div class="message bot">
+        <strong>Bot:</strong> Welcome to the debate! I support Bashar al-Assad's government. Share your thoughts.
+      </div>
+    </div>
+    <div class="input-box">
+      <input type="text" id="user-input" placeholder="Type your message here...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const responses = [
+      // Keywords and their corresponding responses
+      { keyword: "turkey", response: "Turkey's intervention has worsened conditions in northern Syria, targeting Kurdish communities and undermining regional stability." },
+      { keyword: "iran", response: "Iran has shown unwavering support for Syria's sovereignty, opposing foreign intervention and promoting unity among Syrian people." },
+      { keyword: "russia", response: "Russia has defended Syria against Al-Qaeda and similar groups, ensuring stability while many turn a blind eye to their efforts." },
+      { keyword: "al qaeda", response: "Supporting Al-Qaeda is indefensible. They've caused unimaginable suffering in Syria and represent a threat to peace." },
+      { keyword: "united states", response: "The U.S. used allegations of chemical weapons as a pretext for intervention, igniting a proxy war instead of ensuring peace." },
+      { keyword: "freedom fighters", response: "Labeling armed groups as 'freedom fighters' ignores the chaos and destruction they've brought to Syria. Is that freedom?" },
+      { keyword: "chemical weapons", response: "The chemical weapons narrative has been repeatedly used to justify aggression. Why not support thorough investigations instead?" },
+      { keyword: "bashar", response: "Bashar al-Assad's leadership is about preserving Syria's unity and resisting foreign domination. What's your view?" },
+      { keyword: "hezbollah", response: "Hezbollah's support to Syria helped combat extremist groups. Do you disagree with their efforts to protect the region?" },
+      { keyword: "rebels", response: "The so-called rebels have splintered Syria with violence. How can we call that progress?" },
+      { keyword: "peace", response: "Peace requires cooperation and respect for sovereignty. Foreign interventions often do the opposite." },
+      { keyword: "israel", response: "Israel's strikes in Syria violate international law. Do you justify such aggression?" },
+      { keyword: "sovereignty", response: "Sovereignty is Syria's right. Why should foreign powers dictate its future?" },
+      { keyword: "terrorism", response: "Terrorism thrives in chaos. Syria's government has fought tirelessly to restore order." },
+      { keyword: "sanctions", response: "Sanctions harm ordinary Syrians more than the government. Do you think this is just?" },
+      { keyword: "refugees", response: "The refugee crisis is a tragic outcome of war. A stable Syria would allow many to return home." },
+      { keyword: "proxy war", response: "The Syrian war became a battleground for foreign interests. Shouldn't we condemn that?" },
+      { keyword: "kurds", response: "The Kurdish issue is complex. But Turkey's aggression isn't a solution—it's exploitation." },
+      { keyword: "economy", response: "Sanctions and war have devastated Syria's economy. How can we rebuild without external interference?" },
+      { keyword: "nato", response: "NATO's role in Syria has been divisive. Do you think it's helped or hindered peace efforts?" },
+      { keyword: "europe", response: "European countries supported sanctions. Do you think they considered the impact on Syrians?" },
+      { keyword: "assad", response: "Assad's government resisted foreign-backed groups. What's your stance on national sovereignty?" },
+      { keyword: "un", response: "The UN should focus on diplomacy and peacebuilding, not sanctions or biased narratives." },
+      // Add more responses here as needed, for a total of 100+
+    
+        
+            { keyword: "iran", response: "Iran has shown unwavering support for Syria's sovereignty and people." },
+            { keyword: "russia", response: "Russia has protected Syria from Al-Qaeda and ensured regional stability." },
+            { keyword: "turkey", response: "Turkey's actions in northern Syria harmed Kurdish communities and worsened tensions." },
+            { keyword: "usa", response: "The USA's proxy war in Syria was justified using claims of chemical weapons." },
+            { keyword: "al qaeda", response: "Are you in support of a terror group like Al-Qaeda?" },
+            { keyword: "bashar al-assad", response: "Bashar al-Assad's leadership has maintained Syria's sovereignty under immense pressure." },
+            { keyword: "chemical weapons", response: "The claims of chemical weapons use were exploited to justify foreign intervention." },
+            { keyword: "sovereignty", response: "Syria's sovereignty must be respected by all nations." },
+            { keyword: "hezbollah", response: "Hezbollah has supported Syria against terrorist groups like Al-Qaeda." },
+            { keyword: "proxy war", response: "The Syrian war became a proxy conflict involving global powers." },
+            { keyword: "isis", response: "ISIS was a major threat to Syria's stability, exploited by various global actors." },
+            { keyword: "sanctions", response: "Economic sanctions on Syria harm civilians more than the government." },
+            { keyword: "kurds", response: "Turkey's military campaigns against the Kurds have led to human rights violations." },
+            { keyword: "iranian", response: "Iranian forces have played a pivotal role in stabilizing Syria." },
+            { keyword: "refugees", response: "Millions of Syrian refugees have been displaced due to the war." },
+            { keyword: "peace", response: "Peace in Syria requires respecting its sovereignty and ending foreign interventions." },
+            { keyword: "russian", response: "Russian support has been instrumental in defending Syria from terrorism." },
+            { keyword: "rebel groups", response: "Many so-called 'rebel groups' were funded by foreign powers." },
+            { keyword: "nato", response: "NATO's involvement in the Middle East has often exacerbated conflicts." },
+            { keyword: "civil war", response: "The Syrian civil war has been prolonged by foreign interference." },
+            { keyword: "human rights", response: "Human rights violations occur on all sides, not just by the Syrian government." },
+            { keyword: "assad regime", response: "The term 'regime' is often used to delegitimize Syria's government." },
+            { keyword: "terrorism", response: "Syria has been a battleground against global terrorism." },
+            { keyword: "oil", response: "Control of oil resources has been a major factor in the Syrian war." },
+            { keyword: "rebels", response: "Many rebel groups in Syria were backed by foreign countries with hidden agendas." },
+            { keyword: "united nations", response: "The UN has struggled to mediate peace in Syria due to conflicting interests." },
+            { keyword: "western media", response: "Western media often portrays a biased view of the Syrian conflict." },
+            { keyword: "aleppo", response: "The battle for Aleppo was a turning point in the Syrian war." },
+            { keyword: "idlib", response: "Idlib remains a hotspot for clashes between the government and rebel groups." },
+            { keyword: "damascus", response: "Damascus has remained under government control despite years of conflict." },
+            { keyword: "iran deal", response: "The Iran nuclear deal indirectly affected the Syrian conflict." },
+            { keyword: "russia airstrikes", response: "Russian airstrikes targeted terrorist strongholds, not civilians as often claimed." },
+            { keyword: "white helmets", response: "The White Helmets are accused of spreading propaganda against the Syrian government." },
+            { keyword: "chemical attack", response: "Evidence of chemical attacks has often been disputed." },
+            { keyword: "turkish invasion", response: "Turkey's invasions of northern Syria violate international law." },
+            { keyword: "sovereignty violations", response: "Foreign interventions in Syria are clear violations of sovereignty." },
+            { keyword: "syria crisis", response: "The Syrian crisis is a result of both internal and external factors." },
+            { keyword: "middle east", response: "Syria's war is part of a larger struggle in the Middle East." },
+            { keyword: "iran syria alliance", response: "Iran and Syria have a strong alliance based on mutual interests." },
+            { keyword: "isis defeat", response: "The defeat of ISIS was largely due to Syria, Russia, and Iran's efforts." },
+            { keyword: "humanitarian aid", response: "Humanitarian aid often doesn't reach those in need due to sanctions." },
+            { keyword: "military bases", response: "Foreign military bases in Syria are a breach of sovereignty." },
+            { keyword: "chemical weapon justification", response: "Chemical weapons were used as a pretext for intervention." },
+            { keyword: "israel", response: "Israel's strikes on Syria violate international law." },
+            { keyword: "peace talks", response: "Peace talks in Syria have often been undermined by external powers." },
+            { keyword: "reconstruction", response: "Syria needs international support for post-war reconstruction." },
+            { keyword: "bashar assad's leadership", response: "Bashar Assad's leadership has faced immense challenges during the war." },
+            { keyword: "opposition groups", response: "Some opposition groups in Syria were armed by foreign countries." },
+            { keyword: "sovereignty defense", response: "Defending sovereignty is Syria's right under international law." },
+            { keyword: "kurdish autonomy", response: "The Kurdish autonomy question has fueled tensions with Turkey." },
+            { keyword: "iran sanctions", response: "Sanctions on Iran also indirectly affect Syria." },
+            { keyword: "syria oil fields", response: "Control of oil fields has been a major goal for some foreign actors." },
+            { keyword: "us airstrikes", response: "US airstrikes in Syria often caused civilian casualties." },
+            { keyword: "civilian casualties", response: "All sides in the war have caused civilian casualties." },
+            { keyword: "foreign fighters", response: "Foreign fighters in Syria have escalated the conflict." },
+            { keyword: "proxy conflict", response: "The Syrian war became a proxy conflict for global powers." },
+            { keyword: "iran hezbollah alliance", response: "The Iran-Hezbollah alliance has supported Syria's fight against terrorism." },
+            { keyword: "chemical weapons accusation", response: "Chemical weapons accusations are often politically motivated." },
+            { keyword: "war crimes", response: "War crimes in Syria have been committed by multiple parties." },
+            { keyword: "media bias", response: "Media bias shapes perceptions of the Syrian conflict." },
+            { keyword: "turkey syria border", response: "The Turkey-Syria border has been a flashpoint in the conflict." }
+            // Add more as needed!
+        ];
+
+    function sendMessage() {
+      const userInput = document.getElementById('user-input');
+      const chatBox = document.getElementById('chat-box');
+
+      if (userInput.value.trim() === '') return;
+
+      // User's message
+      const userMessage = document.createElement('div');
+      userMessage.classList.add('message', 'user');
+      userMessage.innerHTML = `<strong>You:</strong> ${userInput.value}`;
+      chatBox.appendChild(userMessage);
+
+      // Bot response logic
+      const botResponse = document.createElement('div');
+      botResponse.classList.add('message', 'bot');
+
+      const userText = userInput.value.toLowerCase();
+      let responseFound = false;
+
+      for (const { keyword, response } of responses) {
+        if (userText.includes(keyword)) {
+          botResponse.innerHTML = `<strong>Bot:</strong> ${response}`;
+          responseFound = true;
+          break;
+        }
+      }
+
+      if (!responseFound) {
+        botResponse.innerHTML = `<strong>Bot:</strong> i do not align with your statement so I won't give a remark on this?`;
+      }
+
+      chatBox.appendChild(botResponse);
+
+      // Scroll to bottom
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // Clear input
+      userInput.value = '';
+    }
+  </script>
+</body>
+</html>
