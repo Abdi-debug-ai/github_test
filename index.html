@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-</head>
-
-<body>
-
-</body>
-
-</html>
 <img src="/image/IMG_20241101_185906.jpg">
 <!DOCTYPE html>
 <html lang="en">
@@ -851,4 +838,3355 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
       color: white;
       border: none;
       padding: 10px;
+  cursor: pointer;
+      z-index: 1;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    .subscribe-button {
+      background: linear-gradient(45deg, #FF5E5E, #FF953E);
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .subscribe-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .subscribe-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact Us</h1>
+    <!-- Contact Form -->
+    <form name="contact" method="POST" data-netlify="true" action="/thank-you.html">
+      <input type="hidden" name="form-name" value="contact">
+      
+      <label>Your Name: <input type="text" name="name" required /></label>
+      <label>Your Email: <input type="email" name="email" required /></label>
+      <label>Your Role: 
+        <select name="role[]" multiple>
+          <option value="Subscriber">Subscriber</option>
+          <option value="Follower">Follower</option>
+        </select>
+      </label>
+      <label>Message: <textarea name="message" required></textarea></label>
+      <button type="submit" class="subscribe-button">Send</button>
+    </form>
+    
+    <!-- Carousel -->
+    <div class="carousel">
+      <div class="carousel-item active">
+        <img src="/image/1.png" alt="Image 1">
+      </div>
+      <div class="carousel-item">
+        <img src="/image/2.png" alt="Image 2">
+      </div>
+      <div class="carousel-item">
+        <img src="/image/3.webp" alt="Image 3">
+      </div>
+    </div>
+    
+    <script>
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        const slides = document.querySelectorAll(".carousel-item");
+        slides.forEach((slide, i) => {
+          slide.classList.remove("active");
+          if (i === index) slide.classList.add("active");
+        });
+      }
+
+      function nextSlide() {
+        const slides = document.querySelectorAll(".carousel-item");
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      setInterval(nextSlide, 5000);
+    </script>
+  </div>
+
+  <!-- Newsletter Section -->
+  <div class="newsletter-container">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Get the latest updates and news delivered right to your inbox!</p>
+    <form name="newsletter" method="POST" data-netlify="true">
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <button type="submit" class="subscribe-button">Subscribe Now</button>
+    </form>
+  </div>
+</body>
+</html>
+
+<div class="news-ticker">
+    <p>BREAKING NEWS:A Weapons embargoe is set to be imposed on Israel by France.This comes after the ground invasion into Lebanon earlier this month.🌐
+    Hurricane Milton has caused immerse daage to property and human life after three days after Hurricane Haline.🌐 Aid agencies warns of impending danger of humanitarian crises in Northern Gaza.🌐. Subscribe@politicast. The United Nations Peace keeping agency in Lebanon demands an explanation from Israel on the recent attacks that injured two people. Ukraine and Russia are currently in a statement as the war marks two years🌐. North Korea conducts missile tests in the south China sea causing high tensions between south Korea.🌐</p>
+</div>
+<!-- For OneSignal -->
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "NWFlYzNlYjQtYTcwYS00ZGU5LTk4ZTctNDM2YTcyMDA1YmVl
+", // Replace with your OneSignal app ID
+    });
+  });
+</script>
+
+<style>
+    .news-ticker {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .news-ticker p {
+        display: inline-block;
+        padding-left: 100%;
+        animation: ticker 60s linear infinite;
+    }
+    @keyframes ticker {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
+<footer>
+    <p>&copy; 2024 Politicast. All rights reserved.</p>
+</footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Breaking news: The death of Yahya Sinwar, leader of Hamas.">
+    <title>Death of Yahya Sinwar - Politicast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 20px;
+            padding: 20px;
+        }
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+        }
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+  <h2>Ukraine Russia war</h2>
+  <img src="/image/Russia.jpg">
+  <img src="/image/Ukraine.jpg">
+  <h2>MOZAMBIQUE ELECTION VIOLENCE</h2>
+  <img src="/image/images (war0).jpeg">
+  <p>Maputo, Mozambique – At 7pm on November 4, Maputo’s streets fell into an eerie silence.
+
+Public transportation was at a standstill, adhering to opposition leader Venancio Mondlane’s call for a shutdown.
+
+Then, a steady clanging began. Residents in affluent high rises and inner-city apartment blocks alike joined in a coordinated chorus of a pot-banging protest.</p>
+<img src="/image/images (mzbq).jpeg">
+<p>
+Known as a “panelaco”, this form of protest has emerged as a powerful way to voice frustrations over Mozambique’s disputed general election results, allowing citizens to express dissent without facing the immediate risk of police retaliation. The clatter and clang echoed across the city’s skyline, marking the start of what would become nightly expressions of frustration, uniting residents across class divides.
+
+Since the October 9 elections, the declaration of the ruling Front for the Liberation of Mozambique (Frelimo) presidential candidate Daniel Chapo as the winner has sparked intense discontent. According to the National Election Commission (CNE), Chapo received 71 percent of the vote and Mondlane, an independent candidate, received 20 percent.
+
+Yet even the CNE admitted to “several irregularities”, leading the Constitutional Council to review the election’s integrity.</p>
+<h2>THE USA ELECTIONS </h2>
+<img src="/image/images (34).jpeg">
+<P>.What you need to know
+• Americans are heading to the polls to vote for their next president. Vice President Kamala Harris and former President Donald Trump each need at least 270 electoral votes to win. The battleground states of Arizona, Georgia, Michigan, Nevada, North Carolina, Pennsylvania and Wisconsin are expected to be pivotal to the path to victory.
+<img src="/image/Opinion_polls_for_the_United_States_presidential_election_in_2024.svg.png">
+• Polls are starting to open across the country. Harris and Trump tied with three votes each in the tiny New Hampshire community of Dixville Notch, which opened and closed its poll just after midnight ET in a decades-old tradition.
+
+• The candidates held their final campaign events in battleground states last night. Harris ended her 107-day campaign in Pennsylvania, while Trump spoke in Michigan — where he has ended three of his presidential campaigns.</P>
+    <h2><a href="spain-floods-disaster.html">Spain floods disaster: death toll rises to 205 as extra troops mobilised</a></h2>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tiktok-embed {
+            width: 
+            height: 
+        }
+    </style>
+</head>
+<body>
+
+<div class="tiktok-embed">
+    <iframe src="https://www.tiktok.com/embed/@politicast7" width="325" height="350"frameborder="0" allowfullscreen></iframe>
+</div>
+
+</body>
+</html>
+  <h2>The General elections in the USA</h2>
+  <img src="/image/USA.png">
+  <p>The U.S. presidential election process is a complex multi-step process involving both primary and general elections, and it includes the Electoral College to ultimately decide the winner. Here’s an overview of the stages:
+
+ <h2>Primaries and Caucuses:</h2> Starting early in the election year, both major parties (Democratic and Republican) hold primaries and caucuses in each state. Primaries are statewide voting events where party members select their preferred candidate, while caucuses are local gatherings of party members to choose a candidate. These events help determine how many delegates each candidate will have at the national party convention【15†source】.
+
+<h2>Party Conventions:</h2> In the summer, each party holds a national convention where delegates formally nominate a  for president. The nominee then selects a vice-presidential running mate. This event typically includes speeches, party platform announcements, and marks the official start of the general election campaign.
+<img src="/image/Part.png">
+ <h2>General Election Campaign:</h2> The nominees campaign across the country, focusing on key issues and battleground states that could swing the outcome. Debates between the candidates are usually held, which allow voters to compare policies and personalities directly.
+
+ <h2>Election Day:</h2> Held on the first Tuesday after the first Monday in November, the general election determines which candidate wins each state's popular vote. However, the popular vote does not directly decide the presidency. Instead, it influences the Electoral College votes that ultimately determine the winner.
+<img src="/image/El.jpeg">
+ <h2>Electoral College: </h2>Each state has a set number of electors based on its representation in Congress (the total of its Senators and Representatives). In most states, the winner of the popular vote gets all of that state’s electoral votes. A candidate needs at least 270 of the 538 electoral votes to win. If no candidate reaches this majority, the House of Representatives decides the election, with each state delegation casting one vote.
+<img src="/image/coll.png">
+ <h2>Inauguration:</h2> The president-elect is sworn in on January 20 of the following year, marking the official beginning of the new administration.
+<img src="/image/United States elections .jpg.png">
+This system, while unique and sometimes controversial, is designed to balance popular will with state-by-state representation in selecting the president.</p>
+
+
+     <h2>Israel Ban on UNRWA</h2>
+     <img src="/image/UNRWA).jpeg">
+     <p>“The Knesset’s vote on Monday to ban UNRWA from operating in areas under Israel’s control is indefensible and flies in the face of the countless promises to its allies that it plans to increase aid into the country. The UN has already declared that everyone in the north is now at risk of death. Palestinians are being bombed, maimed and starved. They cannot take any more.
+<img src="/image/Scr.jpg">
+“UNRWA is the largest provider of humanitarian aid in Gaza and other humanitarian actors rely on its infrastructures to reach people in need. No other agencies can substitute the role played by UNRWA.</p>
+        <h1>US-India migration cooperation reason behind latest deportation of illegal Indian migrants from US</h1>
+          <img src="/image/in.jpeg">
+          <p>Washington, DC [US], October 26 (ANI): The United States has deported a batch of Indian nationals who did not have proper legal papers and documentation to live in the country.
+
+The US Department of Homeland Security (DHS) in a statement on Friday said that it has used a chartered flight to send Indian nationals back to India on October 22.
+
+According to sources, as part of India-US cooperation on migration and mobility, both sides are engaged in a process to deter illegal migration.</p>
+           
+        <h1>UNIFIL withdraws from post in southern Lebanon</h1>
+<img src="/image/UN.jpeg">
+<p>UN peacekeepers in Lebanon withdraw from observation post under Israeli fire
+
+
+UN peacekeepers have been deployed in the Middle East since 1948.(Reuters: Karamallah Daher)
+A group of peacekeepers from the UN Interim Force in Lebanon (UNIFIL) withdrew from an observation post in the southern Lebanese town of Zahajra on Tuesday after coming under fire from Israeli forces, UNIFIL says.
+
+The peacekeeping force said on Friday that its members withdrew from the post earlier this week "to avoid being shot" by Israel Defense Forces (IDF) soldiers who had realised "they were being observed 
+<p>
+  <img src="/image/Hz.jpeg">
+   
+        <h1>BREAKING NEWS 
+        Hezbollah admits on the attacks on prime minister Benjamin melowosyki home</h1>
+   <p>
+     Hezbollah claims responsibility for drone attack on Netanyahu holiday home
+Hezbollah spokesman also acknowledges that some of the group’s fighters have been taken captive by the Israeli military.
+        </p>
+        <img src="/image/is.jpeg">
+        <p>
+          The prime minister was not at home during the attacks, law enforcements say no deaths were reported.
+    
+        <h1>BREAKING NEWS 
+        Hamas Leader Yahya Sinwar Reported Dead</h1>
+   
+<img src="/image/y.avif">
+        <p>
+            In a significant development in the Middle East, Yahya Sinwar, the leader of Hamas in Gaza, has reportedly died. Sinwar, a key figure in Palestinian politics and the Hamas military wing, had a strong influence on the region's conflicts and governance in Gaza.
+        </p>
+        
+        <p>
+            Sinwar rose to prominence in the 1980s and played a pivotal role in establishing Hamas’ military operations. His leadership was characterized by various escalations in the Israel-Gaza conflict, positioning him as a controversial figure on the world stage.
+        </p>
+        
+        <p>
+            The death of Sinwar is expected to have far-reaching consequences for the future of Hamas and the broader dynamics of Middle Eastern politics. Analysts predict a potential internal power struggle within Hamas, and shifts in how the organization deals with Israel.
+        </p>
+        
+        <p>
+            More updates to follow as the situation develops.
+        </p>
+    </div>
+
+</body>
+</html>
+
+  <h2>Newly Elected President of Indonesia </h2>
+  <img src="/image/I.jpeg">
+  <p>On October 20, 2024, Indonesia welcomed its newly elected president Prabowo, marking a pivotal moment in the nation’s political landscape. The election, held on October 15, 2024, saw an impressive voter turnout as citizens exercised their democratic rights to choose their leader for the next five years. </p>
+
+    <h2>Escalating Conflict in the Middle East: A Growing Crisis</h2>
+    <p><strong>Date:</strong> October 13, 2024</p>
+    <p>The ongoing conflict in the Middle East has reached alarming levels, with increasing casualties and widespread displacement of civilians. The latest reports indicate a significant escalation in hostilities, particularly between various factions in the region, leading to urgent calls for international intervention.</p>
+    <img src="/image/M.jpeg">
+    <h3>Recent Developments</h3>
+    <p>In the past week, major cities have been under siege, and airstrikes have intensified, targeting both military installations and civilian infrastructure. Thousands of residents are fleeing their homes, seeking refuge in neighboring countries, while humanitarian organizations warn of an impending crisis as resources become critically low.</p>
+    
+    <h3>International Response</h3>
+    <p>The international community has expressed deep concern over the situation. The United Nations has called for an immediate ceasefire and urged all parties to engage in diplomatic talks to address the root causes of the conflict. Meanwhile, protests against the violence are erupting in various cities worldwide, with citizens demanding action from their governments to intervene and support peace efforts.</p>
+    
+    <h3>Humanitarian Impact</h3>
+    <p>Local charities and international NGOs are struggling to meet the needs of those affected. Access to basic necessities such as food, water, and medical supplies is dwindling, and the health crisis is worsening as more people suffer from injuries and diseases in overcrowded refugee camps.</p>
+
+    <h3>Looking Ahead</h3>
+    <p>As the situation continues to unfold, analysts warn of the potential for wider regional instability. The geopolitical implications of the conflict could affect global oil markets, international relations, and the lives of millions in the Middle East and beyond. Urgent action is needed to prevent further escalation and promote a path to peace.</p>
+    <head>
+  <style>
+    .button {
+      background: linear-gradient(45deg, #ff6347, #ff4500);
+      border-radius: 25px;
+      padding: 10px 20px;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .button:hover {
+      background: linear-gradient(45deg, #ff4500, #ff6347);
+    }
+  </style>
+</head>
+<body>
+  <button class="button">Scroll down for more contents</button>
+</body>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Middle East Explained</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Breaking News Popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none;
+            z-index: 1001;
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+    
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/veMFCFyOwFI" allowfullscreen></iframe>
+        <div class="video-caption">Middle East Explained</div>
+    </div>
+</body>
+</html>
+
+    <h2>Ongoing Conflict Between Ukraine and Russia: An Update</h2>
+    <p><strong>Date:</strong> October 13, 2024</p>
+    <p>The conflict between Ukraine and Russia continues to escalate, with significant military engagements reported along the frontlines. As both sides prepare for a long winter, the humanitarian crisis deepens, affecting millions of civilians caught in the crossfire.</p>
+    <img src="/image/u.jpeg">
+    <h3>Recent Developments</h3>
+    <p>In recent weeks, Ukrainian forces have launched counter-offensives in the eastern regions, reclaiming strategic territories. Meanwhile, Russia has intensified its aerial bombardment of Ukrainian infrastructure, including energy facilities, leading to widespread power outages and disruptions in basic services.</p>
+    
+    <h3>International Response</h3>
+    <p>The international community remains divided over the conflict. Western nations have increased military support to Ukraine, providing advanced weaponry and financial aid. In contrast, Russia has accused NATO of escalating tensions, prompting fears of a broader military confrontation in the region.</p>
+    
+    <h3>Humanitarian Impact</h3>
+    <p>The war has displaced millions, with many seeking refuge in neighboring countries. Humanitarian organizations report severe shortages of food, clean water, and medical supplies in besieged areas. As winter approaches, the plight of civilians trapped in conflict zones becomes increasingly dire.</p>
+    
+    <h3>Looking Ahead</h3>
+    <p>As diplomatic efforts falter, the prospect of a prolonged conflict looms. Analysts warn that without a significant shift towards peace negotiations, the humanitarian and geopolitical consequences could destabilize not only Ukraine and Russia but also the entire European continent.</p>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+
+    
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/MVu8QbxafJE" allowfullscreen></iframe>
+        <div class="video-caption">UKRAINE RUSSIAN WAR</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+</div>
+
+    <h2>Escalating Violence in Sudan: A Humanitarian Crisis</h2>
+    <p><strong>Date:</strong> October 13, 2024</p>
+    <p>The conflict in Sudan has reached critical levels as violence continues to escalate in various regions, particularly in Darfur and Khartoum. The fighting between rival factions has resulted in thousands of casualties and widespread displacement, raising alarm over the humanitarian situation.</p>
+    
+    <h3>Recent Developments</h3>
+    <p>In the past weeks, reports indicate an increase in armed clashes between government forces and rebel groups, with heavy artillery and airstrikes being utilized. Civilians are caught in the crossfire, and many have been forced to flee their homes, seeking safety in overcrowded camps with limited access to food and medical care.</p>
+    
+    <h3>International Response</h3>
+    <p>The international community has condemned the violence, with calls for a ceasefire and peace talks. However, efforts to mediate have been met with resistance from the warring parties. Humanitarian organizations are urging nations to step up assistance as the situation deteriorates rapidly.</p>
+    
+    <h3>Humanitarian Impact</h3>
+    <p>As violence escalates, humanitarian agencies report dire conditions. Access to basic necessities, including food, clean water, and healthcare, is severely limited. The United Nations estimates that millions of people are in urgent need of assistance, and without immediate intervention, the crisis could worsen dramatically.</p>
+    
+    <h3>Looking Ahead</h3>
+    <p>With no clear resolution in sight, the conflict in Sudan poses a significant threat to regional stability. Analysts warn that if the international community does not act swiftly, the humanitarian implications could lead to a larger crisis affecting neighboring countries and beyond.</p>
+</div>
+
+    <h2>The History of World War I: A Global Conflict</h2>
+    <p><strong>Date:</strong> October 13, 2024</p>
+    <p>World War I, also known as the Great War, lasted from 1914 to 1918 and involved many of the world's great powers. Triggered by the assassination of Archduke Franz Ferdinand of Austria, the war quickly escalated due to a complex web of alliances and rivalries among countries.</p>
+    
+    <h3>Key Events</h3>
+    <p>The war saw unprecedented levels of warfare and destruction, with trench warfare dominating the Western Front. Major battles, such as the Battle of the Somme and the Battle of Verdun, resulted in staggering casualties. New military technologies, including tanks, airplanes, and chemical weapons, changed the nature of combat.</p>
+    
+    <h3>The Role of Alliances</h3>
+    <p>The conflict was characterized by the alliance system, dividing the world into two main camps: the Allies (including France, the United Kingdom, Russia, and later the United States) and the Central Powers (led by Germany, Austria-Hungary, and the Ottoman Empire). This division exacerbated the scale and impact of the war.</p>
+    
+    <h3>End of the War and Aftermath</h3>
+    <p>The war officially ended on November 11, 1918, with the signing of the Armistice. The Treaty of Versailles, signed in 1919, imposed heavy reparations on Germany and redrew national boundaries in Europe and the Middle East. The war had far-reaching consequences, contributing to economic turmoil and political instability that set the stage for World War II.</p>
+    
+    <h3>Legacy</h3>
+    <p>World War I profoundly influenced the course of the 20th century, leading to significant changes in global power dynamics and sowing the seeds of future conflicts. Its legacy continues to be studied as nations reflect on the lessons learned from this devastating war.</p>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+    
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/LMMUP3mWtsQ" allowfullscreen></iframe>
+        <div class="video-caption">THE WAR</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+</div>
+
+    <h2>The History of World War II: The Fight for Global Freedom</h2>
+    <p><strong>Date:</strong> October 13, 2024</p>
+    <p>World War II, which lasted from 1939 to 1945, was a global conflict that involved most of the world's nations, divided into two opposing military alliances: the Allies and the Axis Powers. The war was marked by significant events that shaped the course of history.</p>
+    
+    <h3>Key Events</h3>
+    <p>The war began on September 1, 1939, when Germany invaded Poland, prompting Britain and France to declare war. Major battles, such as the Battle of Britain, the Battle of Stalingrad, and the D-Day invasion, were pivotal in determining the outcome of the war.</p>
+    
+    <h3>The Holocaust</h3>
+    <p>One of the darkest chapters of World War II was the Holocaust, during which millions of Jews and other marginalized groups were systematically exterminated by the Nazi regime. This atrocity has left an indelible mark on human history and serves as a reminder of the consequences of hatred and intolerance.</p>
+    
+    <h3>The War's Conclusion</h3>
+    <p>The conflict in Europe ended with the unconditional surrender of Germany in May 1945, while the war in the Pacific concluded following the dropping of atomic bombs on Hiroshima and Nagasaki in August 1945, leading to Japan's surrender. The war resulted in an estimated 70-85 million casualties worldwide, making it one of the deadliest conflicts in history.</p>
+    
+    <h3>Aftermath and Legacy</h3>
+    <p>The aftermath of World War II saw significant geopolitical changes, including the emergence of the United States and the Soviet Union as superpowers and the beginning of the Cold War. The establishment of the United Nations aimed to prevent future conflicts and promote international cooperation.</p>
+    
+    <p>World War II remains a crucial area of study, emphasizing the importance of diplomacy, peacekeeping, and the consequences of global conflict.</p>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/lDfhxMwoyWo" allowfullscreen></iframe>
+        <div class="video-caption">Sudan Conflict</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+</div>
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span id="closePopup" class="close">&times;</span>
+        <h2>New Article Posted!</h2>
+        <p>The article on the Ukraine-Russia conflict has been posted.</p>
+    </div>
+</div>
+<script>
+    // Check if the popup has been shown before
+    if (!localStorage.getItem('popupDisplayed')) {
+        // Show the popup
+        document.getElementById('popup').style.display = 'block';
+
+        // Set the item in localStorage so it won't show again
+        localStorage.setItem('popupDisplayed', 'true');
+    }
+
+    // Close the popup when the user clicks on <span> (x)
+    document.getElementById('closePopup').onclick = function() {
+        document.getElementById('popup').style.display = 'none';
+    }
+
+    // Close the popup when the user clicks anywhere outside of the popup
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('popup')) {
+            document.getElementById('popup').style.display = 'none';
+        }
+    }
+</script>
+
+    
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Hour Popup</title>
+    <style>
+        /* Reset default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Popup Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .modal-content h2 {
+            color: #ff0000;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+            }
+        }
+    </style>
+
+
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow Politicast on TikTok</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Follow Section Styles */
+        #follow-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+
+        #follow-section h2 {
+            color: #ff005e; /* TikTok brand color */
+        }
+
+        #follow-section p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        #follow-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff005e; /* TikTok brand color */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #follow-button:hover {
+            background-color: #e6004d; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+  <section id="arab-spring">
+    <h2>The Arab Spring: A Revolutionary Wave</h2>
+    <p>
+        The Arab Spring was a series of pro-democracy uprisings that enveloped several largely Muslim countries, including Tunisia, Morocco, Syria, Libya, Egypt, and Bahrain. The events in these nations generally began in the spring of 2011, which led to the term "Arab SpringThe Arab Spring (Arabic: الربيع العربي, romanized: ar-rabīʻ al-ʻarabī) or the First Arab Spring (to distinguish from the Second Arab Spring) was a series of anti-government protests, uprisings and armed rebellions that spread across much of the Arab world in the early 2010s. It began in Tunisia in response to corruption and economic stagnation.[1][2] From Tunisia, the protests then spread to five other countries: Libya, Egypt, Yemen, Syria and Bahrain. Rulers were deposed (Zine El Abidine Ben Ali of Tunisia in 2011, Muammar Gaddafi of Libya in 2011, Hosni Mubarak of Egypt in 2011, and Ali Abdullah Saleh of Yemen in 2012) or major uprisings and social violence occurred including riots, civil wars, or insurgencies. Sustained street demonstrations took place in Morocco, Iraq, Algeria, Lebanon, Jordan, Kuwait, Oman and Sudan. Minor protests took place in Djibouti, Mauritania, Palestine, Saudi Arabia and the Moroccan-occupied Western Sahara.[3] A major slogan of the demonstrators in the Arab world is ash-shaʻb yurīd isqāṭ an-niẓām! (Arabic: الشعب يريد إسقاط النظام, lit. 'the people want to bring down the regime').[4]."
+    </p>
+    <p>
+        The protests, which demanded the end of authoritarian regimes and sought to establish democratic reforms, were triggered by a combination of political repression, economic hardships, corruption, and the rise of social media. The movements began in Tunisia, where Mohamed Bouazizi, a street vendor, set himself on fire in protest of police harassment and economic injustices. This act of desperation inspired protests that led to the fall of Tunisia's long-time dictator, Zine El Abidine Ben Ali.
+    </p>
+    <p>
+        From Tunisia, the movement spread rapidly across the region, with citizens in Egypt, Libya, Syria, and beyond taking to the streets. In Egypt, the protests famously resulted in the resignation of President Hosni Mubarak after three decades in power. In Libya, the civil uprising escalated into a full-blown civil war, leading to the death of dictator Muammar Gaddafi.
+    </p>
+    <p>
+        The outcomes of the Arab Spring varied from country to country. Some nations, like Tunisia, successfully transitioned to more democratic governance. However, others, like Syria and Libya, descended into prolonged conflict and civil war, with devastating humanitarian consequences.
+    </p>
+    <p>
+        The legacy of the Arab Spring remains complex. While it demonstrated the power of popular movements and social media to catalyze political change, the aftermath in many countries has been marked by instability, continued authoritarianism, or civil war. Nonetheless, the Arab Spring remains a pivotal moment in modern Middle Eastern history, symbolizing the struggle for freedom and the risks inherent in challenging entrenched political orders.
+    </p>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/ToJhvgk79e8" allowfullscreen></iframe>
+        <div class="video-caption">Video: The Arab Spring</div>
+    
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+
+</section>
+
+
+    <section id="follow-section">
+        <h2>Follow Us on TikTok!</h2>
+        <p>Stay updated with the latest news and discussions. Join our community on TikTok!</p>
+        <a id="follow-button" href="https://www.tiktok.com/@politicast7?_t=8qW72asZ5bp&_r=1" target="_blank">Follow @politicast7</a>
+    </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLITICAST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tiktok-embed {
+            width: 
+            height: 
+        }
+    </style>
+</head>
+<body>
+
+<div class="tiktok-embed">
+    <iframe src="https://www.tiktok.com/embed/@politicast7" width="325" height="350" frameborder="0" allowfullscreen></iframe>
+</div>
+
+</body>
+</html>
+
+</body>
+</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.tiktok.com; img-src 'self' https://picsum.photos https://www.tiktok.com; frame-src https://www.tiktok.com; style-src 'self' 'unsafe-inline';">
+    <title>Your Page Title</title>
+</head>
+<script src="https://www.paypal.com/sdk/js?client-id=BAA7JW3nU5kc0DnA10I3av8ll1vggTRr0F-Xa2YvMHryKt1u3kIVWpjtKebsiN80i1nn55pxupHuKoZbrU&components=hosted-buttons&disable-funding=venmo&currency=USD"></script>
+<div id="paypal-container-WT9NHE76NK38W"></div>
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "WT9NHE76NK38W",
+  }).render("#paypal-container-WT9NHE76NK38W")
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        /* Basic styles for body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for the modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black with opacity */
+        }
+
+        /* Modal content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Style for button */
+        .open-modal-btn {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .open-modal-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>The War in Lebanon</h2>
+    <button class="open-modal-btn" id="openModalBtn">Watch Video</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <h2>The War in Lebanon</h2>
+            <iframe width="100%" height="360" src="https://www.youtube.com/embed/wkjfPEDaLRM" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("openModalBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeModalBtn");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        /* Button to open the popup */
+        .open-popup {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* The popup background */
+        .popup, .rating-popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000; /* Sit on top */
+        }
+
+        /* Popup content */
+        .popup-content, .rating-popup-content {
+            position: relative;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive iframe */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Rating buttons */
+        .rating-button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- The Rating Popup -->
+    <div class="rating-popup" id="ratingPopup">
+        <div class="rating-popup-content">
+            <h2>Please Rate Political</h2>
+            <button class="rating-button" id="rateGood">Good</button>
+            <button class="rating-button" id="rateBad">Bad</button>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal elements
+        var videoPopup = document.getElementById("videoPopup");
+        var ratingPopup = document.getElementById("ratingPopup");
+
+        // Get the button that opens the video modal
+        var openPopup = document.getElementById("openPopup");
+
+        // Get the <span> element that closes the video modal
+        var closePopup = document.getElementById("closePopup");
+
+        // When the user clicks the button, open the video modal
+        openPopup.onclick = function() {
+            videoPopup.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the video modal
+        closePopup.onclick = function() {
+            videoPopup.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the video modal, close it
+        window.onclick = function(event) {
+            if (event.target === videoPopup) {
+                videoPopup.style.display = "none";
+            }
+        }
+
+        // Show the rating popup only if the user has not rated before
+        if (!localStorage.getItem("ratedPolitical")) {
+            ratingPopup.style.display = "block";
+        }
+
+        // Function to handle rating
+        document.getElementById("rateGood").onclick = function() {
+            alert("Thank you for rating us as Good!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+
+        document.getElementById("rateBad").onclick = function() {
+            alert("Thank you for your feedback!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        /* Notification bell icon */
+        .notification-bell {
+            position: fixed; /* Fixed positioning */
+            top: 20px; /* Distance from the top */
+            right: 20px; /* Distance from the right */
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 1000; /* Sit on top */
+        }
+
+        /* Notification dropdown */
+        .notification-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1000; /* Sit on top */
+            right: 0; /* Align to the right */
+            margin-top: 10px; /* Space between bell and dropdown */
+        }
+
+        /* Notification items */
+        .notification-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .notification-item:last-child {
+            border-bottom: none; /* Remove border from last item */
+        }
+
+        /* The popup background */
+        .popup, .rating-popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000; /* Sit on top */
+        }
+
+        /* Popup content */
+        .popup-content, .rating-popup-content {
+            position: relative;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Close button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Responsive iframe */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Rating buttons */
+        .rating-button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
   
+    <!-- The Rating Popup -->
+    <div class="rating-popup" id="ratingPopup">
+        <div class="rating-popup-content">
+            <h2>Please Rate Political</h2>
+            <button class="rating-button" id="rateGood">Good</button>
+            <button class="rating-button" id="rateBad">Bad</button>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal elements
+        var videoPopup = document.getElementById("videoPopup");
+        var ratingPopup = document.getElementById("ratingPopup");
+
+        // Get the button that opens the video modal
+        var openPopup = document.getElementById("openPopup");
+
+        // Get the <span> element that closes the video modal
+        var closePopup = document.getElementById("closePopup");
+
+        // When the user clicks the button, open the video modal
+        openPopup.onclick = function() {
+            videoPopup.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the video modal
+        closePopup.onclick = function() {
+            videoPopup.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the video modal, close it
+        window.onclick = function(event) {
+            if (event.target === videoPopup) {
+                videoPopup.style.display = "none";
+            }
+        }
+
+        // Show the rating popup only if the user has not rated before
+        if (!localStorage.getItem("ratedPolitical")) {
+            ratingPopup.style.display = "block";
+        }
+
+        // Function to handle rating
+        document.getElementById("rateGood").onclick = function() {
+            alert("Thank you for rating us as Good!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+
+        document.getElementById("rateBad").onclick = function() {
+            alert("Thank you for your feedback!");
+            localStorage.setItem("ratedPolitical", "true"); // Store the rating
+            ratingPopup.style.display = "none"; // Close the rating popup
+        }
+
+        // Notification dropdown functionality
+        var notificationBell = document.getElementById("notificationBell");
+        var notificationDropdown = document.getElementById("notificationDropdown");
+
+        // Toggle dropdown visibility on bell click
+        notificationBell.onclick = function(event) {
+            notificationDropdown.style.display = notificationDropdown.style.display === "block" ? "none" : "block";
+            event.stopPropagation(); // Prevent the click from bubbling up to the document
+        }
+
+        // Close dropdown if user clicks outside of it
+        window.onclick = function(event) {
+            if (!notificationBell.contains(event.target)) {
+                notificationDropdown.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Push Notification Example</title>
+    <script>
+        // Function to register service worker and handle push notifications
+        function initPushNotifications() {
+            if ('serviceWorker' in navigator && 'PushManager' in window) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                        return registration.pushManager.getSubscription()
+                            .then(function(subscription) {
+                                if (subscription) {
+                                    console.log('Already subscribed:', subscription);
+                                    return subscription;
+                                }
+                                // Ask for permission to send notifications
+                                return Notification.requestPermission().then(function(permission) {
+                                    if (permission === 'granted') {
+                                        return registration.pushManager.subscribe({
+                                            userVisibleOnly: true,
+                                            applicationServerKey: 'YOUR_PUBLIC_VAPID_KEY'
+                                        });
+                                    }
+                                });
+                            });
+                    })
+                    .then(function(subscription) {
+                        console.log('Subscribed to push notifications:', subscription);
+                        // Send the subscription to your server to save it
+                    })
+                    .catch(function(error) {
+                        console.error('Service Worker registration or push subscription failed:', error);
+                    });
+            } else {
+                console.warn('Push messaging is not supported.');
+            }
+        }
+
+        // Call the init function on page load
+        window.onload = initPushNotifications;
+    </script>
+</head>
+<body>
+<h1>welcome</h1>
+    <p>Follow us on all pages to get the latest information.</p>
+
+    <script>
+        // Service worker to handle push notifications
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered:', registration);
+                })
+                .catch(function(error) {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You Page - Video Gallery</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Style for the notification bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+    </style>
+    <script>
+        // Function to register service worker and handle push notifications
+        function initPushNotifications() {
+            if ('serviceWorker' in navigator && 'PushManager' in window) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                        return registration.pushManager.getSubscription()
+                            .then(function(subscription) {
+                                if (subscription) {
+                                    console.log('Already subscribed:', subscription);
+                                    return subscription;
+                                }
+                                // Ask for permission to send notifications
+                                return Notification.requestPermission().then(function(permission) {
+                                    if (permission === 'granted') {
+                                        return registration.pushManager.subscribe({
+                                            userVisibleOnly: true,
+                                            applicationServerKey: 'YOUR_PUBLIC_VAPID_KEY'
+                                        });
+                                    }
+                                });
+                            });
+                    })
+                    .then(function(subscription) {
+                        console.log('Subscribed to push notifications:', subscription);
+                        // Send the subscription to your server to save it
+                    })
+                    .catch(function(error) {
+                        console.error('Service Worker registration or push subscription failed:', error);
+                    });
+            } else {
+                console.warn('Push messaging is not supported.');
+            }
+        }
+
+        // Call the init function on page load
+        window.onload = initPushNotifications;
+    </script>
+</head>
+<body>
+    <header>
+       <h1>For You Page</h1>
+        <p>Scroll through the latest videos!</p>
+    </header>
+
+
+
+    <!-- Video Gallery Section -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+       <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/yQgRtkugbnY" allowfullscreen></iframe>
+        <div class="video-caption">Video: Important Current Affairs Analysis</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+    
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/gEwsNthtqhg" allowfullscreen></iframe>
+        <div class="video-caption">Video: Important Current Affairs Analysis</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: Israel breaks through the blue line.
+    </div>
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/7-HHCmyBExI" allowfullscreen></iframe>
+        <div class="video-caption">Video: Israel breaks through the blue line</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+    
+
+    <!-- Video Gallery Section - For You Page -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Cl69AodagMU" allowfullscreen></iframe>
+        <div class="video-caption">Video: International Orders</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+   
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/6aZ-la2hcMQ" allowfullscreen></iframe>
+        <div class="video-caption">Video: Migrants Under Threat</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>POLITICAST</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/8wZw24TvcFo" allowfullscreen></iframe>
+        <div class="video-caption">Politicast: Latest News Analysis</div>
+    </div>
+
+</body>
+</html>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            left: -350px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+    
+
+    <!-- Video Gallery Section -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/1ZKBaRsP1gY" allowfullscreen></iframe>
+        <div class="video-caption">Video: THE RISE OF XI</div>
+    </div>
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+
+
+
+
+
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            margin-right: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .tab.active {
+            background: #ffcc00;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .comment-section {
+            margin: 20px;
+        }
+        .comment-box {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .comment-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .comment-list li {
+            background: #f1f1f1;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .comment-list li button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .edit-delete-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+        .auth-section {
+            margin: 20px;
+        }
+        .auth-section input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+        <!-- Tabs for navigation -->
+    <div class="tabs">
+        <div class="tab active" data-tab="news-tab" onclick="showTab('news-tab')">News</div>
+        <div class="tab" data-tab="comment-tab" onclick="showTab('comment-tab')">Comment Section</div>
+        <div class="tab" data-tab="auth-tab" onclick="showTab('auth-tab')">Login/Register</div>
+    </div>
+
+    <!-- News Tab Content -->
+    <div id="news-tab" class="tab-content active">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/jvqbHS3bXz0" allowfullscreen></iframe>
+            <div class="video-caption">THE WAR IN GAZA: TRUMP AND KAMALA</div>
+        </div>
+    </div>
+
+    <!-- Comment Section Tab Content -->
+    <div id="comment-tab" class="tab-content">
+        <div class="comment-section">
+            <h2>Comment Section</h2>
+            <textarea id="comment-box" class="comment-box" placeholder="Share your thoughts..."></textarea>
+            <button onclick="addComment()">Post Comment</button>
+
+            <h3>Comments:</h3>
+            <ul id="comment-list" class="comment-list">
+                <!-- Comments will be added here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Authentication Tab Content -->
+    <div id="auth-tab" class="tab-content">
+        <div class="auth-section">
+            <h2>Login or Register</h2>
+            <input type="text" id="username" placeholder="Enter username" required>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <button onclick="register()">Register</button>
+            <button onclick="login()">Login</button>
+            <p id="auth-message"></p>
+        </div>
+    </div>
+
+    <script>
+        let currentUser = localStorage.getItem('currentUser') || null;
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+        }
+
+        function addComment() {
+            if (!currentUser) {
+                alert('You must log in to comment.');
+                return;
+            }
+
+            const commentBox = document.getElementById('comment-box');
+            const comment = commentBox.value.trim();
+
+            if (comment !== "") {
+                const newComment = {
+                    user: currentUser,
+                    text: comment,
+                    id: Date.now(),
+                };
+                comments.push(newComment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+                renderComments();
+                commentBox.value = '';
+            }
+        }
+
+        function renderComments() {
+            const commentList = document.getElementById('comment-list');
+            commentList.innerHTML = ''; // Clear current list
+
+            comments.forEach(comment => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${comment.user}: ${comment.text}`;
+
+                const buttonContainer = document.createElement('div');
+                buttonContainer.classList.add('edit-delete-buttons');
+
+                listItem.appendChild(buttonContainer);
+                commentList.appendChild(listItem);
+            });
+        }
+
+        function register() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username && password) {
+                localStorage.setItem('user_' + username, password);
+                alert('Registered successfully');
+            }
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const storedPassword = localStorage.getItem('user_' + username);
+
+            if (storedPassword === password) {
+                currentUser = username;
+                localStorage.setItem('currentUser', currentUser);
+                document.getElementById('auth-message').textContent = 'Logged in as ' + currentUser;
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        // Initial render
+        renderComments();
+    </script>
+</body>
+</html>
+<div class="rating">
+    <h2>Rate this article:</h2>
+    <span class="star" onclick="rateArticle(1)">&#9733;</span>
+    <span class="star" onclick="rateArticle(2)">&#9733;</span>
+    <span class="star" onclick="rateArticle(3)">&#9733;</span>
+    <span class="star" onclick="rateArticle(4)">&#9733;</span>
+    <span class="star" onclick="rateArticle(5)">&#9733;</span>
+</div>
+
+<script>
+    function rateArticle(rating) {
+        alert(`You rated this article ${rating} stars!`);
+    }
+</script>
+<div class="card">
+    <img src="https://picsum.photos/200" alt="Article Image">
+    <h4>The Future of Politics</h4>
+    <p>Discover how political landscapes are changing in the modern world.</p>
+    <a href="#" class="btn">Read More</a>
+   
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            color: #fff;
+            animation: ring 2s infinite ease-in-out;
+        }
+        /* Notification list */
+        .notification-list {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: #fff;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+        .notification-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .notification-list ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .notification-list ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        /* Ringing animation */
+        @keyframes ring {
+            0% { transform: rotate(0); }
+            1% { transform: rotate(20deg); }
+            3% { transform: rotate(-20deg); }
+            5% { transform: rotate(10deg); }
+            7% { transform: rotate(-10deg); }
+            9% { transform: rotate(5deg); }
+            11% { transform: rotate(-5deg); }
+            13% { transform: rotate(0); }
+            100% { transform: rotate(0); }
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+        /* Breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+    
+
+</head>
+<body>
+    <header>
+        <h1>Politicast</h1>
+        <p>Your source for breaking news and videos</p>
+    </header>
+    <!-- Breaking News Popup -->
+    <div id="breaking-news" class="breaking-news-popup">
+        Breaking news: France has subjected a weapons embargo on Israel 
+    </div>
+<!-- Default Statcounter code for POLITICAST
+https://politicast.netlify.app/#news -->
+<script type="text/javascript">
+var sc_project=13046695; 
+var sc_invisible=1; 
+var sc_security="d9e4f169"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img class="statcounter"
+src="https://c.statcounter.com/13046695/0/d9e4f169/1/" alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+<nav
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kahoot Challenge</title>
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green background */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Join My Kahoot Challenge!</h1>
+    
+    <!-- Button named Kahoots -->
+    <a href="https://kahoot.it/challenge/03329232?challenge-id=6b3df452-05f8-4b94-891a-896e8238c24a_1729432839964" target="_blank" class="button">Kahoots</a>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLITICAST</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .tiktok-embed {
+            
+        }
+    </style>
+</head>
+<body>
+
+<div class="tiktok-embed">
+    <iframe src="https://www.tiktok.com/embed/@politicast7" width="325" height="350" frameborder="0" allowfullscreen></iframe>
+</div>
+
+</body>
+</html>
+<head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8630338396467715"
+     crossorigin="anonymous"></script></head>
+     <head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8630338396467715"
+     crossorigin="anonymous"></script></head>
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politicast</title>
+  <style>
+    /* Style for the techy AI Master button */
+    .ai-master-btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #f0f0f0;
+      background: linear-gradient(135deg, #00d4ff, #007bff);
+      border: none;
+      border-radius: 10px;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0px 8px 16px rgba(0, 123, 255, 0.6);
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-master-btn:hover {
+      background: linear-gradient(135deg, #007bff, #0056b3);
+      box-shadow: 0px 8px 16px rgba(0, 91, 191, 0.7);
+    }
+
+    /* Glowing effect */
+    .ai-master-btn::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.4), transparent);
+      transition: 0.3s ease;
+      transform: scale(0);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .ai-master-btn:hover::before {
+      transform: scale(1);
+    }
+
+    /* Inner text styling */
+    .ai-master-btn span {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>

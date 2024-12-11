@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<img src="/image/IMG_20241101_185906.jpg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - World News</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background: #34495e;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #2980b9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #ecf0f1;
+        }
+        .cta-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+        footer {
+            background: #2c3e50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head><script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "399b10b0-3fa1-4d86-b3c8-654b5f417037",
+    });
+  });
+</script>
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+            </nav>
+
+    <!-- Navigation Menu 2 -->
+    <nav class="gray-nav">
+        <ul>
+            <li><a href="map.html">VIEW INTERACTIVE MAP 🗺️</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>
+
+    </nav>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POLITICAST</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body */
+    body {
+      font-family: 'Arial', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Main Content */
+    #main-content {
+      padding: 20px;
+    }
+
+    /* Hamburger Menu */
+    .hamburger-menu {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .hamburger-menu:hover {
+      transform: scale(1.1);
+    }
+
+    .icon-bar {
+      width: 30px;
+      height: 3px;
+      background-color: #333;
+      margin: 5px 0;
+      transition: transform 0.3s ease;
+    }
+
+    .icon-bar:nth-child(1) {
+      transition: transform 0.3s ease;
+    }
+
+    .icon-bar:nth-child(2) {
+      transition: transform 0.3s ease;
+    }
+
+    .icon-bar:nth-child(3) {
+      transition: transform 0.3s ease;
+    }
+
+    .menu-items {
+      display: none;
+      position: absolute;
+      top: 70px;
+      left: 20px;
+      background-color: #222;
+      border-radius: 8px;
+      width: 250px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .menu-items.show {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .menu-items ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .menu-items ul li {
+      padding: 12px;
+      color: #fff;
+      border-bottom: 1px solid #333;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .menu-items ul li:hover {
+      background-color: #333;
+      transform: translateX(5px);
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background-color: #121212;
+      color: #fff;
+    }
+
+    .dark-mode .icon-bar {
+      background-color: #fff;
+    }
+
+    /* Links */
+    .menu-items a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        left: 10px;
+      }
+
+      .menu-items {
+        width: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger menu -->
+  <div class="hamburger-menu" id="hamburger-menu" onclick="toggleMenu()">
+    <div class="icon-bar"></div>
+    <div class="icon-bar"></div>
+    <div class="icon-bar"></div>
+  </div>
+
+  <!-- Menu items -->
+  <div class="menu-items" id="menu">
+    <ul>
+      <li><a href="blog.html" class="blog-link">Blog</a></li>
+      <li><a href="register.html" class="login-link">Log In</a></li>
+      <li onclick="openSettings()">⚙️ Settings</li>
+      <li onclick="toggleDarkMode()">🌙 Dark Mode</li>
+      <li onclick="toggleLightMode()">☀️ Light Mode</li>
+    </ul>
+  </div>
+
+  <!-- Main content -->
+ 
+
+  <script>
+    // Toggle the hamburger menu
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('show');
+    }
+
+    // Toggle dark mode
+    function toggleDarkMode() {
+      document.body.classList.add('dark-mode');
+    }
+
+    // Toggle light mode
+    function toggleLightMode() {
+      document.body.classList.remove('dark-mode');
+    }
+
+    // Open Settings page (simulated)
+    function openSettings() {
+      alert("Settings page opened!");
+    }
+
+    // Hide the menu on clicking anywhere outside it
+    window.onclick = function(event) {
+      if (!event.target.matches('.hamburger-menu') && !event.target.matches('.menu-items') && !event.target.matches('.menu-items *')) {
+        const menu = document.getElementById('menu');
+        menu.classList.remove('show');
+      }
+    };
+  </script>
+
+</body>
+</html>
+
+<script>
+  // Function to request permission and subscribe user to Push notifications
+  function subscribeUser() {
+    Notification.requestPermission().then(function(permission) {
+      if (permission === 'granted') {
+        navigator.serviceWorker.ready.then(function(registration) {
+          registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: '<Your-VAPID-Public-Key>' // Replace with your VAPID public key
+          }).then(function(subscription) {
+            console.log('User subscribed:', subscription);
+            // You would send this subscription to your backend
+          }).catch(function(error) {
+            console.error('Failed to subscribe user:', error);
+          });
+        });
+      }
+    });
+  }
+
+  // Trigger the subscription when page loads or when needed
+  window.onload = function() {
+    subscribeUser();
+  }
+</script>
+
+<!-- Default Statcounter code for POLITICAST
+https://politicast.netlify.app/#news -->
+<script type="text/javascript">
+var sc_project=13046695; 
+var sc_invisible=1; 
+var sc_security="d9e4f169"; 
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics Made Easy -
+Statcounter" href="https://statcounter.com/" target="_blank"><img
+class="statcounter" src="https://c.statcounter.com/13046695/0/d9e4f169/1/"
+alt="Web Analytics Made Easy - Statcounter"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code --><!DOCTYPE html>
+<html lang="en">
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Emerging World News</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+        }
+        h2 {
+            color: #35424a;
+        }
+        footer {
+            background: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .newsletter {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #35424a;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #434e58;
+        }
+    </style>
+</head>
+<body>
+<div class="news-ticker">
+    <p>🌐 Your number one news source focusing on Global politics and emerging issues 🌐</p>
+</div>
+
+<style>
+  .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
+
+  .mySlides {
+    display: none;
+  }
+
+  .fade {
+    animation: fade 1.5s;
+  }
+
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }
+</style>
+
+<script>
+  let slideIndex = 0;
+  showSlides();
+
+  function showSlides() {
+    let slides = document.getElementsByClassName("mySlides");
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    slides[slideIndex-1].style.display = "block";  
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+  }
+</script>
+
+<style>
+    .news-ticker {
+        width: 100%;
+        background-color: #000;
+        color: #fff;
+        padding: 10px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .news-ticker p {
+        display: inline-block;
+        padding-left: 100%;
+        animation: ticker 10s linear infinite;
+    }
+    @keyframes ticker {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
+<!DOCTYPE html>
+<html </html></htmllang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Website</title>
+    <style>
+        /* Style for search bar */
+        #search-bar {
+            width: 300px;
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+        /* Basic styling for article sections */
+        .article {
+            margin: 50px 0;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+
+</body>
+</html>
+
+
+        
+</header>
+
+<section id="home">
+    <h2>Welcome to Politicast</h2>
+    </p>Your source for emerging world news.</p>
+</section>
+
+<section id="about">
+    <h2>About Us</h2>
+    <img src="/image/A.jpeg">
+    <p>Politicast provides the latest news and analysis on global politics.</p>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politicast - Breaking News and Videos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        /* Notification Bell */
+        .notification-bell {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure it appears on top */
+        }
+        /* Popup styling */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+        }
+        /* Video Gallery Section */
+        .video-container {
+            position: relative;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide overflow */
+            display: flex;
+            align-items: center; /* Center video vertically */
+            justify-content: center; /* Center video horizontally */
+        }
+        .video-container iframe {
+            width: 100%;
+            height: 100%; /* Full height */
+            border: none; /* Remove border */
+        }
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        /* Styles for the breaking news popup */
+        .breaking-news-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ffcc00;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            z-index: 1001; /* Above other content */
+        }
+    </style>
+    <script>
+        // Function to display popups
+        function showPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            popup.style.display = 'block';
+        }
+
+        // Function to handle notification bell click
+        function showNotifications() {
+            alert('You have new notifications!');
+        }
+
+        // Function to check if the popup was shown before
+        function checkPopup() {
+            const popupShown = localStorage.getItem('popupShown');
+            if (!popupShown) {
+                showPopup('breaking-news');
+                localStorage.setItem('popupShown', 'true');
+            }
+        }
+
+        // Call the function on page load
+        window.onload = function() {
+            checkPopup();
+        };
+    </script>
+</head>
+<body>
+
+
+
+    <!-- Add more videos as needed -->
+</body>
+</html>
+
+</section>
+
+<section id="news">
+    <h2>Latest News</h2>
+    <p>Stay updated with the most recent news articles.</p>
+    <p><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POLITICAST</title>
+  <style>
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .carousel-item {
+      display: none;
+      text-align: center;
+    }
+
+    .carousel-item.active {
+      display: block;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="carousel">
+    <div class="carousel-item active">
+      <img src="/image/images (22).jpeg" alt="Image 1">
+      </div>
+    <div class="carousel-item">
+      <img src="/image/images (6).png" alt="Image 2">
+      </div>
+   
+      <div class="carousel-item">
+      <img src="/image/images (24).jpeg" alt="Image 5">
+      </div>
+       <div class="carousel-item">
+      <img src="/image/images (18).jpeg" alt="Image 6">
+      </div>
+      <div class="carousel-item">
+      <img src="/image/images (10).jpeg" alt="Image 7">
+      </div>
+
+    
+   </div>
+<script>
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      const slides = document.querySelectorAll(".carousel-item");
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) slide.classList.add("active");
+      });
+    }
+
+    function nextSlide() {
+      const slides = document.querySelectorAll(".carousel-item");
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    // Change slide every 3 seconds (3000 ms)
+    setInterval(nextSlide, 3000);
+  </script>
+
+
+
+</head>
+<body>
+
+
+  <div class="carousel">
+    <div class="carousel-item active">
+      <img src="/image/contact.png" alt="Image 9">
+    </div>
+    <div class="carousel-item">
+      <img src="/image/images (Cont).png" alt="Image 10">
+    </div>
+    <div class="carousel-item">
+      <img src="/image/images (contact).jpeg" alt="Image 11">
+    </div>
+    
+<script>
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      const slides = document.querySelectorAll(".carousel-item");
+      slides.forEach((slide, i) => {
+        slide.classList.remove("active");
+        if (i === index) slide.classList.add("active");
+      });
+    }
+
+    function nextSlide() {
+      const slides = document.querySelectorAll(".carousel-item");
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+    // Change slide every 5 seconds (5000 ms)
+    setInterval(nextSlide, 5000);
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .thank-you {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    .thank-you h1 {
+      color: #28a745;
+    }
+
+    .thank-you a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .thank-you a:hover {
+      text-decoration: underline;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .carousel-item {
+      display: none;
+      text-align: center;
+    }
+
+    .carousel-item.active {
+      display: block;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+  
