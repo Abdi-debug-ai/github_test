@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpongeBob Movie App</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #141414;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: #ffcc00;
+      color: #141414;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      padding-left: 30px;
+    }
+
+    /* Movie Section */
+    .movie-section {
+      margin-bottom: 50px;
+    }
+
+    .iframe-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 20px 30px;
+      scroll-behavior: smooth;
+    }
+
+    .iframe-card {
+      min-width: 300px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .iframe-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+    }
+
+    .iframe-title {
+      padding: 10px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ffcc00;
+    }
+
+    footer {
+      background-color: #ffcc00;
+      padding: 10px;
+      text-align: center;
+      color: #141414;
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>SpongeBob Movie App</h1>
+    <p>Explore Movies and Cartoons!</p>
+  </header>
+
+  <!-- Animation Movies Section -->
+  <div class="movie-section">
+    <h2>Animation Movies</h2>
+    <div class="iframe-container">
+      <div class="iframe-card">
+        <iframe src="https://www.youtube.com/embed/peT8RTEao34" allowfullscreen></iframe>
+        <div class="iframe-title">SpongeBob Movie:</div>
+      </div>
+      <div class="iframe-card">
+        <iframe src="https://www.youtube.com/embed/Gdz46esVmCg" allowfullscreen></iframe>
+        <div class="iframe-title">pre historic time</div>
+      </div>
+      <div class="iframe-card">
+        <iframe src="https://www.youtube.com/embed/EgzWLBCQUtI" allowfullscreen></iframe>
+        <div class="iframe-title">Free birds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cartoons Section -->
+  <div class="movie-section">
+    <h2>New movies</h2>
+    <div class="iframe-container">
+      <div class="iframe-card">
+        <iframe src="https://www.youtube.com/embed/Jv9qeD0tLeE" allowfullscreen></iframe>
+        <div class="iframe-title">Khumba </div></div>
+      </div>
+      <div class="iframe-card">
+        <iframe src="https://www.youtube.com/embed/IExJeiNTgUY" allowfullscreen></iframe>
+        <div class="iframe-title">Moana 2</div>
+      </div>
+      <div class="iframe-card">
+        <iframe src="https://www.youtube.com/embed/a2CMNBJiegg" allowfullscreen></iframe>
+        <div class="iframe-title">Wish</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 SpongeBob Movie App | Techy Fun for Kids!</p>
+  </footer>
+</body>
+</html>
