@@ -775,37 +775,25 @@ allowfullscreen></iframe>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pay via M-Pesa</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    input, button {
-      padding: 10px;
-      margin: 5px;
-      width: 200px;
-    }
-  </style>
 </head>
 <body>
-  <h2>Khatim un Nabeyeen </h2>
-  <p>To complete your payment, click the button below to initiate payment via M-Pesa.</p>
+  <h2>Pay to M-Pesa Number: 0742962782</h2>
+  <p>To make the payment, click the button below to initiate the process in your M-Pesa app.</p>
   <button id="payButton">Pay Now</button>
 
   <script>
-    document.getElementById('payButton').addEventListener('click', function () {
-      const phoneNumber = "0742962782"; // M-Pesa phone number
-      const amount = prompt("Enter the amount you want to pay:");
+    document.getElementById('payButton').addEventListener('click', function() {
+      // M-Pesa Paybill or number to pay to
+      const phoneNumber = '0742962782';
+      const amount = prompt("Enter the amount you want to send:");
 
       if (amount) {
-        // Construct M-Pesa paybill or buy goods URL format
+        // Redirect to M-Pesa send money function using the phone number
         const mpesaUrl = `tel:${phoneNumber}`;
-
-        // Attempt to open the dialer with the M-Pesa number
         window.location.href = mpesaUrl;
 
-        // Optional: show message after redirection
-        alert(`You are about to pay Ksh ${amount} to ${phoneNumber}. Please follow the steps in the M-Pesa app.`);
+        // Optional: Show message after redirection
+        alert(`You are about to send Ksh ${amount} to ${phoneNumber}. Follow the prompts in the M-Pesa app.`);
       }
     });
   </script>
