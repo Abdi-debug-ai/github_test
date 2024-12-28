@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jamas project</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catch the Ball</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f8ff;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #game {
+      position: relative;
+      width: 400px;
+      height: 600px;
+      border: 2px solid #333;
+      background: linear-gradient(180deg, #a2d2ff, #005f73);
+      overflow: hidden;
+    }
+
+    .paddle {
+      position: absolute;
+      bottom: 10px;
+      left: 160px;
+      width: 80px;
+      height: 20px;
+      background-color: #ff6b6b;
+      border-radius: 10px;
+    }
+
+    .ball {
+      position: absolute;
+      top: 100px;
+      left: 190px;
+      width: 20px;
+      height: 20px;
+      background-color: #ffe66d;
+      border-radius: 50%;
+    }
+
+    .score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .game-over {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="game">
+    <div class="score">Score: 0</div>
+    <div class="paddle"></div>
+    <div class="ball"></div>
+    <div class="game-over">Game Over!<br>Press F5 to restart.</div>
+  </div>
+
+  <script>
+    const game = document.getElementById("game");
+    const paddle = document.querySelector(".paddle");
+    const ball = document.querySelector(".ball");
+    const scoreBoard = document.querySelector(".score");
+    const gameOverText = document.querySelector(".game-over");
+
+    let paddleX = 160;
+    let ballX = 190;
+    let ballY = 100;
+    let ballSpeedX = 2;
+    let ballSpeedY = 3;
+    let score = 0;
+
+    // Move the paddle
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft" && paddleX > 0) {
+        paddleX -= 20;
+      } else if (e.key === "ArrowRight" && paddleX < 320) {
+        paddleX += 20;
+      }
+      paddle.style.left = `${paddleX}px`;
+    });
+
+    // Update game state
+    function updateGame() {
+      // Move the ball
+      ballX += ballSpeedX;
+      ballY += ballSpeedY;
+
+      // Ball collision with walls
+      if (ballX <= 0 || ballX >= 380) ballSpeedX *= -1;
+      if (ballY <= 0) ballSpeedY *= -1;
+
+      // Ball collision with paddle
+      if (
+        ballY >= 570 &&
+        ballX >= paddleX &&
+        ballX <= paddleX + 80
+      ) {
+        ballSpeedY *= -1;
+        score += 1;
+        scoreBoard.textContent = `Score: ${score}`;
+      }
+
+      // Ball falls out of bounds
+      if (ballY > 600) {
+        gameOverText.style.display = "block";
+        clearInterval(gameInterval);
+      }
+
+      ball.style.left = `${ballX}px`;
+      ball.style.top = `${ballY}px`;
+    }
+
+    const gameInterval = setInterval(updateGame, 16);
+  </script>
+</body>
+</html>

@@ -769,3 +769,45 @@ allowfullscreen></iframe>
 </script>
 <noscript>Please enable JavaScript to view the comments.</noscript>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pay via M-Pesa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Khatim un Nabeyeen </h2>
+  <p>To complete your payment, click the button below to initiate payment via M-Pesa.</p>
+  <button id="payButton">Pay Now</button>
+
+  <script>
+    document.getElementById('payButton').addEventListener('click', function () {
+      const phoneNumber = "0742962782"; // M-Pesa phone number
+      const amount = prompt("Enter the amount you want to pay:");
+
+      if (amount) {
+        // Construct M-Pesa paybill or buy goods URL format
+        const mpesaUrl = `tel:${phoneNumber}`;
+
+        // Attempt to open the dialer with the M-Pesa number
+        window.location.href = mpesaUrl;
+
+        // Optional: show message after redirection
+        alert(`You are about to pay Ksh ${amount} to ${phoneNumber}. Please follow the steps in the M-Pesa app.`);
+      }
+    });
+  </script>
+</body>
+</html>
