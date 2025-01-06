@@ -26,7 +26,6 @@
       color: #333;
       margin: 0;
       padding: 0;
-      transition: background-color 0.3s ease;
     }
     h1 {
       margin-top: 20px;
@@ -67,21 +66,35 @@
       border-radius: 5px;
       width: 300px;
     }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
     .result {
       margin-top: 20px;
       font-size: 20px;
       font-weight: bold;
     }
-    .counter {
+    .score {
       font-size: 20px;
-      margin-top: 20px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <h1>Guess the 47 Counties of Kenya</h1>
   <div class="timer">Time Remaining: <span id="timer">6:00</span></div>
-  <div class="counter">Correct Answers: <span id="correctCount">0</span>/47</div>
+  
+  <div class="score" id="score">Counties Correct: 0/47</div>
   
   <div class="input-container">
     <input type="text" id="countyInput" placeholder="Type a county name...">
@@ -98,7 +111,7 @@
 
   <!-- Background Music -->
   <audio id="backgroundMusic" autoplay loop>
-    <source src="/Audio.mp3/Joo Won - Fly Me To The Moon I Squid Game Version LyricsFilm.mp3" type="audio/mpeg">
+    <source src="/Audio.mp3/Joo Won - Fly Me To The Moon I Squid Game Version LyricsFilm.mp3" type="audio/mp3">
     Your browser does not support the audio element.
   </audio>
 
@@ -118,8 +131,8 @@
     const countiesTable = document.getElementById("countiesTable");
     const resultMessage = document.getElementById("resultMessage");
     const timerElement = document.getElementById("timer");
-    const correctCountElement = document.getElementById("correctCount");
     const inputField = document.getElementById("countyInput");
+    const scoreElement = document.getElementById("score");
 
     // Create 47 empty boxes in the table
     for (let i = 0; i < 47; i++) {
@@ -135,11 +148,6 @@
       const minutes = Math.floor(timeLeft / 60);
       const seconds = timeLeft % 60;
       timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-
-      if (timeLeft <= 15) {
-        document.body.style.backgroundColor = 'red'; // Flash red when time is almost up
-      }
-
       if (timeLeft <= 0) {
         clearInterval(timer);
         endGame();
@@ -147,48 +155,38 @@
     }, 1000);
 
     // Function to check user input
-    function checkCounty() {
+    inputField.addEventListener('input', function() {
       const userInput = inputField.value.trim().toLowerCase();
-      inputField.value = "";
-
       if (!userInput) return;
 
       const matchedCounty = counties.find(county => county.toLowerCase() === userInput);
-
+      
       if (matchedCounty && !guessedCounties.has(matchedCounty)) {
         guessedCounties.add(matchedCounty);
         const emptyBox = Array.from(countiesTable.children).find(box => box.textContent === "");
         if (emptyBox) {
           emptyBox.textContent = matchedCounty;
-          updateCorrectCount();
         }
+        updateScore();
+
+        // Win condition check
         if (guessedCounties.size === 47) {
           clearInterval(timer);
-          resultMessage.textContent = "Congratulations! You guessed all counties!";
+          resultMessage.textContent = "Congratulations! You've guessed all counties!";
         }
-      } else if (!matchedCounty) {
-        resultMessage.textContent = "Incorrect guess. Try again!";
-        setTimeout(() => (resultMessage.textContent = ""), 2000);
       }
-    }
+    });
 
-    // Update the correct answer count
-    function updateCorrectCount() {
-      correctCountElement.textContent = guessedCounties.size;
+    // Update score display
+    function updateScore() {
+      scoreElement.textContent = `Counties Correct: ${guessedCounties.size}/47`;
     }
 
     // End game when time is up
     function endGame() {
-      if (guessedCounties.size === 47) {
-        resultMessage.textContent = "You completed the game early! Congratulations!";
-      } else {
-        resultMessage.textContent = `Time's up! You guessed ${guessedCounties.size} out of 47 counties.`;
-      }
+      resultMessage.textContent = `Time's up! You guessed ${guessedCounties.size} out of 47 counties.`;
       inputField.disabled = true;
     }
-
-    // Detect user input without clicking the submit button
-    inputField.addEventListener('input', checkCounty);
   </script>
 </body>
 </html>
