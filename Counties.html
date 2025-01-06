@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kenya Counties Game</title>
   <style>
+    /* Keep styles the same */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
@@ -15,6 +16,11 @@
     }
     h1 {
       margin-top: 20px;
+    }
+    .scores {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #555;
     }
     .timer, .progress {
       font-size: 24px;
@@ -78,6 +84,13 @@
 </head>
 <body>
   <h1>Guess the 47 Counties of Kenya</h1>
+  
+  <!-- Scores Section -->
+  <div class="scores">
+    <p>Last Score: <span id="lastScore">0</span>/47</p>
+    <p>Best Score: <span id="bestScore">0</span>/47</p>
+  </div>
+  
   <div class="timer">Time Remaining: <span id="timer">6:00</span></div>
   <div class="progress">Correct Answers: <span id="correctCount">0</span>/47</div>
   
@@ -127,7 +140,15 @@
     const timerElement = document.getElementById("timer");
     const correctCountElement = document.getElementById("correctCount");
     const inputField = document.getElementById("countyInput");
+    const lastScoreElement = document.getElementById("lastScore");
+    const bestScoreElement = document.getElementById("bestScore");
     let hintCount = 3;
+
+    // Load scores from localStorage
+    const lastScore = localStorage.getItem("lastScore") || 0;
+    const bestScore = localStorage.getItem("bestScore") || 0;
+    lastScoreElement.textContent = lastScore;
+    bestScoreElement.textContent = bestScore;
 
     // Create 47 empty boxes in the table
     for (let i = 0; i < 47; i++) {
@@ -169,7 +190,7 @@
 
         if (guessedCounties.size === 47) {
           clearInterval(timer);
-          resultMessage.textContent = "Congratulations! You guessed all counties!";
+          endGame(true);
         }
       }
     });
@@ -186,8 +207,17 @@
     }
 
     // End game when time is up
-    function endGame() {
-      resultMessage.textContent = `Time's up! You guessed ${guessedCounties.size} out of 47 counties.`;
+    function endGame(isWin = false) {
+      const score = guessedCounties.size;
+      localStorage.setItem("lastScore", score);
+      if (score > bestScore) {
+        localStorage.setItem("bestScore", score);
+      }
+      if (isWin) {
+        resultMessage.textContent = "Congratulations! You guessed all counties!";
+      } else {
+        resultMessage.textContent = `Time's up! You guessed ${score} out of 47 counties.`;
+      }
       inputField.disabled = true;
     }
   </script>
