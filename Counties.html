@@ -34,6 +34,10 @@
       font-size: 24px;
       margin-bottom: 20px;
     }
+    .progress {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
     .table-container {
       margin: 20px auto;
       width: 90%;
@@ -79,22 +83,25 @@
     button:hover {
       background-color: #0056b3;
     }
+    .hint-button {
+      margin-top: 20px;
+      background-color: #28a745;
+    }
+    .hint {
+      margin-top: 20px;
+      font-size: 18px;
+    }
     .result {
       margin-top: 20px;
       font-size: 20px;
       font-weight: bold;
-    }
-    .score {
-      font-size: 20px;
-      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <h1>Guess the 47 Counties of Kenya</h1>
   <div class="timer">Time Remaining: <span id="timer">6:00</span></div>
-  
-  <div class="score" id="score">Counties Correct: 0/47</div>
+  <div class="progress">Correct Answers: <span id="correctCount">0</span>/47</div>
   
   <div class="input-container">
     <input type="text" id="countyInput" placeholder="Type a county name...">
@@ -106,12 +113,17 @@
     <div class="county-box"></div>
     <!-- Repeat until 47 slots -->
   </div>
+
+  <div class="hint-container">
+    <button class="hint-button" onclick="useHint()">🎷 Hint (3 left)</button>
+    <div class="hint" id="hintMessage"></div>
+  </div>
   
   <div class="result" id="resultMessage"></div>
 
   <!-- Background Music -->
   <audio id="backgroundMusic" autoplay loop>
-    <source src="/Audio.mp3/Joo Won - Fly Me To The Moon I Squid Game Version LyricsFilm.mp3" type="audio/mp3">
+    <source src="/Audio.mp3/Joo%20Won%20-%20Fly%20Me%20To%20The%20Moon%20I%20Squid%20Game%20Version%20LyricsFilm.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -127,12 +139,19 @@
       "Busia", "Siaya", "Kisumu", "Homa Bay", "Migori", "Kisii", "Nyamira", "Nairobi"
     ];
 
+    const landmarks = [
+      "Mount Kenya", "Nairobi National Park", "Maasai Mara", "Lake Victoria", "Lamu Island",
+      "Amboseli National Park", "Samburu National Reserve", "Tsavo National Park"
+    ];
+
     const guessedCounties = new Set();
+    let hintsRemaining = 3;
     const countiesTable = document.getElementById("countiesTable");
     const resultMessage = document.getElementById("resultMessage");
     const timerElement = document.getElementById("timer");
     const inputField = document.getElementById("countyInput");
-    const scoreElement = document.getElementById("score");
+    const correctCountElement = document.getElementById("correctCount");
+    const hintMessage = document.getElementById("hintMessage");
 
     // Create 47 empty boxes in the table
     for (let i = 0; i < 47; i++) {
@@ -155,37 +174,45 @@
     }, 1000);
 
     // Function to check user input
-    inputField.addEventListener('input', function() {
+    inputField.addEventListener("input", () => {
       const userInput = inputField.value.trim().toLowerCase();
       if (!userInput) return;
 
       const matchedCounty = counties.find(county => county.toLowerCase() === userInput);
-      
+
       if (matchedCounty && !guessedCounties.has(matchedCounty)) {
         guessedCounties.add(matchedCounty);
         const emptyBox = Array.from(countiesTable.children).find(box => box.textContent === "");
         if (emptyBox) {
           emptyBox.textContent = matchedCounty;
         }
-        updateScore();
 
-        // Win condition check
+        // Update the progress
+        correctCountElement.textContent = guessedCounties.size;
+
         if (guessedCounties.size === 47) {
           clearInterval(timer);
-          resultMessage.textContent = "Congratulations! You've guessed all counties!";
+          resultMessage.textContent = "Congratulations! You guessed all counties!";
         }
       }
     });
-
-    // Update score display
-    function updateScore() {
-      scoreElement.textContent = `Counties Correct: ${guessedCounties.size}/47`;
-    }
 
     // End game when time is up
     function endGame() {
       resultMessage.textContent = `Time's up! You guessed ${guessedCounties.size} out of 47 counties.`;
       inputField.disabled = true;
+    }
+
+    // Hint functionality
+    function useHint() {
+      if (hintsRemaining > 0) {
+        const randomLandmark = landmarks[Math.floor(Math.random() * landmarks.length)];
+        hintMessage.textContent = `Hint: Famous location: ${randomLandmark} 🎷`;
+        hintsRemaining--;
+        document.querySelector(".hint-button").textContent = `🎷 Hint (${hintsRemaining} left)`;
+      } else {
+        hintMessage.textContent = "No hints left!";
+      }
     }
   </script>
 </body>
