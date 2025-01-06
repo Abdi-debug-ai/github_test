@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Red Light, Green Light Game</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+    #game-status { position: fixed; top: 10px; left: 10px; color: white; font-size: 24px; }
+  </style>
+</head>
+<body>
+  <div id="game-status">Press 'Start' to begin the game.</div>
+  
+  <!-- Include Three.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    // Basic Three.js Setup
+    let scene, camera, renderer, player, clock;
+    let isGreenLight = true;
+    let isMoving = false;
+    let playerSpeed = 0.1;
+    let gameOver = false;
+    let gameStatusElement = document.getElementById('game-status');
+
+    // Initialize Three.js Scene
+    function init() {
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Create ground
+      const groundGeometry = new THREE.PlaneGeometry(100, 100);
+      const groundMaterial = new THREE.MeshBasicMaterial({ color: 0x999999, side: THREE.DoubleSide });
+      const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+      ground.rotation.x = Math.PI / -2;
+      scene.add(ground);
+
+      // Create player (a simple sphere)
+      const playerGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+      const playerMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+      player = new THREE.Mesh(playerGeometry, playerMaterial);
+      player.position.set(0, 0.5, 0);
+      scene.add(player);
+
+      // Create a simple light
+      const light = new THREE.PointLight(0xffffff, 1, 100);
+      light.position.set(5, 10, 5);
+      scene.add(light);
+
+      // Position the camera
+      camera.position.z = 10;
+
+      // Create a clock to keep track of time
+      clock = new THREE.Clock();
+
+      // Start the game with a button click
+      document.addEventListener('keydown', onKeyDown, false);
+
+      animate();
+    }
+
+    // Game loop: Update and render
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+
+      if (!gameOver) {
+        if (isGreenLight && isMoving) {
+          // Move player forward when green light is on
+          player.position.z -= playerSpeed;
+        }
+
+        if (player.position.z <= -50) {
+          gameStatusElement.innerText = "Congratulations! You've reached the finish line!";
+          gameOver = true;
+        }
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    // Handle keyboard input for player movement
+    function onKeyDown(event) {
+      if (event.key === 'ArrowUp' && isGreenLight && !gameOver) {
+        isMoving = true; // Start moving when Green Light
+      } else if (event.key === 'ArrowUp' && !isGreenLight) {
+        gameStatusElement.innerText = "You moved during Red Light! Game Over.";
+        gameOver = true; // Eliminate player if moved during Red Light
+      }
+
+      if (event.key === 'ArrowDown') {
+        isMoving = false; // Stop moving on ArrowDown key press
+      }
+    }
+
+    // Randomly toggle between Red Light and Green Light
+    function toggleLights() {
+      if (gameOver) return;
+      const randomTime = Math.floor(Math.random() * 5) + 3; // 3-7 seconds random time
+      isGreenLight = !isGreenLight;
+      gameStatusElement.innerText = isGreenLight ? "Green Light! Move!" : "Red Light! Stop!";
+      setTimeout(toggleLights, randomTime * 1000);
+    }
+
+    // Start the game
+    function startGame() {
+      gameStatusElement.innerText = "Green Light! Move!";
+      gameOver = false;
+      player.position.set(0, 0.5, 0); // Reset player position
+      toggleLights(); // Start random light toggling
+    }
+
+    // Initialize the game
+    init();
+
+    // Start the game with a key press
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !gameOver) {
+        startGame();
+      }
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Red Light Green Light</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #e1e1e1;
+    }
+    canvas {
+      display: block;
+    }
+    #gameStatus {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="gameStatus">Waiting for players...</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/GLTFLoader.js"></script>
+
+  <script>
+    let scene, camera, renderer, player, players = [], gameOver = false, timer = 60;
+    let gameStatusElement = document.getElementById('gameStatus');
+    let countdownInterval;
+
+    // Set up the scene, camera, and renderer
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Set up the ground
+    const textureLoader = new THREE.TextureLoader();
+    const groundTexture = textureLoader.load('path_to_ground_texture.jpg'); // Replace with actual texture path
+    const groundMaterial = new THREE.MeshBasicMaterial({ map: groundTexture });
+    const groundGeometry = new THREE.PlaneGeometry(1000, 1000);
+    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+    ground.rotation.x = -Math.PI / 2;
+    scene.add(ground);
+
+    // Load 3D player model using GLTFLoader
+    const loader = new THREE.GLTFLoader();
+    loader.load('path_to_model.glb', function (gltf) {
+      player = gltf.scene;
+      scene.add(player);
+
+      const numPlayers = 5; // Add more players
+      for (let i = 0; i < numPlayers; i++) {
+        const playerGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+        const playerMaterial = new THREE.MeshBasicMaterial({ color: Math.random() * 0xffffff });
+        let newPlayer = new THREE.Mesh(playerGeometry, playerMaterial);
+        newPlayer.position.set(i * 2 - (numPlayers - 1), 0.5, 0); // Spread players along the X axis
+        players.push(newPlayer);
+        scene.add(newPlayer);
+      }
+
+      // Guard with a gun example
+      const gunMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+      const gunGeometry = new THREE.CylinderGeometry(0.1, 0.1, 1);
+      let gun = new THREE.Mesh(gunGeometry, gunMaterial);
+      gun.position.set(1, 1, 0); // Position it in the guard's hand
+      scene.add(gun);
+
+      // Set camera position
+      camera.position.set(0, 10, 30);
+      camera.lookAt(player.position);
+
+      // Start the countdown
+      startCountdown();
+    });
+
+    // Function to start the countdown timer
+    function startCountdown() {
+      countdownInterval = setInterval(() => {
+        if (timer > 0) {
+          timer--;
+          gameStatusElement.innerText = `Time left: ${timer}s`;
+        } else {
+          clearInterval(countdownInterval);
+          gameStatusElement.innerText = "Time's up! Game Over!";
+          gameOver = true;
+        }
+      }, 1000);
+    }
+
+    // Game loop to update the scene
+    function animate() {
+      if (gameOver) return;
+
+      requestAnimationFrame(animate);
+
+      // Render the scene
+      renderer.render(scene, camera);
+    }
+
+    // Listen for keyboard input to move the player
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'ArrowUp' && !gameOver) {
+        player.position.z -= 0.1; // Move forward
+      }
+    });
+
+    // Check for player reaching the finish line
+    if (player.position.z <= -50) {
+      gameStatusElement.innerText = "You win! You reached the finish line!";
+      gameOver = true;
+
+      // Add background sound
+      const audioListener = new THREE.AudioListener();
+      camera.add(audioListener);
+      const audioLoader = new THREE.AudioLoader();
+      const sound = new THREE.Audio(audioListener);
+
+      audioLoader.load('path_to_sound.mp3', function (buffer) { // Replace with actual audio path
+        sound.setBuffer(buffer);
+        sound.setLoop(true);
+        sound.setVolume(0.5);
+        sound.play();
+      });
+    }
+
+    // Start the animation loop
+    animate();
+
+    // Resize the canvas when the window is resized
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+
+</body>
+</html>

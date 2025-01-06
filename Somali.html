@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Somali</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #58cc02;
+    }
+    .lesson {
+      display: none;
+      margin: 20px 0;
+    }
+    .quiz {
+      display: none;
+    }
+    button {
+      background-color: #58cc02;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #45a300;
+    }
+    .progress-bar {
+      width: 100%;
+      background-color: #ddd;
+      margin: 20px 0;
+      height: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress {
+      height: 100%;
+      background-color: #58cc02;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    .quiz-option {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .quiz-option:hover {
+      background-color: #e6e6e6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Learn Somali</h1>
+    <p>Start learning Somali step by step. Complete lessons to unlock new levels!</p>
+
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div id="lessonContainer">
+      <div id="lesson1" class="lesson">
+        <h2>Lesson 1: Greetings</h2>
+        <ul>
+          <li><b>Somali:</b> Salaam alaykum — <b>English:</b> Peace be upon you</li>
+          <li><b>Somali:</b> Sidee tahay? — <b>English:</b> How are you?</li>
+          <li><b>Somali:</b> Waad mahadsan tahay — <b>English:</b> Thank you</li>
+          <li><b>Somali:</b> Haye — <b>English:</b> Okay</li>
+        </ul>
+        <button onclick="startQuiz(1)">Take Quiz</button>
+      </div>
+
+      <div id="lesson2" class="lesson">
+        <h2>Lesson 2: Numbers</h2>
+        <ul>
+          <li><b>Somali:</b> Kow — <b>English:</b> One</li>
+          <li><b>Somali:</b> Labo — <b>English:</b> Two</li>
+          <li><b>Somali:</b> Saddex — <b>English:</b> Three</li>
+          <li><b>Somali:</b> Afar — <b>English:</b> Four</li>
+        </ul>
+        <button onclick="startQuiz(2)">Take Quiz</button>
+      </div>
+
+      <!-- Additional lessons can be added here -->
+    </div>
+
+    <div id="quiz" class="quiz">
+      <h2>Quiz</h2>
+      <p id="quizQuestion"></p>
+      <div id="quizOptions"></div>
+    </div>
+
+    <button id="nextLesson" onclick="nextLesson()" style="display: none;">Next Lesson</button>
+  </div>
+
+  <script>
+    const lessons = {
+      1: {
+        title: "Lesson 1: Greetings",
+        words: [
+          { somali: "Salaam alaykum", english: "Peace be upon you" },
+          { somali: "Sidee tahay?", english: "How are you?" },
+          { somali: "Waad mahadsan tahay", english: "Thank you" },
+          { somali: "Haye", english: "Okay" }
+        ]
+      },
+      2: {
+        title: "Lesson 2: Numbers",
+        words: [
+          { somali: "Kow", english: "One" },
+          { somali: "Labo", english: "Two" },
+          { somali: "Saddex", english: "Three" },
+          { somali: "Afar", english: "Four" }
+        ]
+      }
+    };
+
+    let currentLesson = 1;
+    let progress = 0;
+
+    // Show the first lesson on page load
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("lesson1").style.display = "block";
+      updateProgress();
+    });
+
+    function startQuiz(lessonNumber) {
+      currentLesson = lessonNumber;
+      const lesson = lessons[lessonNumber];
+      const quiz = document.getElementById("quiz");
+      const questionElement = document.getElementById("quizQuestion");
+      const optionsContainer = document.getElementById("quizOptions");
+
+      // Hide lesson and show quiz
+      document.getElementById("lesson" + lessonNumber).style.display = "none";
+      quiz.style.display = "block";
+
+      // Generate a random question from the lesson
+      const randomWord = lesson.words[Math.floor(Math.random() * lesson.words.length)];
+      questionElement.textContent = `What does "${randomWord.somali}" mean?`;
+
+      // Clear previous options
+      optionsContainer.innerHTML = "";
+
+      // Add options
+      lesson.words.forEach(word => {
+        const option = document.createElement("button");
+        option.textContent = word.english;
+        option.className = "quiz-option";
+        option.onclick = () => checkAnswer(randomWord.english === word.english);
+        optionsContainer.appendChild(option);
+      });
+    }
+
+    function checkAnswer(isCorrect) {
+      if (isCorrect) {
+        alert("Correct!");
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("nextLesson").style.display = "block";
+        progress += 50; // Example progress increment
+        updateProgress();
+      } else {
+        alert("Incorrect. Try again.");
+      }
+    }
+
+    function nextLesson() {
+      currentLesson++;
+      document.getElementById("nextLesson").style.display = "none";
+      const nextLesson = document.getElementById("lesson" + currentLesson);
+      if (nextLesson) {
+        nextLesson.style.display = "block";
+      } else {
+        alert("You’ve completed all available lessons!");
+      }
+    }
+
+    function updateProgress() {
+      const progressBar = document.getElementById("progress");
+      progressBar.style.width = progress + "%";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenya Counties Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    .timer {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .table-container {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .county-box {
+      border: 1px solid #ddd;
+      padding: 10px;
+      min-height: 50px;
+      text-align: center;
+      font-size: 14px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .input-container {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guess the 47 Counties of Kenya</h1>
+  <div class="timer">Time Remaining: <span id="timer">6:00</span></div>
+  
+  <div class="input-container">
+    <input type="text" id="countyInput" placeholder="Type a county name...">
+  </div>
+
+  <div class="table-container" id="countiesTable">
+    <!-- 47 county slots -->
+    <div class="county-box"></div>
+    <div class="county-box"></div>
+    <!-- Repeat until 47 slots -->
+  </div>
+
+  <div class="result" id="resultMessage"></div>
+  <div class="correct-answers" id="correctAnswers">0/47</div>
+
+  <!-- Background Music -->
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="Audio.mp3/Joo Won - Fly Me To The Moon I Squid Game Version LyricsFilm.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // List of counties in Kenya
+    const counties = [
+      "Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita Taveta", 
+      "Garissa", "Wajir", "Mandera", "Marsabit", "Isiolo", "Meru", "Tharaka-Nithi", 
+      "Embu", "Kitui", "Machakos", "Makueni", "Nyandarua", "Nyeri", "Kirinyaga", 
+      "Murang'a", "Kiambu", "Turkana", "West Pokot", "Samburu", "Trans Nzoia", 
+      "Uasin Gishu", "Elgeyo-Marakwet", "Nandi", "Baringo", "Laikipia", "Nakuru", 
+      "Narok", "Kajiado", "Kericho", "Bomet", "Kakamega", "Vihiga", "Bungoma", 
+      "Busia", "Siaya", "Kisumu", "Homa Bay", "Migori", "Kisii", "Nyamira", "Nairobi"
+    ];
+
+    const guessedCounties = new Set();
+    const countiesTable = document.getElementById("countiesTable");
+    const resultMessage = document.getElementById("resultMessage");
+    const timerElement = document.getElementById("timer");
+    const inputField = document.getElementById("countyInput");
+    const correctAnswersElement = document.getElementById("correctAnswers");
+
+    // Create 47 empty boxes in the table
+    for (let i = 0; i < 47; i++) {
+      const box = document.createElement("div");
+      box.className = "county-box";
+      countiesTable.appendChild(box);
+    }
+
+    // Timer logic
+    let timeLeft = 360; // 6 minutes in seconds
+    const timer = setInterval(() => {
+      timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        endGame();
+      }
+    }, 1000);
+
+    // Function to check user input and auto-submit the correct answer
+    inputField.addEventListener("input", function() {
+      const userInput = inputField.value.trim().toLowerCase();
+      
+      if (!userInput) return;
+
+      const matchedCounty = counties.find(county => county.toLowerCase() === userInput);
+
+      if (matchedCounty && !guessedCounties.has(matchedCounty)) {
+        guessedCounties.add(matchedCounty);
+        const emptyBox = Array.from(countiesTable.children).find(box => box.textContent === "");
+        if (emptyBox) {
+          emptyBox.textContent = matchedCounty;
+        }
+
+        // Update the correct answer count
+        correctAnswersElement.textContent = `${guessedCounties.size}/47`;
+
+        if (guessedCounties.size === 47) {
+          clearInterval(timer);
+          resultMessage.textContent = "Congratulations! You guessed all counties!";
+        }
+      }
+    });
+
+    // End game when time is up
+    function endGame() {
+      resultMessage.textContent = `Time's up! You guessed ${guessedCounties.size} out of 47 counties.`;
+      inputField.disabled = true;
+    }
+  </script>
+</body>
+</html>

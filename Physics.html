@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics.io - Interactive Physics Games</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      overflow: hidden;
+    }
+
+    .menu {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+    }
+
+    .game-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .game-button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .game-button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <!-- Menu for selecting games -->
+  <div class="menu">
+    <h2>Select a Physics Game</h2>
+    <button class="game-button" onclick="startGravityGame()">Gravity Game</button>
+    <button class="game-button" onclick="startPendulumGame()">Pendulum Game</button>
+    <button class="game-button" onclick="startCollisionGame()">Collision Game</button>
+    <button class="game-button" onclick="startSpringGame()">Spring Game</button>
+    <button class="game-button" onclick="startFrictionGame()">Friction Game</button>
+    <button class="game-button" onclick="startParabolicGame()">Parabolic Game</button>
+    <button class="game-button" onclick="startElasticCollisionGame()">Elastic Collision Game</button>
+    <button class="game-button" onclick="startProjectileGame()">Projectile Motion Game</button>
+    <button class="game-button" onclick="startBalanceGame()">Balance Game</button>
+    <button class="game-button" onclick="startInclinedPlaneGame()">Inclined Plane Game</button>
+  </div>
+
+  <div id="gameContainer" class="game-container"></div>
+
+  <script>
+    // Matter.js setup for physics engine
+    const { Engine, Render, Runner, World, Bodies, Mouse, MouseConstraint } = Matter;
+
+    // Initialize the physics engine
+    const engine = Engine.create();
+    const world = engine.world;
+
+    // Render setup
+    const canvasWidth = window.innerWidth;
+    const canvasHeight = window.innerHeight;
+    const render = Render.create({
+      element: document.getElementById('gameContainer'),
+      engine: engine,
+      options: {
+        width: canvasWidth,
+        height: canvasHeight,
+        wireframes: false,
+      }
+    });
+
+    Render.run(render);
+    const runner = Runner.create();
+    Runner.run(runner, engine);
+
+    // Mouse control for interaction
+    const mouse = Mouse.create(render.canvas);
+    const mouseConstraint = MouseConstraint.create(engine, {
+      mouse: mouse,
+      constraint: {
+        stiffness: 0.2,
+        render: { visible: false }
+      }
+    });
+    World.add(world, mouseConstraint);
+
+    // Start specific games based on button clicks
+    function startGravityGame() {
+      clearGame();
+      const gravityObject = Bodies.circle(400, 200, 40, { restitution: 0.8 });
+      World.add(world, gravityObject);
+      Engine.update(engine);
+    }
+
+    function startPendulumGame() {
+      clearGame();
+      const pendulum = Bodies.rectangle(400, 200, 10, 400, { isStatic: false });
+      World.add(world, pendulum);
+      Engine.update(engine);
+    }
+
+    function startCollisionGame() {
+      clearGame();
+      const circle1 = Bodies.circle(400, 100, 30, { restitution: 0.8 });
+      const circle2 = Bodies.circle(400, 300, 30, { restitution: 0.8 });
+      World.add(world, [circle1, circle2]);
+      Engine.update(engine);
+    }
+
+    function startSpringGame() {
+      clearGame();
+      const springBody = Bodies.circle(400, 300, 30, { restitution: 0.5 });
+      World.add(world, springBody);
+      Engine.update(engine);
+    }
+
+    function startFrictionGame() {
+      clearGame();
+      const block = Bodies.rectangle(400, 100, 100, 20, { friction: 0.5 });
+      World.add(world, block);
+      Engine.update(engine);
+    }
+
+    function startParabolicGame() {
+      clearGame();
+      const projectile = Bodies.circle(100, 500, 20);
+      Matter.Body.setVelocity(projectile, { x: 10, y: -15 });
+      World.add(world, projectile);
+      Engine.update(engine);
+    }
+
+    function startElasticCollisionGame() {
+      clearGame();
+      const ball1 = Bodies.circle(300, 300, 30, { restitution: 1 });
+      const ball2 = Bodies.circle(500, 300, 30, { restitution: 1 });
+      World.add(world, [ball1, ball2]);
+      Engine.update(engine);
+    }
+
+    function startProjectileGame() {
+      clearGame();
+      const projectile = Bodies.circle(100, 500, 20);
+      Matter.Body.setVelocity(projectile, { x: 10, y: -15 });
+      World.add(world, projectile);
+      Engine.update(engine);
+    }
+
+    function startBalanceGame() {
+      clearGame();
+      const base = Bodies.rectangle(400, 600, 800, 50, { isStatic: true });
+      const block = Bodies.rectangle(400, 400, 100, 100);
+      World.add(world, [base, block]);
+      Engine.update(engine);
+    }
+
+    function startInclinedPlaneGame() {
+      clearGame();
+      const plane = Bodies.rectangle(400, 500, 800, 20, { isStatic: true });
+      Matter.Body.rotate(plane, Math.PI / 6);  // Tilt the plane
+      const block = Bodies.rectangle(500, 400, 50, 50);
+      World.add(world, [plane, block]);
+      Engine.update(engine);
+    }
+
+    // Clear existing game elements
+    function clearGame() {
+      World.clear(world);
+      Render.stop(render);
+      Render.run(render);
+    }
+
+  </script>
+</body>
+</html>
