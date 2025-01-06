@@ -20,10 +20,6 @@
       font-size: 24px;
       margin-bottom: 20px;
     }
-    .progress {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
     .table-container {
       margin: 20px auto;
       width: 90%;
@@ -69,25 +65,33 @@
     button:hover {
       background-color: #0056b3;
     }
-    .hint-button {
-      margin-top: 20px;
-      background-color: #28a745;
-    }
-    .hint {
-      margin-top: 20px;
-      font-size: 18px;
-    }
     .result {
       margin-top: 20px;
       font-size: 20px;
       font-weight: bold;
+    }
+    .hint-button {
+      margin-top: 20px;
+      font-size: 16px;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .hint-button:disabled {
+      background-color: #cccccc;
+    }
+    .score {
+      font-size: 20px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
   <h1>Guess the 47 Counties of Kenya</h1>
   <div class="timer">Time Remaining: <span id="timer">6:00</span></div>
-  <div class="progress">Correct Answers: <span id="correctCount">0</span>/47</div>
   
   <div class="input-container">
     <input type="text" id="countyInput" placeholder="Type a county name...">
@@ -99,17 +103,16 @@
     <div class="county-box"></div>
     <!-- Repeat until 47 slots -->
   </div>
-
-  <div class="hint-container">
-    <button class="hint-button" onclick="useHint()">🎷 Hint (3 left)</button>
-    <div class="hint" id="hintMessage"></div>
-  </div>
   
   <div class="result" id="resultMessage"></div>
+  <div class="score" id="scoreDisplay">0/47</div>
 
-  <!-- Updated Background Music -->
+  <!-- Hint Button -->
+  <button class="hint-button" id="hintButton" onclick="giveHint()">💡 Give Hint</button>
+
+  <!-- Background Music -->
   <audio id="backgroundMusic" autoplay loop>
-    <source src="/Audio.mp3/Africa%20-%20(Nasheed%20Background%20Instrumental)%20Vocal%20&%20Daf%20#HalalBeats.mp3" type="audio/mpeg">
+    <source src="/Audio.mp3/Africa - (Nasheed Background Instrumental) Vocal & Daf #HalalBeats.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
@@ -125,19 +128,21 @@
       "Busia", "Siaya", "Kisumu", "Homa Bay", "Migori", "Kisii", "Nyamira", "Nairobi"
     ];
 
-    const landmarks = [
-      "Mount Kenya", "Nairobi National Park", "Maasai Mara", "Lake Victoria", "Lamu Island",
-      "Amboseli National Park", "Samburu National Reserve", "Tsavo National Park"
-    ];
-
     const guessedCounties = new Set();
-    let hintsRemaining = 3;
     const countiesTable = document.getElementById("countiesTable");
     const resultMessage = document.getElementById("resultMessage");
+    const scoreDisplay = document.getElementById("scoreDisplay");
     const timerElement = document.getElementById("timer");
     const inputField = document.getElementById("countyInput");
-    const correctCountElement = document.getElementById("correctCount");
-    const hintMessage = document.getElementById("hintMessage");
+    const hintButton = document.getElementById("hintButton");
+
+    let hintsUsed = 0;
+    const maxHints = 3;
+
+    // Landmarks for hints
+    const hints = [
+      "Mount Kenya", "Lake Victoria", "Nairobi National Park", "Lamu Old Town", "Maasai Mara"
+    ];
 
     // Create 47 empty boxes in the table
     for (let i = 0; i < 47; i++) {
@@ -160,22 +165,20 @@
     }, 1000);
 
     // Function to check user input
-    inputField.addEventListener("input", () => {
+    inputField.addEventListener('input', function() {
       const userInput = inputField.value.trim().toLowerCase();
       if (!userInput) return;
 
       const matchedCounty = counties.find(county => county.toLowerCase() === userInput);
-
+      
       if (matchedCounty && !guessedCounties.has(matchedCounty)) {
         guessedCounties.add(matchedCounty);
         const emptyBox = Array.from(countiesTable.children).find(box => box.textContent === "");
         if (emptyBox) {
           emptyBox.textContent = matchedCounty;
         }
-
-        // Update the progress
-        correctCountElement.textContent = guessedCounties.size;
-
+        updateScore();
+        inputField.value = ""; // Clear the input
         if (guessedCounties.size === 47) {
           clearInterval(timer);
           resultMessage.textContent = "Congratulations! You guessed all counties!";
@@ -183,21 +186,27 @@
       }
     });
 
+    // Update the score display
+    function updateScore() {
+      scoreDisplay.textContent = `${guessedCounties.size}/47`;
+    }
+
     // End game when time is up
     function endGame() {
       resultMessage.textContent = `Time's up! You guessed ${guessedCounties.size} out of 47 counties.`;
       inputField.disabled = true;
     }
 
-    // Hint functionality
-    function useHint() {
-      if (hintsRemaining > 0) {
-        const randomLandmark = landmarks[Math.floor(Math.random() * landmarks.length)];
-        hintMessage.textContent = `Hint: Famous location: ${randomLandmark} 🎷`;
-        hintsRemaining--;
-        document.querySelector(".hint-button").textContent = `🎷 Hint (${hintsRemaining} left)`;
+    // Give a hint about a landmark (used 3 times maximum)
+    function giveHint() {
+      if (hintsUsed < maxHints) {
+        alert(`Hint: Famous landmark or location - ${hints[hintsUsed]}`);
+        hintsUsed++;
+        if (hintsUsed === maxHints) {
+          hintButton.disabled = true;
+        }
       } else {
-        hintMessage.textContent = "No hints left!";
+        alert("No more hints available.");
       }
     }
   </script>
