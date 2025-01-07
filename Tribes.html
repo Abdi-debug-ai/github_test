@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenya Tribes Game</title>
+  <style>
+    /* Keep styles the same */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+    }
+    .scores {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #555;
+    }
+    .timer, .progress {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .table-container {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .tribe-box {
+      border: 1px solid #ddd;
+      padding: 10px;
+      min-height: 50px;
+      text-align: center;
+      font-size: 14px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .input-container {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .hint-button {
+      background-color: #ffc107;
+      margin-left: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Guess the 45 Tribes of Kenya</h1>
+  
+  <!-- Scores Section -->
+  <div class="scores">
+    <p>Last Score: <span id="lastScore">0</span>/45</p>
+    <p>Best Score: <span id="bestScore">0</span>/45</p>
+  </div>
+  
+  <div class="timer">Time Remaining: <span id="timer">6:00</span></div>
+  <div class="progress">Correct Answers: <span id="correctCount">0</span>/45</div>
+  
+  <div class="input-container">
+    <input type="text" id="tribeInput" placeholder="Type a tribe name...">
+    <button class="hint-button" onclick="useHint()">💡 Hint</button>
+  </div>
+  
+  <div class="table-container" id="tribesTable">
+    <!-- 45 tribe slots -->
+    <div class="tribe-box"></div>
+    <div class="tribe-box"></div>
+    <!-- Repeat until 45 slots -->
+  </div>
+  
+  <div class="result" id="resultMessage"></div>
+
+  <!-- Background Music -->
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="/Audio.mp3/videoplayback.webm" type="audio/webm">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // List of tribes in Kenya
+    const tribes = [
+      "Kikuyu", "Luo", "Luhya", "Kalenjin", "Kamba", "Somali", "Kisii", 
+      "Mijikenda", "Maasai", "Teso", "Meru", "Turkana", "Embu", "Tharaka", 
+      "Pokot", "Taita", "Samburu", "Borana", "Kurya", "Taveta", "Swahili",
+      "Gabbra", "Orma", "Rendille", "Bajuni", "Burji", "Dassanech", 
+      "Ogiek", "Sakuye", "Ilchamus", "Suba", "Makonde", "Nubians", 
+      "Galla", "Konso", "Yaaku", "Waata", "Elmolo", "Burji", 
+      "Malakote", "Sanye", "Dorobo", "Galjeel", "Aweer", "Isukha"
+    ];
+
+    const hints = [
+      "Largest tribe in Kenya: Kikuyu",
+      "Tribe from Western Kenya near Lake Victoria: Luo",
+      "Known for long-distance runners: Kalenjin",
+      "Swahili-speaking tribe at the coast: Swahili",
+      "Famous for their warrior culture: Maasai"
+    ];
+
+    const guessedTribes = new Set();
+    const tribesTable = document.getElementById("tribesTable");
+    const resultMessage = document.getElementById("resultMessage");
+    const timerElement = document.getElementById("timer");
+    const correctCountElement = document.getElementById("correctCount");
+    const inputField = document.getElementById("tribeInput");
+    const lastScoreElement = document.getElementById("lastScore");
+    const bestScoreElement = document.getElementById("bestScore");
+    let hintCount = 3;
+
+    // Load scores from localStorage
+    const lastScore = localStorage.getItem("lastScoreTribes") || 0;
+    const bestScore = localStorage.getItem("bestScoreTribes") || 0;
+    lastScoreElement.textContent = lastScore;
+    bestScoreElement.textContent = bestScore;
+
+    // Create 45 empty boxes in the table
+    for (let i = 0; i < 45; i++) {
+      const box = document.createElement("div");
+      box.className = "tribe-box";
+      tribesTable.appendChild(box);
+    }
+
+    // Timer logic
+    let timeLeft = 360; // 6 minutes in seconds
+    const timer = setInterval(() => {
+      timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        endGame();
+      }
+    }, 1000);
+
+    // Function to check user input
+    inputField.addEventListener("input", () => {
+      const userInput = inputField.value.trim().toLowerCase();
+      const matchedTribe = tribes.find(
+        tribe => tribe.toLowerCase() === userInput
+      );
+      
+      if (matchedTribe && !guessedTribes.has(matchedTribe)) {
+        guessedTribes.add(matchedTribe);
+        const emptyBox = Array.from(tribesTable.children).find(
+          box => box.textContent === ""
+        );
+        if (emptyBox) {
+          emptyBox.textContent = matchedTribe;
+        }
+        correctCountElement.textContent = guessedTribes.size;
+        inputField.value = "";
+
+        if (guessedTribes.size === 45) {
+          clearInterval(timer);
+          endGame(true);
+        }
+      }
+    });
+
+    // Hint logic
+    function useHint() {
+      if (hintCount > 0) {
+        resultMessage.textContent = hints[3 - hintCount];
+        hintCount--;
+        setTimeout(() => (resultMessage.textContent = ""), 5000);
+      } else {
+        resultMessage.textContent = "No more hints available!";
+      }
+    }
+
+    // End game when time is up
+    function endGame(isWin = false) {
+      const score = guessedTribes.size;
+      localStorage.setItem("lastScoreTribes", score);
+      if (score > bestScore) {
+        localStorage.setItem("bestScoreTribes", score);
+      }
+      if (isWin) {
+        resultMessage.textContent = "Congratulations! You guessed all tribes!";
+      } else {
+        resultMessage.textContent = `Time's up! You guessed ${score} out of 45 tribes.`;
+      }
+      inputField.disabled = true;
+    }
+  </script>
+</body>
+</html>
