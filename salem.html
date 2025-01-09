@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salem Characters Game</title>
+  <style>
+    /* General Styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 20px;
+      color: #333;
+    }
+    .scores {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #555;
+    }
+    .timer, .progress {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .table-container {
+      margin: 20px auto;
+      width: 90%;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+    .character-box {
+      border: 1px solid #ddd;
+      padding: 10px;
+      min-height: 50px;
+      text-align: center;
+      font-size: 14px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .input-container {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .hint-button {
+      background-color: #ffc107;
+      margin-left: 10px;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Guess the Salem Characters</h1>
+  
+  <!-- Scores Section -->
+  <div class="scores">
+    <p>Last Score: <span id="lastScore">0</span>/20</p>
+    <p>Best Score: <span id="bestScore">0</span>/20</p>
+  </div>
+  
+  <div class="timer">Time Remaining: <span id="timer">6:00</span></div>
+  <div class="progress">Correct Answers: <span id="correctCount">0</span>/20</div>
+  
+  <div class="input-container">
+    <input type="text" id="characterInput" placeholder="Type a character name...">
+    <button class="hint-button" onclick="useHint()">💡 Hint</button>
+  </div>
+  
+  <div class="table-container" id="charactersTable">
+    <!-- 20 character slots -->
+    <div class="character-box"></div>
+    <div class="character-box"></div>
+    <!-- Repeat until 20 slots -->
+  </div>
+  
+  <div class="result" id="resultMessage"></div>
+  
+  <!-- Background Music -->
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="/Audio.mp3/videoplayback.webm" type="audio/webm">
+    Your browser does not support the audio element.
+  </audio>
+
+  <footer>
+    <p>Starring: Mumbi Maina, Melvin Alusa, Illya Frank, Jackie Matubia, Charles Ouda</p>
+    <p>Directed by: Likarion Wainaina</p>
+    <p><a href="https://www.filamu.com" target="_blank">Visit Filamu</a> for more.</p>
+  </footer>
+
+  <script>
+    // List of characters in the Salem telenovela
+    const characters = [
+      "Zahra Mufasa", "Melchizedek Karani", "Arielle Mufasa", "Aiden Mufasa", 
+      "Mama Aziza", "Judith Karani", "Titus Karani", "Samantha", "Lulu Zambezi", 
+      "Kenny Zambezi", "Soila", "Malaika", "Brayo", "Inspector Kamusi", "Vitalis"
+    ];
+
+    const hints = [
+      "Mother to Zahra and Aiden: Mama Aziza",
+      "Famous detective: Inspector Kamusi",
+      "Has a reputation for being rich: Melchizedek Karani",
+      "Tragic love interest: Zahra Mufasa",
+      "The eldest son of the Mufasa family: Aiden"
+    ];
+
+    const guessedCharacters = new Set();
+    const charactersTable = document.getElementById("charactersTable");
+    const resultMessage = document.getElementById("resultMessage");
+    const timerElement = document.getElementById("timer");
+    const correctCountElement = document.getElementById("correctCount");
+    const inputField = document.getElementById("characterInput");
+    const lastScoreElement = document.getElementById("lastScore");
+    const bestScoreElement = document.getElementById("bestScore");
+    let hintCount = 3;
+
+    // Load scores from localStorage
+    const lastScore = localStorage.getItem("lastScoreSalem") || 0;
+    const bestScore = localStorage.getItem("bestScoreSalem") || 0;
+    lastScoreElement.textContent = lastScore;
+    bestScoreElement.textContent = bestScore;
+
+    // Create 20 empty boxes in the table
+    for (let i = 0; i < 20; i++) {
+      const box = document.createElement("div");
+      box.className = "character-box";
+      charactersTable.appendChild(box);
+    }
+
+    // Timer logic
+    let timeLeft = 360; // 6 minutes in seconds
+    const timer = setInterval(() => {
+      timeLeft--;
+      const minutes = Math.floor(timeLeft / 60);
+      const seconds = timeLeft % 60;
+      timerElement.textContent = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        endGame();
+      }
+    }, 1000);
+
+    // Function to check user input
+    inputField.addEventListener("input", () => {
+      const userInput = inputField.value.trim().toLowerCase();
+      const matchedCharacter = characters.find(
+        character => character.toLowerCase() === userInput
+      );
+      
+      if (matchedCharacter && !guessedCharacters.has(matchedCharacter)) {
+        guessedCharacters.add(matchedCharacter);
+        const emptyBox = Array.from(charactersTable.children).find(
+          box => box.textContent === ""
+        );
+        if (emptyBox) {
+          emptyBox.textContent = matchedCharacter;
+        }
+        correctCountElement.textContent = guessedCharacters.size;
+        inputField.value = "";
+
+        if (guessedCharacters.size === 20) {
+          clearInterval(timer);
+          endGame(true);
+        }
+      }
+    });
+
+    // Hint logic
+    function useHint() {
+      if (hintCount > 0) {
+        resultMessage.textContent = hints[3 - hintCount];
+        hintCount--;
+        setTimeout(() => (resultMessage.textContent = ""), 5000);
+      } else {
+        resultMessage.textContent = "No more hints available!";
+      }
+    }
+
+    // End game when time is up
+    function endGame(isWin = false) {
+      const score = guessedCharacters.size;
+      localStorage.setItem("lastScoreSalem", score);
+      if (score > bestScore) {
+        localStorage.setItem("bestScoreSalem", score);
+      }
+      if (isWin) {
+        resultMessage.textContent = "Congratulations! You guessed all characters!";
+      } else {
+        resultMessage.textContent = `Time's up! You guessed ${score} out of 20 characters.`;
+      }
+      inputField.disabled = true;
+    }
+  </script>
+
+</body>
+</html>
