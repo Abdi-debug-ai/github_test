@@ -609,12 +609,12 @@
 
     <div id="content">
         <!-- Your content here -->
-        <h1>Trial ends</h1>
-        <div class="timer" id="timer">Trial Time Remaining: :20</div>
+        <h1>Time trial</h1>
+        <div class="timer" id="timer">Trial Time Remaining: 0:10</div>
     </div>
 
     <script>
-        let trialTime = 2 * 10; // 2 minutes in seconds
+        let trialTime = 10; // 10 seconds trial
         let timerDisplay = document.getElementById('timer');
         let popupOverlay = document.getElementById('popupOverlay');
         let accessKeyInput = document.getElementById('accessKey');
@@ -648,9 +648,8 @@
                     popupOverlay.style.display = 'flex'; // Show popup when trial ends
                     document.getElementById('content').style.display = 'none'; // Hide content
                 } else {
-                    let minutes = Math.floor(trialTime / 60);
-                    let seconds = trialTime % 60;
-                    timerDisplay.textContent = `Trial Time Remaining: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                    let seconds = trialTime;
+                    timerDisplay.textContent = `Trial Time Remaining: 0:${seconds < 10 ? '0' + seconds : seconds}`;
                     trialTime--;
                 }
             }, 1000);
