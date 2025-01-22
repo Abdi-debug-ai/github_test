@@ -313,131 +313,24 @@
     </script>
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Subscription Page</title>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        
-
-        /* Container for the Subscription Section */
-        .subscription-container {
-            background-color: #fff;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-        }
-
-        /* Title */
-        .subscription-title {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        /* Description Text */
-        .subscription-description {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        /* Subscription Plan Box */
-        .subscription-plan {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f1f1f1;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease;
-        }
-
-        .subscription-plan:hover {
-            background-color: #e0e0e0;
-        }
-
-        .plan-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .plan-price {
-            font-size: 1.5rem;
-            color: #4caf50;
-        }
-
-        .plan-details {
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* Subscribe Button */
-        .subscribe-btn {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-        }
-
-        .subscribe-btn:hover {
-            background-color: #45a049;
-        }
-
-        .subscribe-btn:active {
-            background-color: #3e8e41;
-        }
-
-    </style>
-</head>
-<body>
-
-    <div class="subscription-container">
-        <h2 class="subscription-title">Choose Your Plan</h2>
-        <p class="subscription-description">Select the best subscription plan for you and get access to exclusive features.</p>
-
-        <!-- Subscription Plan -->
-        <div class="subscription-plan">
-            <div>
-                <p class="plan-name">Premium Plan</p>
-                <p class="plan-details">Access all premium content, no ads, and more features.</p>
-            </div>
-            <p class="plan-price">Ksh 300/month</p>
-        </div>
-
-        <!-- Subscription Button that redirects to Flutterwave Payment -->
-        <button class="subscribe-btn" onclick="redirectToPayment()">Subscribe Now</button>
-    </div>
 
     <script>
-        // Function to redirect users to the Flutterwave payment page
-        function redirectToPayment() {
-            window.location.href = "https://flutterwave.com/pay/sitrfue6ikbp"; // Payment link that includes M-Pesa
+        var acc = document.getElementsByClassName("accordion");
+        for (var i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
         }
     </script>
-
 </body>
 </html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -608,7 +501,6 @@
     </div>
 
     <div id="content">
-        <!-- Your content here -->
         <h1>Time trial</h1>
         <div class="timer" id="timer">Trial Time Remaining: 0:10</div>
     </div>
@@ -619,80 +511,106 @@
         let popupOverlay = document.getElementById('popupOverlay');
         let accessKeyInput = document.getElementById('accessKey');
 
-        // Check if the user has an active subscription or used the access key
         function checkSubscription() {
             let subscriptionStatus = localStorage.getItem('subscriptionStatus');
             let subscriptionStartTime = localStorage.getItem('subscriptionStartTime');
 
             if (subscriptionStatus === 'active' && subscriptionStartTime) {
                 let currentDate = new Date().getTime();
-                let expirationDate = parseInt(subscriptionStartTime) + 30 * 24 * 60 * 60 * 1000; // 30 days from subscription start time
-                
+                let expirationDate = parseInt(subscriptionStartTime) + 30 * 24 * 60 * 60 * 1000;
+
                 if (currentDate < expirationDate) {
-                    // User has an active subscription
                     document.getElementById('content').style.display = 'block';
                     startCountdown(expirationDate - currentDate);
                     return;
                 }
             }
 
-            // Show trial or subscription popup if not subscribed
             startTimer();
         }
 
-        // Start the countdown timer
         function startTimer() {
             let countdown = setInterval(function () {
                 if (trialTime <= 0) {
                     clearInterval(countdown);
-                    popupOverlay.style.display = 'flex'; // Show popup when trial ends
-                    document.getElementById('content').style.display = 'none'; // Hide content
+                    popupOverlay.style.display = 'flex';
+                    document.getElementById('content').style.display = 'none';
                 } else {
-                    let seconds = trialTime;
-                    timerDisplay.textContent = `Trial Time Remaining: 0:${seconds < 10 ? '0' + seconds : seconds}`;
+                    timerDisplay.textContent = `Trial Time Remaining: 0:${trialTime < 10 ? '0' + trialTime : trialTime}`;
                     trialTime--;
                 }
             }, 1000);
         }
 
-        // Redirect to the payment page
         function redirectToPayment() {
-            window.location.href = "https://flutterwave.com/pay/sitrfue6ikbp"; // Corrected the URL
+            window.location.href = "https://flutterwave.com/pay/sitrfue6ikbp";
         }
 
-        // Check Access Key
         function checkAccessKey() {
             if (accessKeyInput.value === '202045') {
                 alert('Access granted! Enjoy your membership for a month.');
                 let currentDate = new Date().getTime();
                 localStorage.setItem('subscriptionStatus', 'active');
                 localStorage.setItem('subscriptionStartTime', currentDate);
-                popupOverlay.style.display = 'none'; // Close the popup
-                document.getElementById('content').style.display = 'block'; // Show content
-                startCountdown(30 * 24 * 60 * 60 * 1000); // 30 days in milliseconds
+                popupOverlay.style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                startCountdown(30 * 24 * 60 * 60 * 1000);
             } else {
                 alert('Invalid Access Key.');
             }
         }
 
-        // Start the countdown timer for the subscription
         function startCountdown(remainingTime) {
             let countdownDisplay = setInterval(function () {
-                let remainingMinutes = Math.floor(remainingTime / 60000);
+                let remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
+                let remainingHours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                let remainingMinutes = Math.floor((remainingTime % (60 * 60 * 1000)) / 60000);
                 let remainingSeconds = Math.floor((remainingTime % 60000) / 1000);
-                timerDisplay.textContent = `Subscription Time Remaining: ${remainingMinutes}:${remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds}`;
+
+                timerDisplay.textContent = `Subscription Time Remaining: ${remainingDays}d ${remainingHours}h ${remainingMinutes}m ${remainingSeconds}s`;
 
                 remainingTime -= 1000;
                 if (remainingTime <= 0) {
                     clearInterval(countdownDisplay);
                     alert("Your subscription has expired. Please renew.");
+                    popupOverlay.style.display = 'flex';
+                    document.getElementById('content').style.display = 'none';
                 }
             }, 1000);
         }
 
-        // Check if the user is subscribed or in trial on page load
         window.onload = checkSubscription;
     </script>
 
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Selection Disabled</title>
+    <style>
+        /* Disable text selection on the entire body */
+        body {
+            user-select: none; /* For modern browsers */
+            -webkit-user-select: none; /* For Safari */
+            -moz-user-select: none; /* For Firefox */
+        }
+
+        /* Optional: Add some content for demonstration */
+        h1 {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    
 </body>
 </html>
