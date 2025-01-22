@@ -320,3 +320,286 @@
 <h2>6. Future of Regionalism</h2>
 <p>Growing importance in addressing global challenges like climate change, pandemics, and cyber threats. Increasing role of technology and innovation in regional integration. Potential for new forms of regionalism, such as digital and technological regionalism.</p>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Page</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Container for the Subscription Section */
+        .subscription-container {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Title */
+        .subscription-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Description Text */
+        .subscription-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Subscription Plan Box */
+        .subscription-plan {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .subscription-plan:hover {
+            background-color: #e0e0e0;
+        }
+
+        .plan-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .plan-price {
+            font-size: 1.5rem;
+            color: #4caf50;
+        }
+
+        .plan-details {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Subscribe Button */
+        .subscribe-btn {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #45a049;
+        }
+
+        .subscribe-btn:active {
+            background-color: #3e8e41;
+        }
+
+        /* Access Key Input */
+        .access-key-container {
+            margin-top: 20px;
+        }
+
+        /* Timer Display */
+        .timer {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #f44336;
+        }
+
+        /* Popup Overlay */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-container {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .popup-btn {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-container">
+            <h2>Subscription Required</h2>
+            <p>Your free trial has expired. Please subscribe to continue using the website.</p>
+
+            <div class="subscription-container">
+                <h3>Choose Your Plan</h3>
+                <p>Subscribe now to get unlimited access!</p>
+
+                <div class="subscription-plan">
+                    <div>
+                        <p class="plan-name">Premium Plan</p>
+                        <p class="plan-details">Access all premium content, no ads, and more features.</p>
+                    </div>
+                    <p class="plan-price">Ksh 300/month</p>
+                </div>
+
+                <button class="popup-btn" onclick="redirectToPayment()">Subscribe Now</button>
+
+                <div class="access-key-container">
+                    <input type="text" id="accessKey" placeholder="Enter Access Key" />
+                    <button class="popup-btn" onclick="checkAccessKey()">Access if Already a Member</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <h1>Time trial</h1>
+        <div class="timer" id="timer">Trial Time Remaining: 0:10</div>
+    </div>
+
+    <script>
+        let trialTime = 10; // 10 seconds trial
+        let timerDisplay = document.getElementById('timer');
+        let popupOverlay = document.getElementById('popupOverlay');
+        let accessKeyInput = document.getElementById('accessKey');
+
+        function checkSubscription() {
+            let subscriptionStatus = localStorage.getItem('subscriptionStatus');
+            let subscriptionStartTime = localStorage.getItem('subscriptionStartTime');
+
+            if (subscriptionStatus === 'active' && subscriptionStartTime) {
+                let currentDate = new Date().getTime();
+                let expirationDate = parseInt(subscriptionStartTime) + 30 * 24 * 60 * 60 * 1000;
+
+                if (currentDate < expirationDate) {
+                    document.getElementById('content').style.display = 'block';
+                    startCountdown(expirationDate - currentDate);
+                    return;
+                }
+            }
+
+            startTimer();
+        }
+
+        function startTimer() {
+            let countdown = setInterval(function () {
+                if (trialTime <= 0) {
+                    clearInterval(countdown);
+                    popupOverlay.style.display = 'flex';
+                    document.getElementById('content').style.display = 'none';
+                } else {
+                    timerDisplay.textContent = `Trial Time Remaining: 0:${trialTime < 10 ? '0' + trialTime : trialTime}`;
+                    trialTime--;
+                }
+            }, 1000);
+        }
+
+        function redirectToPayment() {
+            window.location.href = "https://flutterwave.com/pay/sitrfue6ikbp";
+        }
+
+        function checkAccessKey() {
+            if (accessKeyInput.value === '202045') {
+                alert('Access granted! Enjoy your membership for a month.');
+                let currentDate = new Date().getTime();
+                localStorage.setItem('subscriptionStatus', 'active');
+                localStorage.setItem('subscriptionStartTime', currentDate);
+                popupOverlay.style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+                startCountdown(30 * 24 * 60 * 60 * 1000);
+            } else {
+                alert('Invalid Access Key.');
+            }
+        }
+
+        function startCountdown(remainingTime) {
+            let countdownDisplay = setInterval(function () {
+                let remainingDays = Math.floor(remainingTime / (24 * 60 * 60 * 1000));
+                let remainingHours = Math.floor((remainingTime % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+                let remainingMinutes = Math.floor((remainingTime % (60 * 60 * 1000)) / 60000);
+                let remainingSeconds = Math.floor((remainingTime % 60000) / 1000);
+
+                timerDisplay.textContent = `Subscription Time Remaining: ${remainingDays}d ${remainingHours}h ${remainingMinutes}m ${remainingSeconds}s`;
+
+                remainingTime -= 1000;
+                if (remainingTime <= 0) {
+                    clearInterval(countdownDisplay);
+                    alert("Your subscription has expired. Please renew.");
+                    popupOverlay.style.display = 'flex';
+                    document.getElementById('content').style.display = 'none';
+                }
+            }, 1000);
+        }
+
+        window.onload = checkSubscription;
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Selection Disabled</title>
+    <style>
+        /* Disable text selection on the entire body */
+        body {
+            user-select: none; /* For modern browsers */
+            -webkit-user-select: none; /* For Safari */
+            -moz-user-select: none; /* For Firefox */
+        }
+
+        /* Optional: Add some content for demonstration */
+        h1 {
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
