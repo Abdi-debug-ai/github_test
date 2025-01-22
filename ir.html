@@ -291,6 +291,85 @@
             </div>
         </section>
     </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Toggle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: black;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: white;
+    }
+
+    .toggle-button {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    .dark-mode .toggle-button {
+      background-color: #555;
+    }
+
+    .toggle-button:hover {
+      background-color: #0056b3;
+    }
+
+    .dark-mode .toggle-button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-button" id="darkModeToggle">🌕</button>
+
+  <script>
+    // Load the user's theme preference from localStorage
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        document.getElementById("darkModeToggle").textContent= "🌑";
+      }
+    });
+
+    // Toggle between dark mode and light mode
+    document.getElementById("darkModeToggle").addEventListener("click", () => {
+      const body = document.body;
+      const button = document.getElementById("darkModeToggle");
+
+      body.classList.toggle("dark-mode");
+
+      if (body.classList.contains("dark-mode")) {
+        button.textContent = "🌑 ";
+        localStorage.setItem("theme", "dark");
+      } else {
+        button.textContent = "🌕 ";
+        localStorage.setItem("theme", "light");
+      }
+    });
+  </script>
+</body>
+</html>
 
     <footer>
         <p>&copy; 2025 International Relations Learning Platform. All rights reserved.</p>
