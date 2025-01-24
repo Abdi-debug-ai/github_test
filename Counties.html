@@ -108,11 +108,28 @@
   
   <div class="result" id="resultMessage"></div>
 
-<!-- Background Music -->
-<audio id="backgroundMusic" autoplay loop>
-  <source src="/Audio.mp3/Africa X HalalBeats  TOP NASHEED WORLD.mp3" type="audio/mp3">
+<button onclick="playMusic()">🗻</button></button>
+<audio id="backgroundMusic" loop>
+  <source src="/Audio.mp3/a.mp3" type="audio/mp3">
   Your browser does not support the audio element.
 </audio>
+
+<script>
+  function playMusic() {
+    const music = document.getElementById('backgroundMusic');
+    music.play().catch(error => console.error('Playback error:', error));
+  }
+</script>
+
+<script>
+  document.addEventListener('click', () => {
+    const music = document.getElementById('backgroundMusic');
+    music.play().catch(error => console.error('Playback error:', error));
+  });
+</script>
+
+
+
 
 
   <script>
