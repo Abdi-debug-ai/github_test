@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRGlobal News</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #333; }
+    h1 { text-align: center; background-color: #2f4f4f; color: white; padding: 20px; margin: 0; }
+    .news-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px; }
+    .news-card { border: 1px solid #ccc; border-radius: 5px; width: 300px; background: white; overflow: hidden; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+    .news-card img { width: 100%; height: 180px; object-fit: cover; }
+    .news-card h3 { font-size: 18px; padding: 10px; }
+    .news-card p { padding: 0 10px 10px; font-size: 14px; color: #2f4f4f; }
+    .news-card a { display: block; text-decoration: none; background: #2f4f4f; color: white; text-align: center; padding: 10px; border-radius: 0 0 5px 5px; }
+    .news-card a:hover { background: #2f4f4f; }
+  </style>
+</head>
+<body>
+  <h1>IRGlobal News</h1>
+  <div class="news-container" id="news-container"></div>
+
+  <script>
+    const API_KEY = 'a4dc33fafbab4370915e777082ba6163';
+    const BASE_URL = 'https://newsapi.org/v2/top-headlines';
+
+    async function fetchNews(category = 'general', country = 'us') {
+      try {
+        const response = await fetch(`${BASE_URL}?apiKey=${API_KEY}&category=${category}&country=${country}`);
+        const data = await response.json();
+        const container = document.getElementById('news-container');
+        container.innerHTML = '';
+
+        data.articles.forEach(article => {
+          const newsCard = document.createElement('div');
+          newsCard.className = 'news-card';
+
+          newsCard.innerHTML = `
+            <img src="${article.urlToImage || 'https://via.placeholder.com/300'}" alt="News Image">
+            <h3>${article.title}</h3>
+            <p>${article.description || 'No description available'}</p>
+            <a href="${article.url}" target="_blank">Read More</a>
+          `;
+
+          container.appendChild(newsCard);
+        });
+      } catch (error) {
+        console.error('Error fetching news:', error);
+        document.getElementById('news-container').innerHTML = '<p>Failed to load news. Please try again later.</p>';
+      }
+    }
+
+    // Fetch news on page load
+    fetchNews();
+  </script>
+</body>
+</html>
