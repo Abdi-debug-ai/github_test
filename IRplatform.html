@@ -1,356 +1,153 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politicast</title>
-    <style>
-        /* CSS Styles (Unchanged) */
+    <title>International Relations Learning Platform</title>
+       <style>
+        /* Global Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
             margin: 0;
             padding: 0;
+            background: url('https://www.toptal.com/designers/subtlepatterns/uploads/old_paper_texture.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, #8b0000, #5a0000);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #2f4f4f;
+            padding: 1rem 0;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        nav ul li a {
-            color: #ffffff;
+        nav a {
+            color: #fdf5e6;
             text-decoration: none;
+            font-weight: bold;
+            margin: 0 1.5rem;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
 
-        #auth, #postForm {
-            margin-top: 20px;
+        nav a:hover {
+            color: #ffd700;
         }
 
-        input, textarea, button {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
+        /* Main Container */
+        .container {
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 240, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        button {
-            background-color: #1e90ff;
-            color: #ffffff;
+        section {
+            margin-bottom: 2rem;
+        }
+
+        section h2 {
+            background: #8b0000;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .content {
+            padding: 1.5rem;
+            margin-top: 1rem;
+            background: #fdf5e6;
+            border: 2px solid #8b0000;
+            border-radius: 10px;
+            font-size: 1rem;
+            line-height: 1.8;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Accordion Styles */
+        .accordion {
+            background: #2f4f4f;
+            color: white;
             cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0077cc;
-        }
-
-        #content {
-            margin-top: 20px;
-        }
-
-        .post {
-            background-color: #1e1e1e;
-            padding: 15px;
-            margin-bottom: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
             border-radius: 5px;
+            transition: background 0.3s ease;
         }
 
-        .post img {
-            max-width: 100%;
+        .accordion:hover {
+            background: #3e8e41;
+        }
+
+        .panel {
+            display: none;
+            padding: 1rem;
+            background: #faf0e6;
+            margin-top: 0.5rem;
+            border-left: 4px solid #8b0000;
             border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
         }
 
-        .profile img {
-            width: 100px;
-            border-radius: 50%;
+        footer {
+            background: #5a0000;
+            color: #fdf5e6;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            border-top: 5px solid #8b0000;
         }
 
-        .user-list {
-            margin-top: 20px;
-        }
-
-        .user-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #333;
-        }
-
-        .user-item button {
-            width: auto;
-            padding: 5px 10px;
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Navigation (Unchanged) -->
-        <nav>
-            <ul>
-                <li><a href="#" id="homeLink">Home</a></li>
-                <li><a href="#" id="searchLink">Search</a></li>
-                <li><a href="#" id="profileLink">Profile</a></li>
-                <li><a href="#" id="usersLink">Creators</a></li>
-            </ul>
-        </nav>
+    <header>
+        <h1>International Relations: Learn & Explore</h1>
+        <p>Your Gateway to Understanding History, Politics, and Global Affairs</p>
+    </header>
 
-        <!-- Content Area (Unchanged) -->
-        <div id="content">
-            <!-- Content will be dynamically loaded here -->
-        </div>
+<iframe src="https://www.brookings.edu/" width="100%" height="600px" style="border:none;"></iframe>
 
-        <!-- Sign-In Form (Unchanged) -->
-        <div id="auth">
-            <h2>Sign In</h2>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <input type="file" id="profilePic" accept="image/*">
-            <button id="signInBtn">Sign In</button>
-        </div>
+<iframe src="https://www.thehagueinstituteforglobaljustice.org/" width="100%" height="600px" style="border:none;"></iframe>
 
-        <!-- Post Creation Form (Unchanged) -->
-        <div id="postForm" style="display: none;">
-            <h2>Create Post</h2>
-            <input type="text" id="postTitle" placeholder="Title">
-            <textarea id="postContent" placeholder="Content"></textarea>
-            <input type="file" id="postImage" accept="image/*">
-            <button id="submitPostBtn">Submit</button>
-        </div>
-    </div>
+<iframe src="https://carnegieendowment.org/" width="100%" height="600px" style="border:none;"></iframe>
 
-    <script>
-        // JavaScript Code with JSON Bin Integration
-        const BIN_ID = '67b47813ad19ca34f8084494'; // Replace with your JSON Bin ID
-        const X_MASTER_KEY = '$2a$10$0E76PdEnYaev1YCBVW3I5uanGlLmJXlrK.NoPycUpH1gNXKWGkuOa'; // Replace with your X-Master-Key
-        const JSON_BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
-
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        let allPosts = [];
-        let allUsers = [];
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const authDiv = document.getElementById('auth');
-            const postFormDiv = document.getElementById('postForm');
-            const contentDiv = document.getElementById('content');
-            const signInBtn = document.getElementById('signInBtn');
-            const submitPostBtn = document.getElementById('submitPostBtn');
-            const homeLink = document.getElementById('homeLink');
-            const searchLink = document.getElementById('searchLink');
-            const profileLink = document.getElementById('profileLink');
-            const usersLink = document.getElementById('usersLink');
-
-            // Fetch all posts and users from JSON Bin
-            await fetchData();
-
-            if (currentUser) {
-                authDiv.style.display = 'none';
-                postFormDiv.style.display = 'block';
-                loadPosts();
-            }
-
-            // Sign In Functionality (Unchanged)
-            signInBtn.addEventListener('click', async () => {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                const profilePic = document.getElementById('profilePic').files[0];
-
-                if (username && password) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const user = {
-                            username,
-                            password,
-                            profilePic: e.target.result,
-                            posts: [],
-                            followers: [],
-                            following: [],
-                            likedPosts: []
-                        };
-                        localStorage.setItem('currentUser', JSON.stringify(user));
-                        currentUser = user;
-                        authDiv.style.display = 'none';
-                        postFormDiv.style.display = 'block';
-                        loadPosts();
-                    };
-                    reader.readAsDataURL(profilePic);
-                }
-            });
-
-            // Submit Post Functionality (Updated to save to JSON Bin)
-            submitPostBtn.addEventListener('click', async () => {
-                const title = document.getElementById('postTitle').value;
-                const content = document.getElementById('postContent').value;
-                const image = document.getElementById('postImage').files[0];
-
-                if (title && content) {
-                    const reader = new FileReader();
-                    reader.onload = async function(e) {
-                        const post = {
-                            title,
-                            content,
-                            image: e.target.result,
-                            author: currentUser.username,
-                            likes: 0,
-                            likedBy: []
-                        };
-                        allPosts.push(post);
-                        await updateBin({ posts: allPosts, users: allUsers });
-                        loadPosts();
-                    };
-                    if (image) {
-                        reader.readAsDataURL(image);
-                    } else {
-                        const post = {
-                            title,
-                            content,
-                            image: null,
-                            author: currentUser.username,
-                            likes: 0,
-                            likedBy: []
-                        };
-                        allPosts.push(post);
-                        await updateBin({ posts: allPosts, users: allUsers });
-                        loadPosts();
-                    }
-                }
-            });
-
-            // Home Link - Load Posts (Unchanged)
-            homeLink.addEventListener('click', () => {
-                loadPosts();
-            });
-
-            // Search Functionality (Unchanged)
-            searchLink.addEventListener('click', () => {
-                const searchTerm = prompt("Enter search term:");
-                if (searchTerm) {
-                    const filteredPosts = allPosts.filter(post => 
-                        post.title.includes(searchTerm) || post.content.includes(searchTerm)
-                    );
-                    displayPosts(filteredPosts);
-                }
-            });
-
-            // Profile Link - Display Profile (Updated with Follow and Like functionality)
-            profileLink.addEventListener('click', () => {
-                contentDiv.innerHTML = `
-                    <div class="profile">
-                        <img src="${currentUser.profilePic}" alt="Profile Picture">
-                        <h2>${currentUser.username}</h2>
-                        <p>Followers: ${currentUser.followers.length} | Following: ${currentUser.following.length}</p>
-                        <h3>Posts:</h3>
-                        <div id="profilePosts"></div>
-                    </div>
-                `;
-                displayPosts(currentUser.posts, 'profilePosts');
-            });
-
-            // Users Link - Display All Users
-            usersLink.addEventListener('click', () => {
-                displayUsers();
-            });
-
-            // Fetch Data from JSON Bin
-            async function fetchData() {
-                const response = await fetch(JSON_BIN_URL, {
-                    headers: {
-                        'X-Master-Key': X_MASTER_KEY
-                    }
-                });
-                const data = await response.json();
-                allPosts = data.record.posts || [];
-                allUsers = data.record.users || [];
-            }
-
-            // Update JSON Bin
-            async function updateBin(data) {
-                await fetch(JSON_BIN_URL, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-Master-Key': X_MASTER_KEY
-                    },
-                    body: JSON.stringify(data)
-                });
-            }
-
-            // Load Posts Function (Updated to fetch from JSON Bin)
-            function loadPosts() {
-                displayPosts(allPosts);
-            }
-
-            // Display Posts Function (Unchanged)
-            function displayPosts(posts, targetId = 'content') {
-                const targetDiv = document.getElementById(targetId);
-                targetDiv.innerHTML = posts.map(post => `
-                    <div class="post">
-                        <h3>${post.title}</h3>
-                        ${post.image ? `<img src="${post.image}" alt="Post Image">` : ''}
-                        <p>${post.content}</p>
-                        <small>By ${post.author}</small>
-                        <button onclick="likePost('${post.title}')">Like (${post.likes})</button>
-                    </div>
-                `).join('');
-            }
-
-            // Display Users Function
-            function displayUsers() {
-                const contentDiv = document.getElementById('content');
-                contentDiv.innerHTML = `
-                    <div class="user-list">
-                        <h2>All Users</h2>
-                        ${allUsers.map(user => `
-                            <div class="user-item">
-                                <span>${user.username}</span>
-                                <button onclick="followUser('${user.username}')">
-                                    ${currentUser.following.includes(user.username) ? 'Unfollow' : 'Follow'}
-                                </button>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-            }
-
-            // Follow User Functionality
-            window.followUser = async (username) => {
-                const userToFollow = allUsers.find(u => u.username === username);
-                if (userToFollow && !currentUser.following.includes(username)) {
-                    currentUser.following.push(username);
-                    userToFollow.followers.push(currentUser.username);
-                    await updateBin({ posts: allPosts, users: allUsers });
-                    displayUsers();
-                } else if (userToFollow) {
-                    currentUser.following = currentUser.following.filter(u => u !== username);
-                    userToFollow.followers = userToFollow.followers.filter(u => u !== currentUser.username);
-                    await updateBin({ posts: allPosts, users: allUsers });
-                    displayUsers();
-                }
-            };
-
-            // Like Post Functionality
-            window.likePost = async (postTitle) => {
-                const post = allPosts.find(p => p.title === postTitle);
-                if (post && !post.likedBy.includes(currentUser.username)) {
-                    post.likes++;
-                    post.likedBy.push(currentUser.username);
-                    await updateBin({ posts: allPosts, users: allUsers });
-                    loadPosts();
-                }
-            };
-        });
-    </script>
-</body>
-</html>
